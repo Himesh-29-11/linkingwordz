@@ -4,24 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Linkingwordz Growth Framework</title>
+<link rel="stylesheet" href="{{ asset('css/site.css') }}">
 <link rel="stylesheet" href="{{ asset('css/brand-framework.css') }}">
 </head>
 <body>
+@include('partials.header')
+
 <!-- MASTHEAD -->
 <header class="masthead">
   <div class="wrap">
-    <div class="brand-row">
-      <div class="wordmark">LINKING<span>WORDZ</span></div>
-      <nav class="brand-nav" aria-label="Primary">
-        <a href="{{ route('about') }}">About</a>
-        <a href="{{ route('services.authors') }}">Author/Publisher</a>
-        <a href="{{ route('services.brands') }}" aria-current="page">Brands</a>
-        <a href="{{ route('work') }}">Work</a>
-        <a href="{{ route('insights') }}">Insights</a>
-        <a href="{{ route('contact') }}">Contact</a>
-      </nav>
-      <div class="brand-tag">Content &amp; Authority Partners</div>
-    </div>
     <div class="eyebrow">A Linkingwordz Growth Framework</div>
     <h1 class="hero-head">Every recognised authority<br>started <em>exactly</em> where you are.</h1>
     <p class="hero-sub">A three-phase path that takes you from "no one's heard of me yet" to being the name your industry already trusts — before they've even spoken to you.</p>

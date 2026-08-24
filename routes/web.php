@@ -1,19 +1,25 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitePagesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::view('/about', 'pages.placeholder', ['title' => 'About', 'description' => 'The founder and editorial approach behind LinkingWordz.'])->name('about');
-Route::view('/services', 'pages.placeholder', ['title' => 'Services', 'description' => 'Content and editorial services for authors and service businesses.'])->name('services');
+Route::get('/about', [SitePagesController::class, 'about'])->name('about');
+Route::get('/services', [SitePagesController::class, 'services'])->name('services');
 Route::view('/services/authors', 'pages.authors')->name('services.authors');
 Route::view('/services/brands', 'pages.brands')->name('services.brands');
-Route::view('/work', 'pages.placeholder', ['title' => 'Work', 'description' => 'Selected case studies and editorial projects.'])->name('work');
-Route::get('/work/{slug}', fn (string $slug) => view('pages.placeholder', ['title' => str($slug)->replace('-', ' ')->title(), 'description' => 'This case study page is ready for its project content.']))->name('work.show');
-Route::view('/insights', 'pages.placeholder', ['title' => 'Insights', 'description' => 'Research-backed writing, editorial thinking, and useful ideas.'])->name('insights');
-Route::get('/insights/{slug}', fn (string $slug) => view('pages.placeholder', ['title' => str($slug)->replace('-', ' ')->title(), 'description' => 'This insight page is ready for its article content.']))->name('insights.show');
-Route::view('/contact', 'pages.placeholder', ['title' => 'Contact', 'description' => 'Book a free discovery call with LinkingWordz.'])->name('contact');
-Route::view('/privacy-policy', 'pages.placeholder', ['title' => 'Privacy Policy', 'description' => 'Our privacy policy will be published here.'])->name('privacy');
-Route::view('/terms-and-conditions', 'pages.placeholder', ['title' => 'Terms & Conditions', 'description' => 'Our terms and conditions will be published here.'])->name('terms');
+
+Route::get('/work', [SitePagesController::class, 'work'])->name('work');
+Route::get('/work/{slug}', [SitePagesController::class, 'workShow'])->name('work.show');
+
+Route::get('/insights', [SitePagesController::class, 'insights'])->name('insights');
+Route::get('/insights/{slug}', [SitePagesController::class, 'insightShow'])->name('insights.show');
+
+Route::get('/contact', [SitePagesController::class, 'contact'])->name('contact');
+Route::post('/contact', [SitePagesController::class, 'contactSubmit'])->name('contact.submit');
+
+Route::get('/privacy-policy', [SitePagesController::class, 'legal'])->defaults('page', 'privacy-policy')->name('privacy');
+Route::get('/terms-and-conditions', [SitePagesController::class, 'legal'])->defaults('page', 'terms-and-conditions')->name('terms');
 Route::view('/404', 'pages.placeholder', ['title' => '404 Page', 'description' => 'The page you are looking for could not be found.'])->name('page404');

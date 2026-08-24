@@ -1,5 +1,11 @@
 <footer class="lw-footer">
-    <div class="lw-container lw-footer__inner">
+    <div class="lw-footer__curve" aria-hidden="true">
+        <svg viewBox="0 0 1440 110" preserveAspectRatio="none">
+            <path d="M0 32C210 4 408 76 660 55C900 35 1130 72 1440 18V110H0Z" />
+        </svg>
+    </div>
+    <div class="lw-footer__body">
+        <div class="lw-container lw-footer__inner">
         <div class="lw-footer__main">
             <div class="lw-footer__intro">
                 <a href="{{ route('home') }}" class="lw-footer__brand" aria-label="LinkingWordz home">
@@ -79,6 +85,7 @@
         <div class="lw-footer__bottom">
             <p>© {{ now()->year }} LinkingWordz. All rights reserved.</p>
             <p>Human-written. Research-backed. Built around your brand.</p>
+        </div>
         </div>
     </div>
 </footer>
