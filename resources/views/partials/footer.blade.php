@@ -1,0 +1,84 @@
+<footer class="lw-footer">
+    <div class="lw-container lw-footer__inner">
+        <div class="lw-footer__main">
+            <div class="lw-footer__intro">
+                <a href="{{ route('home') }}" class="lw-footer__brand" aria-label="LinkingWordz home">
+                    <svg class="lw-footer__brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M11 35c5-5 6-13 12-21 2-3 5-5 8-6-1 4-2 7-5 10-5 5-9 5-15 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="m25 25 6 6M27 16l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>Linking<span>wordz</span></span>
+                </a>
+                <p class="lw-footer__studio">Editorial Content Studio</p>
+                <span class="lw-footer__rule" aria-hidden="true"></span>
+                <p class="lw-footer__statement">We write with the right words for the right clients — authors and businesses whose voice deserves to be heard.</p>
+                <div class="lw-footer__socials" aria-label="Social links">
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+                    <a href="https://twitter.com/" target="_blank" rel="noreferrer" aria-label="Twitter">𝕏</a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">◎</a>
+                    <a href="mailto:hello@linkingwordz.com" aria-label="Email LinkingWordz">✉</a>
+                </div>
+            </div>
+
+            <nav class="lw-footer__nav" aria-label="Pages">
+                <p class="lw-footer__label">Pages</p>
+                <ul>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('services') }}">Services</a></li>
+                    <li><a href="{{ route('services.authors') }}">Authors &amp; Publishers</a></li>
+                    <li><a href="{{ route('services.brands') }}">Businesses &amp; Brands</a></li>
+                    <li><a href="{{ route('work') }}">Work / Case Studies</a></li>
+                    <li><a href="{{ route('insights') }}">Insights / Blog</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                </ul>
+            </nav>
+
+            <nav class="lw-footer__nav" aria-label="Services">
+                <p class="lw-footer__label">Services</p>
+                <ul>
+                    <li><a href="{{ route('services') }}#editorial-content-strategy">Editorial &amp; Content Strategy</a></li>
+                    <li><a href="{{ route('services.brands') }}#seo-content-copywriting">SEO Content &amp; Copywriting</a></li>
+                    <li><a href="{{ route('services.brands') }}#digital-pr">Digital PR &amp; Outreach</a></li>
+                    <li><a href="{{ route('services.authors') }}#book-marketing">Author &amp; Book Marketing</a></li>
+                </ul>
+            </nav>
+
+            <nav class="lw-footer__nav" aria-label="Audiences and quick links">
+                <p class="lw-footer__label">For</p>
+                <ul>
+                    <li><a href="{{ route('services.authors') }}">Authors &amp; Publishers</a></li>
+                    <li><a href="{{ route('services.brands') }}">Businesses &amp; Brands</a></li>
+                </ul>
+                <p class="lw-footer__label lw-footer__label--quick">Quick Links</p>
+                <ul>
+                    <li><a href="{{ route('work.show', ['slug' => 'kiran-lasiyal']) }}">Case Study Detail</a></li>
+                    <li><a href="{{ route('insights') }}">Blog Article</a></li>
+                    <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
+                    <li><a href="{{ url('/terms-and-conditions') }}">Terms &amp; Conditions</a></li>
+                    <li><a href="{{ url('/404') }}">404 Page</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="lw-footer__contact-strip">
+            <div class="lw-footer__contact-item">
+                <span class="lw-footer__contact-icon" aria-hidden="true">⌖</span>
+                <div><p class="lw-footer__label">Studio</p><p>Ahmedabad, Gujarat<br>India</p></div>
+            </div>
+            <div class="lw-footer__contact-item">
+                <span class="lw-footer__contact-icon" aria-hidden="true">✉</span>
+                <div><p class="lw-footer__label">Email</p><a href="mailto:hello@linkingwordz.com">hello@linkingwordz.com</a></div>
+            </div>
+            <div class="lw-footer__contact-item">
+                <span class="lw-footer__contact-icon" aria-hidden="true">◎</span>
+                <div><p class="lw-footer__label">Website</p><a href="{{ route('home') }}">www.linkingwordz.com</a></div>
+            </div>
+        </div>
+
+        <div class="lw-footer__bottom">
+            <p>© {{ now()->year }} LinkingWordz. All rights reserved.</p>
+            <p>Human-written. Research-backed. Built around your brand.</p>
+        </div>
+    </div>
+</footer>
