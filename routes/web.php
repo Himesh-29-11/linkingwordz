@@ -16,6 +16,8 @@ Route::get('/work/{slug}', [SitePagesController::class, 'workShow'])->name('work
 
 Route::get('/insights', [SitePagesController::class, 'insights'])->name('insights');
 Route::get('/insights/{slug}', [SitePagesController::class, 'insightShow'])->name('insights.show');
+Route::get('/blog', [SitePagesController::class, 'insights'])->name('blog');
+Route::get('/blog/{slug}', [SitePagesController::class, 'insightShow'])->name('blog.show');
 
 Route::get('/contact', [SitePagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [SitePagesController::class, 'contactSubmit'])->name('contact.submit');

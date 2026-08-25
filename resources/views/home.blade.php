@@ -7,14 +7,15 @@
         <div class="lw-hero__inner">
             <div class="lw-hero__copy">
                 <p class="lw-hero__eyebrow">
-                    <span>Editorial Content Studio</span>
+                    <span>Content &amp; Editorial Services for Authors and Service Businesses</span>
                     <span class="lw-hero__eyebrow-rule" aria-hidden="true"></span>
                 </p>
-                <h1 id="hero-heading" class="lw-hero__title">We write with the <em>right words</em> for the <em>right clients.</em></h1>
-                <p class="lw-hero__description">Linkingwordz is a content and editorial brand built for authors who want their work discovered, and service businesses whose expertise deserves a stronger voice online. Human-written. Research-backed. Built around your brand. Not a template.</p>
+                <h1 id="hero-heading" class="lw-hero__title">The <em>right words</em> find the <em>right clients</em>. We make sure yours do.</h1>
+                <p class="lw-hero__description">Linkingwordz is a content and editorial brand built for two kinds of people — authors who want their work discovered, and service businesses whose expertise deserves a stronger voice online.</p>
+                <p class="lw-hero__promise">Human-written. Research-backed. Built around your brand.<br>Not a template.</p>
                 <div class="lw-hero__actions">
                     <a href="{{ route('services.authors') }}" class="lw-btn lw-btn--primary">I'm an author or publisher <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
-                    <a href="{{ route('services.brands') }}" class="lw-btn lw-btn--ghost">I run a service business <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
+                    <a href="{{ route('contact') }}" class="lw-btn lw-btn--ghost">I run a service business <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
                 </div>
                 <p class="lw-hero__note">Not sure which fits? <a href="{{ route('contact') }}">Book a free discovery call</a> — we'll figure it out together.</p>
             </div>
@@ -25,7 +26,7 @@
                     <img src="{{ asset('images/shruti-hero.png') }}" alt="Shruti Bhatt, founder of LinkingWordz, at her desk with notebook and pen" class="lw-hero__photo">
                 </figure>
                 <aside class="lw-hero__founder-card">
-                    <p class="lw-hero__founder-name">Shruti Bhatt</p>
+                    <p class="lw-hero__founder-name">Hello, I'm Shruti ;)</p>
                     <p class="lw-hero__founder-role">Founder · Content Writer, Copyeditor &amp; Ghostwriter</p>
                 </aside>
                 <div class="lw-hero__roles" aria-label="Core services">
@@ -60,8 +61,8 @@
         <span class="lw-audience__waves" aria-hidden="true"></span>
         <div class="lw-container">
             <div class="lw-audience__header">
-                <p class="lw-audience__label"><span class="lw-audience__label-line" aria-hidden="true"></span><span>Who we write for</span><span class="lw-audience__label-line" aria-hidden="true"></span></p>
-                <h2 id="audience-title" class="lw-audience__headline">Two audiences. One <em>editorial</em> partner.</h2>
+                <p class="lw-audience__label"><span class="lw-audience__label-line" aria-hidden="true"></span><span>Two audiences. One standard of work.</span><span class="lw-audience__label-line" aria-hidden="true"></span></p>
+                <h2 id="audience-title" class="lw-audience__headline">Which path is yours?</h2>
                 <p class="lw-audience__intro">Linkingwordz is built for two kinds of people — with one goal: meaningful content that connects and converts.</p>
             </div>
             <div class="lw-audience__cards-wrap">
@@ -78,11 +79,7 @@
                                 </span>
                                 <h3 class="lw-audience__card-title">{{ $card['title'] }}</h3>
                                 <p class="lw-audience__card-description">{{ $card['description'] }}</p>
-                                <ul class="lw-audience__highlights">
-                                    @foreach ($card['highlights'] as $highlight)
-                                        <li><span class="lw-audience__highlight-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>{{ $highlight }}</span></li>
-                                    @endforeach
-                                </ul>
+                                <p class="lw-audience__services">{{ $card['highlights'][0] }}</p>
                                 <a href="{{ $card['href'] }}" class="lw-audience__card-cta">{{ $card['cta'] }} <span aria-hidden="true">→</span></a>
                             </div>
                             <figure class="lw-audience__card-photo"><img src="{{ asset($card['image']) }}" alt="{{ $card['imageAlt'] }}" class="lw-audience__photo"></figure>
@@ -99,18 +96,15 @@
 
     <section class="lw-problem lw-section" aria-labelledby="problem-title">
         <div class="lw-container">
-            <div class="lw-problem__reference-layout">
-                <div class="lw-problem__intro">
-                    <p class="lw-eyebrow">The problem</p>
-                    <h2 id="problem-title" class="lw-problem__headline">Most content is written to fill a calendar. <em>Not to build authority.</em></h2>
-                </div>
-                <div class="lw-problem__answer">
-                    <p>It doesn't connect. It doesn't rank. And it certainly doesn't convert.</p>
-                    <strong>We do things differently.</strong>
-                    <p>We create content that earns attention, builds trust and drives measurable results.</p>
-                    <span class="lw-problem__pen" aria-hidden="true">@include('partials.publisher-icon', ['name' => 'edit'])</span>
-                </div>
+            <div class="lw-problem__layout">
+                <div class="lw-problem__intro"><p class="lw-eyebrow">Why clients come to us</p><h2 id="problem-title" class="lw-problem__headline">You're not struggling because your work isn't good enough. You're struggling because it isn't visible enough.</h2><p class="lw-problem__subhead">We've heard this before. Many times.</p></div>
+                <ul class="lw-problem__grid">
+                    @foreach ($problems as $problem)
+                        <li class="lw-problem__item"><span class="lw-problem__index" aria-hidden="true">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><p>“{{ $problem }}”</p></li>
+                    @endforeach
+                </ul>
             </div>
+            <p class="lw-problem__closing">These are the 5 problems LinkingWordz was built to solve. Not with a production line — but with research, care, and a team that works with 5 to 10 clients at a time. Deliberately.</p>
         </div>
     </section>
 
@@ -243,11 +237,12 @@
                 </svg>
             </span>
             <div class="lw-final-cta__copy">
-                <h2 id="final-cta-title">Ready to create content that builds authority and drives results?</h2>
-                <p>Let's talk about your goals and how we can achieve them together.</p>
+                <h2 id="final-cta-title">Not sure where to start? That's what the first call is for.</h2>
+                <p>I'm Shruti — and I've spent 9+ years in the content, linguistic, and writing industry helping authors get discovered and service businesses build content that converts. If you're open to a conversation — no agenda, no pressure, no packages pushed — just book a call. We'll figure out together which direction makes sense for your brand.</p>
             </div>
             <div class="lw-final-cta__actions">
-                <a href="{{ route('contact') }}" class="lw-btn lw-btn--secondary">Book a free discovery call <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
+                <a href="{{ route('contact') }}" class="lw-btn lw-btn--secondary">Book a Free Discovery Call <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
+                <a href="mailto:connect@linkingwordz.com" class="lw-final-cta__email">Or email us at connect@linkingwordz.com</a>
             </div>
             <span class="lw-final-cta__dots" aria-hidden="true"></span>
         </div>
