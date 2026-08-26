@@ -12,7 +12,42 @@ class SitePagesController extends Controller
 {
     public function about(): View
     {
-        return view('pages.about');
+        return view('pages.about', [
+            'instagramPosts' => [
+                [
+                    'type' => 'image',
+                    'src' => 'images/about/about-post-1.png',
+                    'href' => 'https://www.instagram.com/linkingwordz/',
+                    'alt' => 'Linkingwordz Instagram post',
+                ],
+                [
+                    'type' => 'image',
+                    'src' => 'images/about/about-post-2.png',
+                    'href' => 'https://www.instagram.com/p/C2SB8oeRUd3/',
+                    'alt' => 'Linkingwordz Instagram post',
+                ],
+                [
+                    'type' => 'image',
+                    'src' => 'images/about/about-post-3.png',
+                    'href' => 'https://www.instagram.com/p/CzbKRY_samg/',
+                    'alt' => 'Linkingwordz Instagram post',
+                ],
+                [
+                    'type' => 'video',
+                    'src' => 'videos/about-reel-1.mp4',
+                    'poster' => 'videos/about-reel-1.jpg',
+                    'href' => 'https://www.instagram.com/linkingwordz/',
+                    'alt' => 'Linkingwordz Instagram reel',
+                ],
+                [
+                    'type' => 'video',
+                    'src' => 'videos/about-reel-2.mp4',
+                    'poster' => 'videos/about-reel-2.jpg',
+                    'href' => 'https://www.instagram.com/linkingwordz/',
+                    'alt' => 'Linkingwordz Instagram reel',
+                ],
+            ],
+        ]);
     }
 
     public function services(): View

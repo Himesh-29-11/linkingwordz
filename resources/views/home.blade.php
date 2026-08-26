@@ -4,6 +4,7 @@
 
 @section('content')
     <section class="lw-hero" aria-labelledby="hero-heading">
+        @include('partials.ornament')
         <div class="lw-hero__inner">
             <div class="lw-hero__copy">
                 <p class="lw-hero__eyebrow">
@@ -192,6 +193,21 @@
                         </div>
                     </a>
                 @endforeach
+                <a href="{{ route('services') }}" class="lw-fill-card">
+                    <span>@include('partials.publisher-icon', ['name' => 'spark'])</span>
+                    <strong>More stories in progress</strong>
+                    <p>Strategy, voice, and editorial work across authors and brands.</p>
+                </a>
+                <a href="{{ route('services.authors') }}" class="lw-fill-card">
+                    <span>@include('partials.publisher-icon', ['name' => 'book'])</span>
+                    <strong>For authors</strong>
+                    <p>Ghostwriting, editing, and book-discovery blogs.</p>
+                </a>
+                <a href="{{ route('contact') }}" class="lw-fill-card">
+                    <span>@include('partials.publisher-icon', ['name' => 'chat'])</span>
+                    <strong>Your project next</strong>
+                    <p>Book a free discovery call — no obligation.</p>
+                </a>
             </div>
         </div>
     </section>

@@ -190,3 +190,78 @@
 
     document.querySelectorAll('.lw-ig-post, .lw-article-engage').forEach(bindRoot);
 })();
+
+(() => {
+    document.querySelectorAll('[data-ig-carousel]').forEach((root) => {
+        const track = root.querySelector('.lw-ig-carousel__track');
+        const slides = [...root.querySelectorAll('.lw-ig-carousel__slide')];
+        const dotsWrap = root.querySelector('[data-ig-dots]');
+        const prev = root.querySelector('[data-ig-prev]');
+        const next = root.querySelector('[data-ig-next]');
+        if (!track || slides.length === 0) return;
+
+        let index = 0;
+        let timer = null;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const perView = () => {
+            if (window.matchMedia('(max-width: 700px)').matches) return 1;
+            if (window.matchMedia('(max-width: 1024px)').matches) return 2;
+            return 3;
+        };
+
+        const pageCount = () => Math.max(1, Math.ceil(slides.length / perView()));
+
+        const paint = () => {
+            const pages = pageCount();
+            index = ((index % pages) + pages) % pages;
+            const start = index * perView();
+            const slide = slides[0];
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            const step = slide.getBoundingClientRect().width + gap;
+            track.style.transform = `translateX(-${start * step}px)`;
+            if (dotsWrap) {
+                dotsWrap.innerHTML = '';
+                for (let i = 0; i < pages; i += 1) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'lw-ig-carousel__dot' + (i === index ? ' is-on' : '');
+                    btn.setAttribute('aria-label', `Show page ${i + 1}`);
+                    btn.addEventListener('click', () => { index = i; paint(); restart(); });
+                    dotsWrap.appendChild(btn);
+                }
+            }
+        };
+
+        const go = (dir) => {
+            index += dir;
+            paint();
+        };
+
+        let hovered = false;
+        const videoPlaying = () => [...root.querySelectorAll('video')].some((v) => !v.paused && !v.ended);
+        const stop = () => { if (timer) window.clearInterval(timer); timer = null; };
+        const start = () => {
+            stop();
+            if (reduce || hovered || videoPlaying() || pageCount() < 2) return;
+            timer = window.setInterval(() => go(1), 4000);
+        };
+        const restart = () => start();
+
+        prev?.addEventListener('click', () => { go(-1); restart(); });
+        next?.addEventListener('click', () => { go(1); restart(); });
+        root.addEventListener('pointerenter', () => { hovered = true; stop(); });
+        root.addEventListener('pointerleave', () => { hovered = false; start(); });
+        root.addEventListener('focusin', () => { hovered = true; stop(); });
+        root.addEventListener('focusout', () => { hovered = false; start(); });
+        window.addEventListener('resize', paint);
+        root.querySelectorAll('video').forEach((video) => {
+            video.addEventListener('play', stop);
+            video.addEventListener('pause', start);
+            video.addEventListener('ended', start);
+        });
+
+        paint();
+        start();
+    });
+})();

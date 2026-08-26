@@ -6,6 +6,7 @@
     @php $work = $workItems[0]; @endphp
     <article class="lw-cs">
         <header class="lw-cs-hero">
+            @include('partials.ornament')
             <div class="lw-container lw-cs-hero__grid">
                 <div>
                     <p class="lw-eyebrow">Case study</p>

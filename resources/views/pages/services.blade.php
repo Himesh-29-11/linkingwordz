@@ -5,15 +5,26 @@
 @section('content')
     <div class="lw-page lw-svc">
         <header class="lw-svc-hero">
+            @include('partials.ornament')
             <div class="lw-container lw-svc-hero__inner">
-                <p class="lw-eyebrow">Services</p>
-                <h1>5 content problems. 1 solution. Built for your brand.</h1>
-                <p>Most brands don't have a content problem. They have a clarity problem — about what to say, where to say it, and how to make it work together.</p>
-                <p>At Linkingwordz, we handle your website, your blogs, your LinkedIn presence, your book, and your editorial work — all under one roof. Human-written. Research-backed. Built for the audience you actually want to reach.</p>
-                <div class="lw-svc-hero__actions">
-                    <a class="lw-btn lw-btn--primary" href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer">Book a free discovery call</a>
-                    <span>No obligation. Not even after 2 calls.</span>
+                <div class="lw-svc-hero__copy">
+                    <p class="lw-eyebrow">Services</p>
+                    <h1>5 content problems. 1 solution. Built for your brand.</h1>
+                    <p>Most brands don't have a content problem. They have a clarity problem — about what to say, where to say it, and how to make it work together.</p>
+                    <p>At Linkingwordz, we handle your website, your blogs, your LinkedIn presence, your book, and your editorial work — all under one roof. Human-written. Research-backed. Built for the audience you actually want to reach.</p>
+                    <div class="lw-svc-hero__actions">
+                        <a class="lw-btn lw-btn--primary" href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer">Book a free discovery call</a>
+                        <span>No obligation. Not even after 2 calls.</span>
+                    </div>
                 </div>
+                <ul class="lw-fill-tiles">
+                    <li><span>@include('partials.publisher-icon', ['name' => 'website'])</span><b>01</b><em>Website</em></li>
+                    <li><span>@include('partials.publisher-icon', ['name' => 'article'])</span><b>02</b><em>Blogs</em></li>
+                    <li><span>@include('partials.publisher-icon', ['name' => 'linkedin'])</span><b>03</b><em>LinkedIn</em></li>
+                    <li><span>@include('partials.publisher-icon', ['name' => 'book'])</span><b>04</b><em>Book</em></li>
+                    <li><span>@include('partials.publisher-icon', ['name' => 'edit'])</span><b>05</b><em>Editorial</em></li>
+                    <li><span>@include('partials.publisher-icon', ['name' => 'spark'])</span><b>+</b><em>Human-written</em></li>
+                </ul>
             </div>
         </header>
 

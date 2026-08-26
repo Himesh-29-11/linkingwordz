@@ -5,6 +5,7 @@
 @section('content')
     <div class="lw-page lw-wwm">
         <header class="lw-wwm-hero">
+            @include('partials.ornament')
             <div class="lw-container lw-wwm-hero__grid">
                 <div>
                     <p class="lw-eyebrow">For new freelancers</p>

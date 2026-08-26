@@ -5,6 +5,7 @@
 @section('content')
     <article class="lw-article">
         <header class="lw-article__hero">
+            @include('partials.ornament')
             <div class="lw-container">
                 <p class="lw-eyebrow">{{ $insight['category'] }}</p>
                 <h1>{{ $insight['title'] }}</h1>

@@ -5,6 +5,7 @@
 @section('content')
     <div class="lw-page lw-insights-page">
         <section class="lw-blog-intro" aria-labelledby="insights-page-title">
+            @include('partials.ornament')
             <div class="lw-container lw-blog-intro__grid">
                 <figure class="lw-blog-intro__photo">
                     <img src="{{ asset('images/blog/blog-hero.jpg') }}" alt="Shruti Bhatt, writer and editor at LinkingWordz">

@@ -6,7 +6,7 @@
     <div class="lw-page lw-about-page">
         <section class="lw-abx-hero" aria-labelledby="about-title">
             <div class="lw-abx-hero__media">
-                <img src="{{ asset('images/about/about-portrait.jpg') }}" alt="Shruti Bhatt at a cafe">
+                    <img src="{{ asset('images/about/about-portrait-hd.jpg') }}" alt="Shruti Bhatt at a cafe">
             </div>
             <div class="lw-container">
                 <div class="lw-abx-hero__card">
@@ -102,24 +102,39 @@
             </div>
         </section>
 
-        <section class="lw-abx-posts" aria-labelledby="posts-title">
+        <section class="lw-abx-posts" aria-labelledby="posts-title" data-ig-carousel>
             <div class="lw-container">
-                <h2 id="posts-title">Few Instagram posts people loved the most!</h2>
-                <div class="lw-abx-posts__grid">
-                    <a href="https://www.instagram.com/linkingwordz/" target="_blank" rel="noreferrer"><img src="{{ asset('images/about/about-post-1.png') }}" alt="Linkingwordz Instagram post"></a>
-                    <a href="https://www.instagram.com/p/C2SB8oeRUd3/" target="_blank" rel="noreferrer"><img src="{{ asset('images/about/about-post-2.png') }}" alt="Linkingwordz Instagram post"></a>
-                    <a href="https://www.instagram.com/p/CzbKRY_samg/" target="_blank" rel="noreferrer"><img src="{{ asset('images/about/about-post-3.png') }}" alt="Linkingwordz Instagram post"></a>
-                </div>
-                <div class="lw-abx-posts__reels">
-                    <div class="lw-abx-posts__reel">
-                        <video src="{{ asset('videos/about-reel-1.mp4') }}" poster="{{ asset('videos/about-reel-1.jpg') }}" controls playsinline preload="metadata" title="Linkingwordz reel"></video>
-                        <span class="lw-abx-posts__play" aria-hidden="true"></span>
-                    </div>
-                    <div class="lw-abx-posts__reel">
-                        <video src="{{ asset('videos/about-reel-2.mp4') }}" poster="{{ asset('videos/about-reel-2.jpg') }}" controls playsinline preload="metadata" title="Linkingwordz reel"></video>
-                        <span class="lw-abx-posts__play" aria-hidden="true"></span>
+                <div class="lw-ig-carousel__head">
+                    <h2 id="posts-title">Few Instagram posts people loved the most!</h2>
+                    <div class="lw-ig-carousel__tools">
+                        <button type="button" class="lw-ig-carousel__nav" data-ig-prev aria-label="Previous posts">‹</button>
+                        <button type="button" class="lw-ig-carousel__nav" data-ig-next aria-label="Next posts">›</button>
                     </div>
                 </div>
+                <div class="lw-ig-carousel" aria-roledescription="carousel">
+                    <div class="lw-ig-carousel__viewport">
+                        <div class="lw-ig-carousel__track">
+                            @foreach ($instagramPosts as $post)
+                                <article class="lw-ig-carousel__slide">
+                                    @if (($post['type'] ?? 'image') === 'video')
+                                        <div class="lw-abx-posts__reel">
+                                            <video src="{{ asset($post['src']) }}" poster="{{ asset($post['poster'] ?? '') }}" controls playsinline preload="metadata" title="{{ $post['alt'] }}"></video>
+                                            <span class="lw-abx-posts__play" aria-hidden="true"></span>
+                                        </div>
+                                    @else
+                                        <a href="{{ $post['href'] }}" target="_blank" rel="noreferrer">
+                                            <img src="{{ asset($post['src']) }}" alt="{{ $post['alt'] }}">
+                                        </a>
+                                    @endif
+                                </article>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="lw-ig-carousel__dots" data-ig-dots role="tablist" aria-label="Instagram pages"></div>
+                <p class="lw-ig-carousel__more">
+                    <a href="https://www.instagram.com/linkingwordz/" target="_blank" rel="noreferrer">See every post on Instagram ↗</a>
+                </p>
             </div>
         </section>
 
