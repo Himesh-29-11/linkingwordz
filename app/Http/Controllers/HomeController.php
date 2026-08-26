@@ -40,10 +40,10 @@ class HomeController extends Controller
                 ['title' => "How Strategic Social Media Editing Transformed Kiran's LinkedIn Journey", 'text' => 'A tale of exceptional growth — 26% more impressions in a week.', 'image' => 'images/work/kiran.jpg', 'href' => '/work'],
             ],
             'insights' => [
-                ['title' => 'How to Write Content That Ranks and Converts', 'text' => 'Practical tips to create content that works for search engines and real people.', 'image' => 'images/audience-authors-desk.png', 'href' => '/insights/content-that-ranks'],
-                ['title' => 'The Power of Editorial Storytelling for Brands', 'text' => 'Why storytelling builds trust and how to use it the right way.', 'image' => 'images/audience-brands-desk.png', 'href' => '/insights/editorial-storytelling'],
-                ['title' => "Digital PR vs Link Building: What's the Difference?", 'text' => 'A clear breakdown of how each approach can grow your authority.', 'image' => 'images/shruti-hero.png', 'href' => '/insights/digital-pr-vs-link-building'],
-                ['title' => 'Book Marketing in 2026: What Authors Should Know', 'text' => 'Strategies that help authors get noticed in a crowded market.', 'image' => 'images/shruti-founder.jpg', 'href' => '/insights/book-marketing-2026'],
+                ['title' => 'Why Hiring an Editor is an Investment, Not a Cost for Authors?', 'text' => 'Editing isn’t an extra cost. It’s what gets your book read.', 'image' => 'images/blog/why-hiring-an-editor-is-an-investment-no.jpg', 'href' => '/blog/why-hiring-an-editor-is-an-investment-not-a-cost-for-authors'],
+                ['title' => 'How to Hire a Proofreader for Your Book: Cost, Checklist & Red Flags', 'text' => 'Learn how to shortlist, compare costs, and avoid mistakes, especially on a budget.', 'image' => 'images/blog/how-to-hire-a-proofreader-for-your-book-.jpg', 'href' => '/blog/how-to-hire-a-proofreader-for-your-book-cost-checklist-red-flags'],
+                ['title' => 'Should You Invest in Book Editing and Proofreading?', 'text' => 'If you want to avoid negative reader reviews, the answer is yes.', 'image' => 'images/blog/should-you-invest-in-book-editing-and-pr.jpg', 'href' => '/blog/should-you-invest-in-book-editing-and-proofreading-costs-tips-for-new-authors'],
+                ['title' => 'How to Turn Your Blog into an Ebook in 2025', 'text' => 'Includes free template and checklists to help you build your ebook.', 'image' => 'images/blog/how-to-turn-your-blog-into-an-ebook-in-2.jpg', 'href' => '/blog/how-to-turn-your-blog-into-an-ebook-in-2025-with-free-content-audit-template-and'],
             ],
             'audienceCards' => [
                 [
