@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\BlogEngageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SitePagesController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +28,28 @@ Route::get('/blog/{slug}', [SitePagesController::class, 'insightShow'])->name('b
 
 Route::get('/contact', [SitePagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [SitePagesController::class, 'contactSubmit'])->name('contact.submit');
+
+Route::post('/blog/{slug}/like', [BlogEngageController::class, 'like'])->name('blog.like');
+Route::get('/blog/{slug}/comments', [BlogEngageController::class, 'comments'])->name('blog.comments');
+Route::post('/blog/{slug}/comments', [BlogEngageController::class, 'comment'])->name('blog.comment');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login.submit');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', DashboardController::class)->name('dashboard');
+        Route::resource('posts', PostController::class)->except(['show']);
+        Route::get('comments', [CommentController::class, 'index'])->name('comments.index');
+        Route::patch('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+        Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+        Route::get('inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
+        Route::get('inquiries/{inquiry}', [InquiryController::class, 'show'])->name('inquiries.show');
+        Route::patch('inquiries/{inquiry}', [InquiryController::class, 'update'])->name('inquiries.update');
+        Route::delete('inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
+    });
+});
 
 Route::get('/privacy-policy', [SitePagesController::class, 'legal'])->defaults('page', 'privacy-policy')->name('privacy');
 Route::get('/terms-and-conditions', [SitePagesController::class, 'legal'])->defaults('page', 'terms-and-conditions')->name('terms');

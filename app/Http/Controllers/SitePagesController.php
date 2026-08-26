@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inquiry;
+use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -62,8 +64,10 @@ class SitePagesController extends Controller
 
     public function insightShow(string $slug): View
     {
-        $insight = collect($this->insightItems())->firstWhere('slug', $slug);
-        abort_unless($insight, 404);
+        $post = Post::query()->published()->where('slug', $slug)->first();
+        abort_unless($post, 404);
+        $post->increment('views');
+        $insight = $post->fresh()->toPublicArray();
 
         return view('pages.insight-show', compact('insight'));
     }
@@ -75,13 +79,15 @@ class SitePagesController extends Controller
 
     public function contactSubmit(Request $request): RedirectResponse
     {
-        $request->validate([
+        $data = $request->validate([
             'first_name' => ['required', 'string', 'max:80'],
             'last_name' => ['nullable', 'string', 'max:80'],
             'email' => ['required', 'email', 'max:160'],
             'phone' => ['nullable', 'string', 'max:40'],
             'message' => ['nullable', 'string', 'max:3000'],
         ]);
+
+        Inquiry::query()->create($data);
 
         return redirect()->route('contact')->with('contact_success', 'Thank you. Your message is ready for review. We will be in touch soon.');
     }
@@ -113,6 +119,11 @@ class SitePagesController extends Controller
 
     private function insightItems(): array
     {
+        $fromDb = Post::query()->published()->latest('published_at')->latest()->get();
+        if ($fromDb->isNotEmpty()) {
+            return $fromDb->map->toPublicArray()->all();
+        }
+
         $path = database_path('blog-posts.json');
         $items = json_decode((string) file_get_contents($path), true) ?: [];
 

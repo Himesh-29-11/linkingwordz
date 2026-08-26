@@ -8,6 +8,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // The frontend-only version does not require seeded content.
+        $this->call(CmsSeeder::class);
     }
 }
