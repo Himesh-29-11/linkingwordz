@@ -89,36 +89,14 @@ class SitePagesController extends Controller
     {
         return [
             [
-                'slug' => 'norwood-press',
-                'title' => 'Book Launch Campaign for Norwood Press',
-                'category' => 'Author & Book Marketing',
-                'text' => 'Multi-channel campaign that drove pre-orders and media coverage.',
-                'image' => 'images/audience-authors-desk.png',
-                'result' => 'A clearer launch story, stronger reader touchpoints, and content designed to carry the book beyond launch day.',
-            ],
-            [
-                'slug' => 'fintech-brand',
-                'title' => 'SEO Content Strategy for FinTech Brand',
-                'category' => 'SEO Content & Copywriting',
-                'text' => 'Increased organic traffic by 166% in 3 months.',
-                'image' => 'images/audience-brands-desk.png',
-                'result' => 'A research-led content system that made complex financial ideas easier to find, understand, and trust.',
-            ],
-            [
-                'slug' => 'saas-company',
-                'title' => 'Digital PR for SaaS Company',
-                'category' => 'Digital PR & Outreach',
-                'text' => 'Earned 42 high-authority backlinks and top-tier media mentions.',
-                'image' => 'images/shruti-hero.png',
-                'result' => 'A focused authority campaign built around relevant stories, credible outreach, and useful editorial assets.',
-            ],
-            [
-                'slug' => 'education-platform',
-                'title' => 'Editorial Overhaul for Education Platform',
-                'category' => 'Editorial Support',
-                'text' => 'Improved engagement, rankings and lead generation.',
-                'image' => 'images/shruti-founder.jpg',
-                'result' => 'A more consistent voice and a clearer content journey for students, parents, and decision-makers.',
+                'slug' => 'kiran-lasiyal',
+                'title' => "How Strategic Social Media Editing Transformed Kiran's LinkedIn Journey",
+                'category' => 'Case study',
+                'client' => 'Kiran Lasiyal',
+                'role' => 'Social Media Manager & video editor',
+                'text' => 'A tale of exceptional growth',
+                'image' => 'images/work/kiran.jpg',
+                'result' => 'Post impressions up 26% in a week. Followers up 9.3%. Final copy delivered in 20 hours with no revisions.',
             ],
         ];
     }

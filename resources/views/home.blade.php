@@ -77,6 +77,9 @@
                                         <svg viewBox="0 0 24 24" class="lw-audience__card-icon-svg"><rect x="4" y="7" width="16" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 7V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
                                     @endif
                                 </span>
+                                @if (!empty($card['kicker']))
+                                    <p class="lw-audience__kicker">{{ $card['kicker'] }}</p>
+                                @endif
                                 <h3 class="lw-audience__card-title">{{ $card['title'] }}</h3>
                                 <p class="lw-audience__card-description">{{ $card['description'] }}</p>
                                 <p class="lw-audience__services">{{ $card['highlights'][0] }}</p>
@@ -104,7 +107,7 @@
                     @endforeach
                 </ul>
             </div>
-            <p class="lw-problem__closing">These are the 5 problems LinkingWordz was built to solve. Not with a production line — but with research, care, and a team that works with 5 to 10 clients at a time. Deliberately.</p>
+            <p class="lw-problem__closing">These are the 5 problems Linkingwordz was built to solve. Not with a production line — but with research, care, and a team that works with 5 to 10 clients at a time. Deliberately.</p>
         </div>
     </section>
 
@@ -129,17 +132,25 @@
 
     <section class="lw-why lw-section" aria-labelledby="why-title">
         <div class="lw-container lw-stack lw-stack--lg">
-            <div class="lw-section-heading lw-section-heading--center"><p class="lw-eyebrow lw-section-heading__eyebrow">What makes this different</p><h2 id="why-title" class="lw-section-heading__title">Human-written. Research-backed. Built around your brand.</h2></div>
+            <div class="lw-section-heading lw-section-heading--center">
+                <p class="lw-eyebrow lw-section-heading__eyebrow">What makes this different</p>
+                <h2 id="why-title" class="lw-section-heading__title">5 problems. 1 solution. Built around your brand.</h2>
+                <p class="lw-section-heading__description">Most content agencies give you a template. Most developers wait for your copy. Most editors don't understand your subject matter. At Linkingwordz, we bring all of it together; with the research depth, subject expertise, and personal attention that only comes from working with a small, intentional client list.</p>
+            </div>
             <div class="lw-why__grid">
                 @foreach ($whyBlocks as $block)
                     <article class="lw-why__item"><span class="lw-why__icon">@include('partials.publisher-icon', ['name' => $block['icon']])</span><span class="lw-why__num" aria-hidden="true">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><h3>{{ $block['title'] }}</h3><p>{{ $block['description'] }}</p></article>
                 @endforeach
             </div>
+            <div class="lw-why__close">
+                <a href="{{ route('contact') }}" class="lw-btn lw-btn--primary">Book a Free Discovery Call <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
+                <p>Free. No obligation. Not even after two calls.</p>
+            </div>
         </div>
     </section>
 
     <section class="lw-founder lw-section" aria-labelledby="founder-title">
-        <div class="lw-container"><div class="lw-founder__layout"><figure class="lw-founder__figure"><img src="{{ asset('images/shruti-founder.jpg') }}" alt="Shruti Bhatt writing at her desk" class="lw-founder__photo"></figure><div class="lw-founder__copy"><p class="lw-eyebrow">The person behind the work</p><h2 id="founder-title" class="lw-founder__title">Hi, I'm Shruti.</h2><p class="lw-founder__text">I'm a content writer, copyeditor, and ghostwriter with 9+ years of professional experience across linguistics, content, and writing — working with clients across finance, technology, and education.</p><p class="lw-founder__text">Before LinkingWordz, I was a college lecturer in Accounting, Finance, and Management — a role that gave me something most writers don't have: genuine depth in the subjects I write and edit in. I hold an M.Phil in Management, and I bring that research foundation into every brief I take on.</p><p class="lw-founder__text">LinkingWordz is built on a simple belief — that human-written, research-backed content is still the most powerful way to build trust with the people you want to reach. I work with a maximum of 5 to 10 clients at a time, because your brand deserves full attention. Not a queue.</p><p class="lw-founder__credentials">M.Phil in Management · 9+ Years Industry Experience · Finance · Technology · Education</p><a href="{{ route('about') }}" class="lw-btn lw-btn--primary">Learn more about me <span class="lw-btn__arrow" aria-hidden="true">→</span></a></div></div></div>
+        <div class="lw-container"><div class="lw-founder__layout"><figure class="lw-founder__figure"><img src="{{ asset('images/shruti-founder.jpg') }}" alt="Shruti Bhatt writing at her desk" class="lw-founder__photo"></figure><div class="lw-founder__copy"><p class="lw-eyebrow">The person behind the work</p><h2 id="founder-title" class="lw-founder__title">Hi, I'm Shruti.</h2><p class="lw-founder__text">I'm a content writer, copyeditor, and ghostwriter with 9+ years of professional experience across linguistics, content, and writing — working with clients across finance, technology, and education.</p><p class="lw-founder__text">Before Linkingwordz, I was a college lecturer in Accounting, Finance, and Management — a role that gave me something most writers don't have: genuine depth in the subjects I write and edit in. I hold an M.Phil in Management, and I bring that research foundation into every brief I take on.</p><p class="lw-founder__text">Linkingwordz is built on a simple belief — that human-written, research-backed content is still the most powerful way to build trust with the people you want to reach. I work with a maximum of 5 to 10 clients at a time, because your brand deserves full attention. Not a queue.</p><p class="lw-founder__credentials">M.Phil in Management · 9+ Years Industry Experience · Finance · Technology · Education</p><a href="{{ route('about') }}" class="lw-btn lw-btn--primary">Learn more about me <span class="lw-btn__arrow" aria-hidden="true">→</span></a></div></div></div>
     </section>
 
     <section class="lw-process lw-section" aria-labelledby="process-title">
@@ -188,8 +199,8 @@
     <section class="lw-testimonials lw-section" aria-labelledby="testimonials-title">
         <div class="lw-container lw-stack lw-stack--lg">
             <div class="lw-section-heading lw-section-heading--center">
-                <p class="lw-eyebrow lw-section-heading__eyebrow">What clients say</p>
-                <h2 id="testimonials-title" class="lw-visually-hidden">What clients say</h2>
+                <p class="lw-eyebrow lw-section-heading__eyebrow">Client Love</p>
+                <h2 id="testimonials-title" class="lw-visually-hidden">Client Love</h2>
             </div>
             <div class="lw-testimonials__grid">
                 @foreach ($testimonials as $testimonial)
@@ -238,11 +249,15 @@
             </span>
             <div class="lw-final-cta__copy">
                 <h2 id="final-cta-title">Not sure where to start? That's what the first call is for.</h2>
-                <p>I'm Shruti — and I've spent 9+ years in the content, linguistic, and writing industry helping authors get discovered and service businesses build content that converts. If you're open to a conversation — no agenda, no pressure, no packages pushed — just book a call. We'll figure out together which direction makes sense for your brand.</p>
+                <p>I'm Shruti — and I've spent 9+ years in the content, linguistic, and writing industry helping authors get discovered and service businesses build content that converts.</p>
+                <p>If you're open to a conversation — no agenda, no pressure, no packages pushed — just book a call. We'll figure out together which direction makes sense for your brand.</p>
+                <p>Working across finance, technology, and education has taught me one thing: the best content doesn't just sound good. It reaches the right person at the right moment — and moves them to act.</p>
+                <p>And if you just have a quick question? Write to me. That kind of guidance is always free.</p>
+                <p class="lw-final-cta__fit">“We are the right fit if you are open to give your all in.”</p>
             </div>
             <div class="lw-final-cta__actions">
                 <a href="{{ route('contact') }}" class="lw-btn lw-btn--secondary">Book a Free Discovery Call <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
-                <a href="mailto:connect@linkingwordz.com" class="lw-final-cta__email">Or email us at connect@linkingwordz.com</a>
+                <a href="mailto:connect@linkingwordz.com" class="lw-final-cta__email">Or email us at- connect@linkingwordz.com</a>
             </div>
             <span class="lw-final-cta__dots" aria-hidden="true"></span>
         </div>

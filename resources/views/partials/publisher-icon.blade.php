@@ -1,3 +1,4 @@
+<span class="lw-icon lw-icon--{{ $name }}">
 @switch($name)
     @case('edit')
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m8 23.5-1.5 4 4-1.5L25 11.5 20.5 7 8 23.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m18.5 9 4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -65,4 +66,20 @@
     @case('article')
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4.5h12l4 4v19H8v-23Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 4.5v5h4M12 15h8M12 19h8M12 23h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         @break
+    @case('people')
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="21.5" cy="11" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 24c.4-4.2 2.8-6.5 5.5-6.5S16 19.8 16.5 24M17.5 23.2c.5-3 2.2-4.6 4-4.6s3.6 1.6 4.2 4.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        @break
+    @case('badge')
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5 19.2 8l4.4.4-3.2 3.1.9 4.3L16 13.8l-5.3 2 1-4.3-3.3-3.1 4.4-.4L16 4.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 18.5v4.2L16 27l8-4.3v-4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        @break
+    @case('graduate')
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4.5 13 16 7.5 27.5 13 16 18.5 4.5 13Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 15.5v5.2c2.2 2.3 5 3.4 7 3.4s4.8-1.1 7-3.4v-5.2M27.5 13v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        @break
+    @case('layers')
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m5 12 11-6 11 6-11 6L5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m5 17 11 6 11-6M5 21.5 16 27.5 27 21.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        @break
+    @case('arrow')
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 16h18M18 9l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        @break
 @endswitch
+</span>

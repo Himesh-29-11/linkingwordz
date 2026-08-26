@@ -34,13 +34,10 @@ class HomeController extends Controller
             'testimonials' => [
                 ['quote' => 'I just finished going over chapter one! Thank you so much for your input, I used quite a few of your suggestions. I want to say probably about 85% of them. Thank you for reviewing this for me.', 'name' => 'Eve Miller', 'role' => 'Author', 'avatar' => 'images/shruti-founder.jpg'],
                 ['quote' => 'Shruti worked with us on proofreading our product notes and a few blogs. She is a thorough professional, punctual with deadlines, and most importantly an expert in her field. We wish you all the best for all your future endeavors.', 'name' => 'Paintphotographs', 'role' => 'Client', 'avatar' => 'images/shruti-hero.png'],
-                ['quote' => 'Shruti has been working as a reviewer in my team for more than 2.5 years. She is a team player and has a very good command over the language, on time delivery, accuracy, high standard work ethics are some of her bright qualities. She is an asset to any team she works for.', 'name' => 'Rushabh Shah', 'role' => 'Client', 'avatar' => 'images/shruti-founder.jpg'],
+                ['quote' => 'Shruti has been working as a reviewer in my team for more than 2.5 years. she is a team player and has a very good command over the language, on time delivery, accuracy, high standard work ethics are some of her bright qualities. She is an asset to any team she works for.', 'name' => 'Rushabh Shah', 'role' => 'Client', 'avatar' => 'images/shruti-founder.jpg'],
             ],
             'selectedWork' => [
-                ['title' => 'Book Launch Campaign for Norwood Press', 'text' => 'Multi-channel campaign that drove pre-orders and media coverage.', 'image' => 'images/audience-authors-desk.png', 'href' => '/work/norwood-press'],
-                ['title' => 'SEO Content Strategy for FinTech Brand', 'text' => 'Increased organic traffic by 166% in 3 months.', 'image' => 'images/audience-brands-desk.png', 'href' => '/work/fintech-brand'],
-                ['title' => 'Digital PR for SaaS Company', 'text' => 'Earned 42 high-authority backlinks and top-tier media mentions.', 'image' => 'images/shruti-hero.png', 'href' => '/work/saas-company'],
-                ['title' => 'Editorial Overhaul for Education Platform', 'text' => 'Improved engagement, rankings and lead generation.', 'image' => 'images/shruti-founder.jpg', 'href' => '/work/education-platform'],
+                ['title' => "How Strategic Social Media Editing Transformed Kiran's LinkedIn Journey", 'text' => 'A tale of exceptional growth — 26% more impressions in a week.', 'image' => 'images/work/kiran.jpg', 'href' => '/work'],
             ],
             'insights' => [
                 ['title' => 'How to Write Content That Ranks and Converts', 'text' => 'Practical tips to create content that works for search engines and real people.', 'image' => 'images/audience-authors-desk.png', 'href' => '/insights/content-that-ranks'],
@@ -50,7 +47,8 @@ class HomeController extends Controller
             ],
             'audienceCards' => [
                 [
-                    'title' => 'Authors & Publishers',
+                    'title' => 'For Authors & Publishers',
+                    'kicker' => 'Indie authors · Publishing houses · Literary agents · Academics',
                     'description' => "You've written something worth reading. We make sure the right readers can find it — and that it's publication-ready when they do.",
                     'href' => route('services.authors'),
                     'cta' => 'See Author Services',
@@ -61,7 +59,8 @@ class HomeController extends Controller
                     'highlights' => ['Ghostwriting · Book Promotional Blogs · Copyediting · Proofreading · Publishing Guidance · Translation'],
                 ],
                 [
-                    'title' => 'Businesses & Brands',
+                    'title' => 'For Coaches, Brands & Businesses',
+                    'kicker' => 'Coaches · Consultants · Therapists · Financial advisors · Entrepreneurs',
                     'description' => "You've built expertise worth paying for. We make sure your content reflects it — and that your ideal clients find you before they find someone else.",
                     'href' => route('services.brands'),
                     'cta' => 'See Brand Services',
@@ -90,7 +89,7 @@ class HomeController extends Controller
                 ['title' => 'Human-written. Always.', 'icon' => 'edit', 'description' => "Every word is written by hand — researched, considered, and crafted for your specific audience. No AI-generated filler. No recycled frameworks. Content that sounds like you, and works for the people you're trying to reach."],
                 ['title' => 'Content + development together', 'icon' => 'website', 'description' => 'Website copy and website build under one engagement. No brief lost between a writer and a developer. No misaligned design and messaging. Everything built in the same time, for the same audience.'],
                 ['title' => 'Research is the foundation', 'icon' => 'search', 'description' => "An M.Phil in Management and 9+ years of professional experience across finance, technology, and education means we understand the fields we work in. We don't just write about your expertise. We understand it."],
-                ['title' => '5–10 clients. Full attention.', 'icon' => 'check', 'description' => "We deliberately limit how many clients we take on. Not because we can't handle more — but because your brand deserves focus, not a queue. When you work with LinkingWordz, you are not a ticket number."],
+                ['title' => '5–10 clients. Full attention.', 'icon' => 'check', 'description' => "We deliberately limit how many clients we take on. Not because we can't handle more — but because your brand deserves focus, not a queue. When you work with Linking Wordz, you are not a ticket number."],
             ],
         ]);
     }

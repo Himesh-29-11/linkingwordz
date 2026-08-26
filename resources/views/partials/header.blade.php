@@ -5,11 +5,7 @@
             'href' => route('work'),
             'label' => 'Case Study',
             'children' => [
-                ['href' => route('work'), 'label' => 'All case studies'],
-                ['href' => route('work.show', 'norwood-press'), 'label' => 'Norwood Press'],
-                ['href' => route('work.show', 'fintech-brand'), 'label' => 'FinTech brand'],
-                ['href' => route('work.show', 'saas-company'), 'label' => 'SaaS company'],
-                ['href' => route('work.show', 'education-platform'), 'label' => 'Education platform'],
+                ['href' => route('work'), 'label' => 'Kiran Lasiyal'],
             ],
         ],
         ['href' => route('about'), 'label' => 'About'],
