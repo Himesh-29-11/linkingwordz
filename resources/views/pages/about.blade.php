@@ -109,11 +109,15 @@
                     <a href="https://www.instagram.com/linkingwordz/" target="_blank" rel="noreferrer"><img src="{{ asset('images/about/about-post-1.png') }}" alt="Linkingwordz Instagram post"></a>
                     <a href="https://www.instagram.com/p/C2SB8oeRUd3/" target="_blank" rel="noreferrer"><img src="{{ asset('images/about/about-post-2.png') }}" alt="Linkingwordz Instagram post"></a>
                     <a href="https://www.instagram.com/p/CzbKRY_samg/" target="_blank" rel="noreferrer"><img src="{{ asset('images/about/about-post-3.png') }}" alt="Linkingwordz Instagram post"></a>
+                </div>
+                <div class="lw-abx-posts__reels">
                     <div class="lw-abx-posts__reel">
-                        <video src="{{ asset('videos/about-reel-1.mp4') }}" controls playsinline preload="metadata" title="Linkingwordz reel"></video>
+                        <video src="{{ asset('videos/about-reel-1.mp4') }}" poster="{{ asset('videos/about-reel-1.jpg') }}" controls playsinline preload="metadata" title="Linkingwordz reel"></video>
+                        <span class="lw-abx-posts__play" aria-hidden="true"></span>
                     </div>
                     <div class="lw-abx-posts__reel">
-                        <video src="{{ asset('videos/about-reel-2.mp4') }}" controls playsinline preload="metadata" title="Linkingwordz reel"></video>
+                        <video src="{{ asset('videos/about-reel-2.mp4') }}" poster="{{ asset('videos/about-reel-2.jpg') }}" controls playsinline preload="metadata" title="Linkingwordz reel"></video>
+                        <span class="lw-abx-posts__play" aria-hidden="true"></span>
                     </div>
                 </div>
             </div>

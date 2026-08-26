@@ -24,3 +24,25 @@
 
     targets.forEach((el) => observer.observe(el));
 })();
+
+(() => {
+    document.querySelectorAll('.lw-abx-posts__reel').forEach((wrap) => {
+        const video = wrap.querySelector('video');
+        if (!video) return;
+
+        const sync = () => {
+            wrap.classList.toggle('is-playing', !video.paused && !video.ended);
+        };
+
+        video.addEventListener('play', sync);
+        video.addEventListener('playing', sync);
+        video.addEventListener('pause', sync);
+        video.addEventListener('ended', sync);
+        wrap.addEventListener('click', (event) => {
+            if (event.target.closest('video')) return;
+            if (video.paused) video.play();
+            else video.pause();
+        });
+        sync();
+    });
+})();
