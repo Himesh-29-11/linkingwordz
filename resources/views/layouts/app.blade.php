@@ -7,7 +7,14 @@
     <title>@yield('title', 'LinkingWordz')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+        --font-body: "Outfit", "Avenir Next", system-ui, sans-serif;
+        --font-label: "Cinzel", Georgia, serif;
+      }
+    </style>
     <link rel="stylesheet" href="{{ asset('css/site.css') }}">
     @stack('head')
 </head>
@@ -21,5 +28,6 @@
         @include('partials.footer')
     </div>
     <script src="{{ asset('js/site.js') }}" defer></script>
+    @stack('scripts')
 </body>
 </html>

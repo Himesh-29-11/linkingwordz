@@ -9,11 +9,7 @@
         <div class="lw-footer__main">
             <div class="lw-footer__intro">
                 <a href="{{ route('home') }}" class="lw-footer__brand" aria-label="LinkingWordz home">
-                    <svg class="lw-footer__brand-mark" viewBox="0 0 48 48" aria-hidden="true">
-                        <path d="M11 35c5-5 6-13 12-21 2-3 5-5 8-6-1 4-2 7-5 10-5 5-9 5-15 7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="m25 25 6 6M27 16l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    </svg>
-                    <span>Linking<span>wordz</span></span>
+                    <img src="{{ asset('images/live/live-logo-light.png') }}" alt="LinkingWordz">
                 </a>
                 <p class="lw-footer__studio">Editorial Content Studio</p>
                 <span class="lw-footer__rule" aria-hidden="true"></span>
@@ -34,6 +30,7 @@
                     <li><a href="{{ route('services') }}">Services</a></li>
                     <li><a href="{{ route('services.authors') }}">Authors &amp; Publishers</a></li>
                     <li><a href="{{ route('services.brands') }}">Businesses &amp; Brands</a></li>
+                    <li><a href="{{ route('services.work') }}">Work With Me</a></li>
                     <li><a href="{{ route('work') }}">Work / Case Studies</a></li>
                     <li><a href="{{ route('insights') }}">Insights / Blog</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>

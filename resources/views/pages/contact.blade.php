@@ -1,45 +1,172 @@
 @extends('layouts.app')
 
-@section('title', 'Contact — LinkingWordz')
+@section('title', 'Contact Us — LinkingWordz')
 
 @section('content')
-    <div class="lw-page lw-contact-page">
-        <section class="lw-page-hero" aria-labelledby="contact-page-title">
-            <div class="lw-container lw-page-hero__inner">
-                <p class="lw-eyebrow">Let's connect</p>
-                <h1 id="contact-page-title">A good first conversation can change the shape of the work.</h1>
-                <p class="lw-page-hero__lede">Tell us what you're building, what feels stuck, or what you want your content
-                    to do next.</p>
-            </div>
-        </section>
-        <section class="lw-contact-section lw-section">
-            <div class="lw-container lw-contact-section__grid">
-                <div class="lw-contact-details">
-                    <p class="lw-eyebrow">Direct contact</p>
-                    <h2>No obligation. No pressure.</h2>
-                    <p>Just a conversation about your authors, publishing goals, business, or brand.</p>
-                    <div class="lw-contact-details__items"><a
-                            href="mailto:connect@linkingwordz.com"><span>Email</span><strong>connect@linkingwordz.com</strong></a><a
-                            href="https://wa.me/919901230875" target="_blank"
-                            rel="noreferrer"><span>WhatsApp</span><strong>+91 9901230875</strong></a><a
-                            href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer"><span>Book a
-                                call</span><strong>calendly.com/linkingwordz/30min</strong></a></div>
+    <div class="lw-page lw-ct">
+        <header class="lw-ct-hero">
+            <div class="lw-container lw-ct-hero__grid">
+                <div>
+                    <p class="lw-eyebrow">Contact</p>
+                    <h1>Get in touch</h1>
+                    <p>Whether you need compelling copywriting, expert ghostwriting, or precise editing &amp; proofreading for your fiction or non-fiction book work, I'm here to help elevate your writing to the next level!</p>
+                    <p>Feel free to contact us using the form. Alternatively, you can email me at <a href="mailto:connect@linkingwordz.com">connect@linkingwordz.com</a></p>
                 </div>
-                <form class="lw-contact-form" method="POST" action="{{ route('contact.submit') }}">
+                <figure class="lw-ct-hero__photo">
+                    <img src="{{ asset('images/contact/shruti-contact.jpg') }}" alt="Shruti Bhatt">
+                </figure>
+            </div>
+        </header>
+
+        <section class="lw-ct-main">
+            <div class="lw-container lw-ct-main__grid">
+                <form class="lw-ct-form" method="POST" action="{{ route('contact.submit') }}">
                     @csrf
+                    <p class="lw-eyebrow">Write to us</p>
+                    <h2>Send a message</h2>
                     @if (session('contact_success'))
                         <div class="lw-contact-form__success">{{ session('contact_success') }}</div>
                     @endif
-                    <div><label for="name">Your name</label><input id="name" name="name" type="text"
-                            value="{{ old('name') }}" required></div>
-                    <div><label for="email">Email address</label><input id="email" name="email" type="email"
-                            value="{{ old('email') }}" required></div>
-                    <div><label for="message">Tell us a little about what you need</label>
-                        <textarea id="message" name="message" rows="6" required>{{ old('message') }}</textarea>
-                    </div><button type="submit" class="lw-btn lw-btn--primary">Send enquiry <span class="lw-btn__arrow"
-                            aria-hidden="true">→</span></button>
+                    @if ($errors->any())
+                        <div class="lw-ct-form__error">Please check the highlighted fields and try again.</div>
+                    @endif
+                    <div class="lw-ct-form__row">
+                        <div>
+                            <label for="first_name">First name *</label>
+                            <input id="first_name" name="first_name" type="text" value="{{ old('first_name') }}" required>
+                        </div>
+                        <div>
+                            <label for="last_name">Last name</label>
+                            <input id="last_name" name="last_name" type="text" value="{{ old('last_name') }}">
+                        </div>
+                    </div>
+                    <div class="lw-ct-form__row">
+                        <div>
+                            <label for="email">Email *</label>
+                            <input id="email" name="email" type="email" value="{{ old('email') }}" required>
+                        </div>
+                        <div>
+                            <label for="phone">Phone</label>
+                            <input id="phone" name="phone" type="tel" value="{{ old('phone') }}">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message">Write a message</label>
+                        <textarea id="message" name="message" rows="6">{{ old('message') }}</textarea>
+                    </div>
+                    <button type="submit" class="lw-btn lw-btn--primary">Submit <span class="lw-btn__arrow" aria-hidden="true">→</span></button>
                 </form>
+
+                <div class="lw-ct-book" id="book">
+                    <p class="lw-eyebrow">Book a call</p>
+                    <h2>Pick a time that works</h2>
+                    <p class="lw-ct-book__lede">A free 30-minute discovery call. No obligation — not even after two calls. Choose a day and a slot, then confirm on Calendly.</p>
+                    <div class="lw-ct-cal">
+                        <div class="lw-ct-cal__head">
+                            <button type="button" id="cal-prev" aria-label="Previous week">‹</button>
+                            <strong id="cal-label">This week</strong>
+                            <button type="button" id="cal-next" aria-label="Next week">›</button>
+                        </div>
+                        <div class="lw-ct-cal__days" id="cal-days"></div>
+                        <div class="lw-ct-cal__slots" id="cal-slots" hidden>
+                            <p>Available times <span>(IST)</span></p>
+                            <div id="cal-slot-list"></div>
+                        </div>
+                        <a class="lw-btn lw-btn--primary" id="cal-confirm" href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer">Confirm on Calendly</a>
+                        <p class="lw-ct-book__note" id="cal-note">Or open Calendly and choose any open slot.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+(function () {
+  const daysEl = document.getElementById('cal-days');
+  const slotsWrap = document.getElementById('cal-slots');
+  const slotList = document.getElementById('cal-slot-list');
+  const label = document.getElementById('cal-label');
+  const confirm = document.getElementById('cal-confirm');
+  const note = document.getElementById('cal-note');
+  if (!daysEl) return;
+
+  const slots = ['10:00', '11:00', '14:00', '16:00', '18:00'];
+  let weekOffset = 0;
+  let selectedDate = null;
+  let selectedTime = null;
+
+  function startOfWeek(d) {
+    const x = new Date(d);
+    const day = x.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    x.setDate(x.getDate() + diff);
+    x.setHours(0, 0, 0, 0);
+    return x;
+  }
+
+  function fmt(d) {
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+  }
+
+  function render() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const start = startOfWeek(today);
+    start.setDate(start.getDate() + weekOffset * 7);
+    const end = new Date(start);
+    end.setDate(end.getDate() + 6);
+    label.textContent = fmt(start) + ' – ' + fmt(end);
+    daysEl.innerHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lw-ct-day';
+      if (d < today) btn.disabled = true;
+      if (selectedDate && d.toDateString() === selectedDate.toDateString()) btn.classList.add('is-on');
+      btn.innerHTML = '<small>' + d.toLocaleDateString('en-IN', { weekday: 'short' }) + '</small><b>' + d.getDate() + '</b>';
+      btn.addEventListener('click', function () {
+        selectedDate = d;
+        selectedTime = null;
+        render();
+        renderSlots();
+      });
+      daysEl.appendChild(btn);
+    }
+    document.getElementById('cal-prev').disabled = weekOffset <= 0;
+  }
+
+  function renderSlots() {
+    slotsWrap.hidden = !selectedDate;
+    slotList.innerHTML = '';
+    slots.forEach(function (t) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lw-ct-slot' + (selectedTime === t ? ' is-on' : '');
+      b.textContent = t;
+      b.addEventListener('click', function () {
+        selectedTime = t;
+        const dateStr = selectedDate.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
+        note.textContent = 'Selected: ' + dateStr + ' at ' + t + ' IST. Confirm to finish booking on Calendly.';
+        confirm.href = 'https://calendly.com/linkingwordz/30min';
+        renderSlots();
+      });
+      slotList.appendChild(b);
+    });
+  }
+
+  document.getElementById('cal-prev').addEventListener('click', function () {
+    weekOffset = Math.max(0, weekOffset - 1);
+    render();
+  });
+  document.getElementById('cal-next').addEventListener('click', function () {
+    weekOffset += 1;
+    render();
+  });
+  render();
+})();
+</script>
+@endpush

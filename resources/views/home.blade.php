@@ -10,7 +10,7 @@
                     <span>Content &amp; Editorial Services for Authors and Service Businesses</span>
                     <span class="lw-hero__eyebrow-rule" aria-hidden="true"></span>
                 </p>
-                <h1 id="hero-heading" class="lw-hero__title">The <em>right words</em> find the <em>right clients</em>. We make sure yours do.</h1>
+                <h1 id="hero-heading" class="lw-hero__title">The right <em>words find the right clients.</em> We make sure yours do.</h1>
                 <p class="lw-hero__description">Linkingwordz is a content and editorial brand built for two kinds of people — authors who want their work discovered, and service businesses whose expertise deserves a stronger voice online.</p>
                 <p class="lw-hero__promise">Human-written. Research-backed. Built around your brand.<br>Not a template.</p>
                 <div class="lw-hero__actions">

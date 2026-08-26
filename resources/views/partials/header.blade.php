@@ -15,19 +15,10 @@
             'children' => [
                 ['href' => route('services.brands'), 'label' => 'Brands'],
                 ['href' => route('services.authors'), 'label' => 'Authors'],
-                ['href' => route('contact'), 'label' => 'Work With Me'],
+                ['href' => route('services.work'), 'label' => 'Work With Me'],
             ],
         ],
-        [
-            'href' => route('blog'),
-            'label' => 'Blog',
-            'children' => [
-                ['href' => route('blog'), 'label' => 'All posts'],
-                ['href' => route('blog.show', 'why-hiring-an-editor-is-an-investment-not-a-cost-for-authors'), 'label' => 'Hiring an editor'],
-                ['href' => route('blog.show', 'how-to-hire-a-proofreader-for-your-book-cost-checklist-red-flags'), 'label' => 'Hire a proofreader'],
-                ['href' => route('blog.show', '11-essential-questions-to-ask-when-hiring-a-ghostwriter'), 'label' => 'Hiring a ghostwriter'],
-            ],
-        ],
+        ['href' => route('blog'), 'label' => 'Blog'],
         ['href' => route('contact'), 'label' => 'Contact'],
     ];
 @endphp

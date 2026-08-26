@@ -46,15 +46,31 @@
                             <a href="{{ route('insights.show', ['slug' => $insight['slug']]) }}" class="lw-ig-post__media">
                                 <img src="{{ asset($insight['image']) }}" alt="{{ $insight['title'] }}">
                             </a>
-                            <div class="lw-ig-post__actions" aria-hidden="true">
+                            <div class="lw-ig-post__actions" data-post-slug="{{ $insight['slug'] }}" data-likes="{{ $likes }}" data-comments="{{ $comments }}" data-views="{{ $views }}">
                                 <span class="lw-ig-post__icons">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-9.2-8.2C1 8.8 2.4 5.5 6 5.2c2-.2 3.5.9 4.4 2.2C11.3 6.1 12.8 5 14.8 5.2c3.6.3 5 3.6 3.2 6.6C19 15.6 12 20 12 20z"/></svg>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 18.5 5 21l4-2.2A9 9 0 1 0 6 18.5z"/></svg>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 6.5 19 12 5 17.5V6.5z"/></svg>
+                                    <button type="button" class="lw-ig-action" data-ig-action="like" aria-pressed="false" aria-label="Like this post">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" overflow="visible" aria-hidden="true"><path d="M12.1 8.64 12 8.77l-.1-.13C10.14 6.6 7.1 6.68 5.4 8.39c-1.73 1.73-1.73 4.54 0 6.27L12 21.26l6.6-6.6c1.73-1.73 1.73-4.54 0-6.27-1.7-1.71-4.74-1.79-6.5.25z"/></svg>
+                                    </button>
+                                    <button type="button" class="lw-ig-action" data-ig-action="comment" aria-expanded="false" aria-controls="comments-{{ $insight['slug'] }}" aria-label="Comment on this post">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" overflow="visible" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.14L5 20l.9-3.2A8 8 0 1 1 20 12z"/></svg>
+                                    </button>
+                                    <button type="button" class="lw-ig-action" data-ig-action="share" aria-label="Share this post">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" overflow="visible" aria-hidden="true"><path d="M5.5 7.2 18 12 5.5 16.8V7.2z"/></svg>
+                                    </button>
                                 </span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 4h10v16l-5-3.2L7 20V4z"/></svg>
+                                <button type="button" class="lw-ig-action" data-ig-action="save" aria-pressed="false" aria-label="Save this post">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" overflow="visible" aria-hidden="true"><path d="M7.5 4.5h9v15l-4.5-3-4.5 3v-15z"/></svg>
+                                </button>
                             </div>
-                            <p class="lw-ig-post__likes">{{ $likes }} likes · {{ $views }} views · {{ $comments }} comments</p>
+                            <p class="lw-ig-post__likes" data-ig-meta>{{ $likes }} likes · {{ $views }} views · {{ $comments }} comments</p>
+                            <div class="lw-ig-comments" id="comments-{{ $insight['slug'] }}" hidden>
+                                <ul class="lw-ig-comments__list" data-ig-comment-list></ul>
+                                <form class="lw-ig-comments__form" data-ig-comment-form>
+                                    <label class="lw-visually-hidden" for="comment-{{ $insight['slug'] }}">Add a comment</label>
+                                    <input id="comment-{{ $insight['slug'] }}" type="text" name="comment" maxlength="280" placeholder="Add a comment…" required>
+                                    <button type="submit">Post</button>
+                                </form>
+                            </div>
                             <div class="lw-ig-post__caption">
                                 <p><b>shrutibhatt</b> {{ $insight['title'] }}</p>
                                 <p>{{ \Illuminate\Support\Str::limit($insight['text'], 140) }}</p>

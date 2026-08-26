@@ -76,9 +76,11 @@ class SitePagesController extends Controller
     public function contactSubmit(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:120'],
+            'first_name' => ['required', 'string', 'max:80'],
+            'last_name' => ['nullable', 'string', 'max:80'],
             'email' => ['required', 'email', 'max:160'],
-            'message' => ['required', 'string', 'max:3000'],
+            'phone' => ['nullable', 'string', 'max:40'],
+            'message' => ['nullable', 'string', 'max:3000'],
         ]);
 
         return redirect()->route('contact')->with('contact_success', 'Thank you. Your message is ready for review. We will be in touch soon.');
