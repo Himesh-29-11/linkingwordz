@@ -23,6 +23,17 @@
                 <label>Body <small>Separate paragraphs with a blank line. Start a line with “# ” for a heading.</small>
                     <textarea name="body" rows="16">{{ old('body', $post->exists ? $post->bodyAsText() : '') }}</textarea>
                 </label>
+
+                <p class="ad-kicker" style="margin:1.2rem 0 0.6rem">SEO</p>
+                <label>SEO title <small>Google tab title. Aim for under 60 characters. Leave blank to use the post title.</small>
+                    <input type="text" name="seo_title" maxlength="70" value="{{ old('seo_title', $post->seo_title) }}">
+                </label>
+                <label>SEO description <small>The snippet under the title in Google. Aim for under 160 characters.</small>
+                    <textarea name="seo_description" rows="3" maxlength="160">{{ old('seo_description', $post->seo_description) }}</textarea>
+                </label>
+                <label>SEO keywords <small>Comma-separated, e.g. book editing, proofreading, ghostwriting</small>
+                    <input type="text" name="seo_keywords" maxlength="220" value="{{ old('seo_keywords', $post->seo_keywords) }}">
+                </label>
             </div>
             <aside class="ad-form__side">
                 <label>Status

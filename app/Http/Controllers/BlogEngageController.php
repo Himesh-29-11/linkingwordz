@@ -68,13 +68,14 @@ class BlogEngageController extends Controller
         $comment = $post->comments()->create([
             'author_name' => $data['name'] ?: 'Guest',
             'body' => $data['comment'],
-            'status' => 'approved',
+            'status' => 'pending',
             'ip_address' => $request->ip(),
         ]);
 
         return response()->json([
             'ok' => true,
-            'comment' => ['name' => $comment->author_name, 'text' => $comment->body],
+            'pending' => true,
+            'comment' => null,
             'comments' => Post::publicCount($post->slug, 'comments'),
             'likes' => Post::publicCount($post->slug, 'likes'),
             'shares' => Post::publicCount($post->slug, 'shares'),

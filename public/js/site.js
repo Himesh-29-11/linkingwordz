@@ -179,12 +179,24 @@
                     method: 'POST',
                     body: JSON.stringify({ comment: text, name: 'You' }),
                 });
-                loadedComments.push(data.comment);
-                comments = data.comments ?? loadedComments.length;
+                if (data.comment) loadedComments.push(data.comment);
+                comments = data.comments ?? comments;
                 input.value = '';
                 if (panel) {
                     panel.hidden = false;
                     panel.classList.add('is-open');
+                    if (data.pending) {
+                        let note = panel.querySelector('[data-ig-pending]');
+                        if (!note) {
+                            note = document.createElement('p');
+                            note.dataset.igPending = '1';
+                            note.style.margin = '0 0 0.6rem';
+                            note.style.fontSize = '0.8rem';
+                            note.style.color = '#af929d';
+                            panel.insertBefore(note, form);
+                        }
+                        note.textContent = 'Thanks — your comment is waiting for review.';
+                    }
                 }
                 paint();
             } catch {}

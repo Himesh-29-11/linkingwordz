@@ -6,7 +6,12 @@
     <div class="lw-page lw-about-page">
         <section class="lw-abx-hero" aria-labelledby="about-title">
             <div class="lw-abx-hero__media">
-                    <img src="{{ asset('images/about/about-portrait-hd.jpg') }}" alt="Shruti Bhatt at a cafe">
+                <img src="{{ asset('images/about/about-portrait-hd.jpg') }}" alt="Shruti Bhatt at a cafe">
+            </div>
+            <div class="lw-abx-hero__ornament" aria-hidden="true">
+                <span class="lw-abx-hero__ring"></span>
+                <span class="lw-abx-hero__dots"></span>
+                <span class="lw-abx-hero__wave"></span>
             </div>
             <div class="lw-container">
                 <div class="lw-abx-hero__card">
@@ -16,10 +21,28 @@
                     <p class="lw-abx-hero__role">Copywriter, Editor &amp; Proofreader</p>
                     <a href="{{ route('contact') }}" class="lw-btn lw-btn--primary">Let's Chat! <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
                 </div>
+                <ul class="lw-abx-hero__chips">
+                    <li>
+                        <span>@include('partials.publisher-icon', ['name' => 'book'])</span>
+                        <b>Book editor</b>
+                    </li>
+                    <li>
+                        <span>@include('partials.publisher-icon', ['name' => 'edit'])</span>
+                        <b>Copy &amp; proof</b>
+                    </li>
+                    <li>
+                        <span>@include('partials.publisher-icon', ['name' => 'spark'])</span>
+                        <b>9+ years</b>
+                    </li>
+                    <li>
+                        <span>@include('partials.publisher-icon', ['name' => 'chat'])</span>
+                        <b>Let's talk words</b>
+                    </li>
+                </ul>
             </div>
         </section>
 
-        <section class="lw-abx-story" aria-labelledby="journey-title">
+        <section class="lw-abx-story lw-has-rings" aria-labelledby="journey-title">
             <div class="lw-container lw-abx-story__grid">
                 <figure class="lw-abx-story__portrait">
                     <img src="{{ asset('images/about/about-grammar.jpg') }}" alt="Reach out to Linkingwordz for professional proofreading, copyediting, and copywriting services.">
@@ -36,7 +59,7 @@
             </div>
         </section>
 
-        <section class="lw-abx-work" aria-labelledby="work-title">
+        <section class="lw-abx-work lw-has-rings" aria-labelledby="work-title">
             <div class="lw-container lw-abx-work__grid">
                 <div>
                     <p class="lw-eyebrow">The work</p>
@@ -70,7 +93,7 @@
             </div>
         </section>
 
-        <section class="lw-abx-genres" aria-labelledby="genres-title">
+        <section class="lw-abx-genres lw-has-rings" aria-labelledby="genres-title">
             <div class="lw-container">
                 <h2 id="genres-title">Few Genres I love to read/work on...</h2>
                 <div class="lw-abx-genres__grid">

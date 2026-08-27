@@ -10059,3 +10059,90 @@ video {
 .lw-problem__grid .lw-problem__index {
   color: #ffffff !important;
 }
+
+.lw-has-rings,
+.lw-abx-story,
+.lw-abx-work,
+.lw-abx-genres,
+.lw-founder,
+.lw-svc-journey,
+.lw-cs-overview,
+.lw-wwm-outcomes,
+.lw-wwm-details,
+.lw-ct-main,
+.lw-insights,
+.lw-why {
+  position: relative;
+  overflow: hidden;
+}
+
+.lw-has-rings::before,
+.lw-abx-story::before,
+.lw-abx-work::before,
+.lw-abx-genres::before,
+.lw-founder::before,
+.lw-svc-journey::before,
+.lw-cs-overview::before,
+.lw-wwm-outcomes::before,
+.lw-ct-main::before,
+.lw-insights::before,
+.lw-why::before {
+  position: absolute;
+  z-index: 0;
+  inset-inline-start: -8rem;
+  inset-block-end: -10rem;
+  width: min(34rem, 70vw);
+  height: min(34rem, 70vw);
+  border: 1.5px solid color-mix(in srgb, var(--lw-mauve) 55%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.2rem color-mix(in srgb, var(--lw-mauve) 16%, transparent),
+    0 0 0 4.4rem color-mix(in srgb, var(--lw-mauve) 8%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.lw-has-rings::after,
+.lw-abx-story::after,
+.lw-abx-work::after,
+.lw-abx-genres::after,
+.lw-founder::after,
+.lw-svc-journey::after,
+.lw-cs-overview::after,
+.lw-wwm-outcomes::after,
+.lw-ct-main::after,
+.lw-insights::after,
+.lw-why::after {
+  position: absolute;
+  z-index: 0;
+  inset-inline-end: -9rem;
+  inset-block-start: 12%;
+  width: min(22rem, 50vw);
+  height: min(22rem, 50vw);
+  border: 1px solid color-mix(in srgb, var(--lw-mauve) 42%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5rem color-mix(in srgb, var(--lw-mauve) 10%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.lw-has-rings > *,
+.lw-abx-story > *,
+.lw-abx-work > *,
+.lw-abx-genres > *,
+.lw-founder > *,
+.lw-svc-journey > *,
+.lw-cs-overview > *,
+.lw-wwm-outcomes > *,
+.lw-ct-main > *,
+.lw-insights > *,
+.lw-why > * {
+  position: relative;
+  z-index: 1;
+}
+
+.lw-abx-story__portrait {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+}

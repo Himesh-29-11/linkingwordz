@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Content and editorial services for authors and service businesses.">
+    <meta name="description" content="@yield('meta_description', 'Content and editorial services for authors and service businesses.')">
+    @hasSection('meta_keywords')
+        <meta name="keywords" content="@yield('meta_keywords')">
+    @endif
     <title>@yield('title', 'LinkingWordz')</title>
+    <meta property="og:title" content="@yield('title', 'LinkingWordz')">
+    <meta property="og:description" content="@yield('meta_description', 'Content and editorial services for authors and service businesses.')">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">

@@ -33,16 +33,24 @@
                         <td>{{ $comment->post?->title }}</td>
                         <td><em class="ad-pill ad-pill--{{ $comment->status }}">{{ $comment->status }}</em></td>
                         <td class="ad-actions">
-                            @foreach (['approved' => 'Approve', 'pending' => 'Hold', 'spam' => 'Spam'] as $st => $label)
-                                @if ($comment->status !== $st)
-                                    <form method="post" action="{{ route('admin.comments.update', $comment) }}">
-                                        @csrf
-                                        @method('PATCH')
-                                        <input type="hidden" name="status" value="{{ $st }}">
-                                        <button type="submit">{{ $label }}</button>
-                                    </form>
-                                @endif
-                            @endforeach
+                            <form method="post" action="{{ route('admin.comments.update', $comment) }}">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="status" value="approved">
+                                <button type="submit" @disabled($comment->status === 'approved')>Approve</button>
+                            </form>
+                            <form method="post" action="{{ route('admin.comments.update', $comment) }}">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="status" value="pending">
+                                <button type="submit" @disabled($comment->status === 'pending')>Hold</button>
+                            </form>
+                            <form method="post" action="{{ route('admin.comments.update', $comment) }}">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="status" value="spam">
+                                <button type="submit" @disabled($comment->status === 'spam')>Spam</button>
+                            </form>
                             <form method="post" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('Remove this comment?')">
                                 @csrf
                                 @method('DELETE')

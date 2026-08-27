@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $insight['title'] . ' — LinkingWordz')
+@section('title', ($insight['seo_title'] ?? $insight['title']) . ' — LinkingWordz')
+@section('meta_description', $insight['seo_description'] ?? \Illuminate\Support\Str::limit(strip_tags($insight['text'] ?? ''), 160))
+@section('meta_keywords', $insight['seo_keywords'] ?? '')
 
 @section('content')
     <article class="lw-article">

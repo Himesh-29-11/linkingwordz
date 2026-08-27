@@ -19,7 +19,7 @@
             </div>
         </header>
 
-        <section class="lw-ct-main">
+        <section class="lw-ct-main lw-has-rings">
             <div class="lw-container lw-ct-main__grid">
                 <form class="lw-ct-form" method="POST" action="{{ route('contact.submit') }}">
                     @csrf

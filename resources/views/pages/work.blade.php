@@ -25,7 +25,7 @@
             </div>
         </header>
 
-        <section class="lw-cs-overview">
+        <section class="lw-cs-overview lw-has-rings">
             <div class="lw-container lw-cs-overview__grid">
                 <div>
                     <p class="lw-eyebrow">Client overview</p>

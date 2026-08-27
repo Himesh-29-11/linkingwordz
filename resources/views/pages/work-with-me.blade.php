@@ -31,7 +31,7 @@
             </div>
         </header>
 
-        <section class="lw-wwm-outcomes">
+        <section class="lw-wwm-outcomes lw-has-rings">
             <div class="lw-container">
                 <p class="lw-eyebrow">What happens in 45 minutes</p>
                 <h2>One session. Three things you leave with.</h2>
