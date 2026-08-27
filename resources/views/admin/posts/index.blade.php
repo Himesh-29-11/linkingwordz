@@ -31,7 +31,7 @@
                             <span>/blog/{{ $post->slug }}</span>
                         </td>
                         <td><em class="ad-pill ad-pill--{{ $post->status }}">{{ $post->status }}</em></td>
-                        <td>{{ $post->views }} views · {{ $post->likes_count }} likes · {{ $post->comments()->count() }} comments</td>
+                        <td>{{ (int) $post->views }} views · {{ (int) $post->likes_count }} likes · {{ (int) $post->comments_count }} comments</td>
                         <td class="ad-actions">
                             <a href="{{ route('blog.show', $post->slug) }}" target="_blank" rel="noreferrer">View</a>
                             <a href="{{ route('admin.posts.edit', $post) }}">Edit</a>
@@ -48,5 +48,5 @@
             </tbody>
         </table>
     </div>
-    {{ $posts->links() }}
+    @include('admin.partials.pager', ['paginator' => $posts])
 @endsection

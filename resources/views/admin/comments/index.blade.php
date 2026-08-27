@@ -64,5 +64,5 @@
             </tbody>
         </table>
     </div>
-    {{ $comments->links() }}
+    @include('admin.partials.pager', ['paginator' => $comments])
 @endsection

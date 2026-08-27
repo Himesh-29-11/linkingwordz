@@ -15,6 +15,7 @@ class PostController extends Controller
     {
         $q = trim((string) $request->get('q'));
         $posts = Post::query()
+            ->withCount('comments')
             ->when($q !== '', function ($query) use ($q) {
                 $query->where(function ($inner) use ($q) {
                     $inner->where('title', 'like', "%{$q}%")

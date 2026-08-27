@@ -489,8 +489,20 @@ body.ad-login {
 @media (max-width: 900px) {
   body.ad { grid-template-columns: 1fr; }
   .ad-side { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
-  .ad-nav { grid-auto-flow: column; }
+  .ad-nav { grid-auto-flow: column; overflow-x: auto; }
   .ad-logout { margin: 0 0 0 auto; }
   .ad-stats, .ad-grid, .ad-form__grid { grid-template-columns: 1fr; }
   .ad-form__side { border: 0; padding: 0; }
+  .ad-main { padding: 1.2rem 1rem 2.4rem; }
+  .ad-top { flex-direction: column; align-items: flex-start; }
+  .ad-actions { min-width: 0; grid-template-columns: 1fr 1fr; }
+  .ad-table-wrap { margin-inline: -0.2rem; }
+  .ad-btn, .ad-toolbar button, .ad-login button { width: 100%; }
+}
+
+@media (max-width: 400px) {
+  .ad-main { padding: 0.9rem 0.75rem 1.8rem; }
+  .ad-side { padding: 0.9rem 0.75rem; }
+  .ad-top h1 { font-size: 1.55rem; }
+  .ad-login__card { padding: 1.5rem 1.1rem; }
 }

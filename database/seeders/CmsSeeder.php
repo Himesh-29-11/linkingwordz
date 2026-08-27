@@ -11,11 +11,12 @@ class CmsSeeder extends Seeder
 {
     public function run(): void
     {
+        //connect@linkingwordz.com,LinkingWordz2026!
         User::query()->updateOrCreate(
-            ['email' => env('ADMIN_EMAIL', 'connect@linkingwordz.com')],
+            ['email' => env('ADMIN_EMAIL', 'Admin@gmail.com')],
             [
                 'name' => 'Shruti Bhatt',
-                'password' => Hash::make(env('ADMIN_PASSWORD', 'LinkingWordz2026!')),
+                'password' => Hash::make(env('ADMIN_PASSWORD', 'Admin123')),
                 'is_admin' => true,
             ]
         );

@@ -34,5 +34,5 @@
             </tbody>
         </table>
     </div>
-    {{ $inquiries->links() }}
+    @include('admin.partials.pager', ['paginator' => $inquiries])
 @endsection
