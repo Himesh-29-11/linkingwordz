@@ -17,7 +17,7 @@
                 <div class="lw-footer__socials" aria-label="Social links">
                     <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
                     <a href="https://twitter.com/" target="_blank" rel="noreferrer" aria-label="Twitter">𝕏</a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">◎</a>
+                    <a href="https://www.instagram.com/linkingwordz/" target="_blank" rel="noreferrer" aria-label="Instagram">◎</a>
                     <a href="mailto:hello@linkingwordz.com" aria-label="Email LinkingWordz">✉</a>
                 </div>
             </div>

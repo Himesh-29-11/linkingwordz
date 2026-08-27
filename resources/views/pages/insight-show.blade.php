@@ -13,7 +13,9 @@
             </div>
         </header>
         <div class="lw-container lw-article__body">
-            <figure><img src="{{ asset($insight['image']) }}" alt="{{ $insight['title'] }}"></figure>
+            <figure class="lw-article__figure">
+                <img src="{{ asset($insight['image']) }}" alt="{{ $insight['title'] }}">
+            </figure>
             <div class="lw-article__copy">
                 <p class="lw-article__byline">By Shruti Bhatt · LinkingWordz</p>
                 @foreach ($insight['body'] as $block)
@@ -25,7 +27,7 @@
                 @endforeach
                 <a href="{{ route('contact') }}" class="lw-btn lw-btn--primary">Start a conversation <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
 
-                <section class="lw-article-engage" id="comments" data-post-slug="{{ $insight['slug'] }}" data-likes="{{ $insight['likes'] ?? 0 }}" data-comments="{{ $insight['comments'] ?? 0 }}" data-views="{{ $insight['views'] ?? 0 }}">
+                <section class="lw-article-engage" id="comments" data-post-slug="{{ $insight['slug'] }}" data-likes="{{ $insight['likes'] ?? 0 }}" data-comments="{{ $insight['comments'] ?? 0 }}" data-shares="{{ $insight['shares'] ?? \App\Models\Post::publicCount($insight['slug'], 'shares') }}" data-views="{{ $insight['views'] ?? 0 }}">
                     <div class="lw-ig-post__actions">
                         <span class="lw-ig-post__icons">
                             <button type="button" class="lw-ig-action" data-ig-action="like" aria-pressed="false" aria-label="Like this post">

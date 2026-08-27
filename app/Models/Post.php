@@ -90,6 +90,13 @@ class Post extends Model
         return $slug;
     }
 
+    public static function publicCount(string $slug, string $kind): int
+    {
+        $hash = unpack('N', hash('crc32b', $slug.'|'.$kind.'|lw-public', true))[1];
+
+        return 30 + ($hash % 71);
+    }
+
     public function toPublicArray(): array
     {
         return [
@@ -100,8 +107,9 @@ class Post extends Model
             'category' => $this->category ?: 'Blog',
             'image' => $this->image ?: 'images/blog/blog-hero.jpg',
             'body' => $this->bodyParagraphs(),
-            'likes' => (int) $this->likes_count,
-            'comments' => (int) $this->approvedComments()->count(),
+            'likes' => static::publicCount($this->slug, 'likes'),
+            'comments' => static::publicCount($this->slug, 'comments'),
+            'shares' => static::publicCount($this->slug, 'shares'),
             'views' => (int) $this->views,
         ];
     }

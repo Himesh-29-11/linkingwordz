@@ -84,6 +84,7 @@
         const slug = actions.dataset.postSlug;
         let likes = Number(actions.dataset.likes || 0);
         let comments = Number(actions.dataset.comments || 0);
+        let shares = Number(actions.dataset.shares || 0);
         let views = Number(actions.dataset.views || 0);
         let liked = false;
         const likeBtn = root.querySelector('[data-ig-action="like"]');
@@ -99,17 +100,18 @@
         const paint = () => {
             if (likeBtn) likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
             if (saveBtn) saveBtn.setAttribute('aria-pressed', readSaved()[slug] ? 'true' : 'false');
-            if (meta) meta.textContent = `${likes} likes · ${views} views · ${comments} comments`;
+            if (meta) meta.textContent = `${likes} likes · ${comments} comments · ${shares} shares`;
             renderComments(list, loadedComments);
         };
 
         jsonFetch(`/blog/${encodeURIComponent(slug)}/comments`)
             .then((data) => {
                 likes = data.likes ?? likes;
+                comments = data.comment_count ?? data.comments_count ?? comments;
+                shares = data.shares ?? shares;
                 views = data.views ?? views;
                 liked = !!data.liked;
-                loadedComments = data.comments || [];
-                comments = loadedComments.length;
+                loadedComments = Array.isArray(data.comments) ? data.comments : loadedComments;
                 paint();
             })
             .catch(() => paint());
@@ -119,7 +121,8 @@
                 const data = await jsonFetch(`/blog/${encodeURIComponent(slug)}/like`, { method: 'POST' });
                 liked = !!data.liked;
                 likes = data.likes ?? likes;
-                comments = data.comments ?? comments;
+                comments = data.comment_count ?? comments;
+                shares = data.shares ?? shares;
                 views = data.views ?? views;
                 likeBtn.classList.remove('is-pop');
                 void likeBtn.offsetWidth;

@@ -170,6 +170,9 @@ class SitePagesController extends Controller
 
             $item['body'] = $body;
             $item['category'] = $item['category'] ?? 'Blog';
+            $item['likes'] = Post::publicCount($item['slug'], 'likes');
+            $item['comments'] = Post::publicCount($item['slug'], 'comments');
+            $item['shares'] = Post::publicCount($item['slug'], 'shares');
 
             return $item;
         }, $items);

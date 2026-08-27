@@ -31,8 +31,9 @@ class BlogEngageController extends Controller
 
         return response()->json([
             'liked' => $liked,
-            'likes' => (int) $post->likes_count,
-            'comments' => $post->approvedComments()->count(),
+            'likes' => Post::publicCount($post->slug, 'likes') + ($liked ? 1 : 0),
+            'comments' => Post::publicCount($post->slug, 'comments'),
+            'shares' => Post::publicCount($post->slug, 'shares'),
             'views' => (int) $post->views,
         ]);
     }
@@ -41,14 +42,18 @@ class BlogEngageController extends Controller
     {
         $post = Post::query()->published()->where('slug', $slug)->firstOrFail();
 
+        $liked = PostLike::query()->where('post_id', $post->id)->where('guest_key', $this->guestKey(request()))->exists();
+
         return response()->json([
             'comments' => $post->approvedComments()->get()->map(fn (Comment $c) => [
                 'name' => $c->author_name,
                 'text' => $c->body,
             ]),
-            'likes' => (int) $post->likes_count,
+            'likes' => Post::publicCount($post->slug, 'likes') + ($liked ? 1 : 0),
+            'comment_count' => Post::publicCount($post->slug, 'comments'),
+            'shares' => Post::publicCount($post->slug, 'shares'),
             'views' => (int) $post->views,
-            'liked' => PostLike::query()->where('post_id', $post->id)->where('guest_key', $this->guestKey(request()))->exists(),
+            'liked' => $liked,
         ]);
     }
 
@@ -70,8 +75,9 @@ class BlogEngageController extends Controller
         return response()->json([
             'ok' => true,
             'comment' => ['name' => $comment->author_name, 'text' => $comment->body],
-            'comments' => $post->approvedComments()->count(),
-            'likes' => (int) $post->likes_count,
+            'comments' => Post::publicCount($post->slug, 'comments'),
+            'likes' => Post::publicCount($post->slug, 'likes'),
+            'shares' => Post::publicCount($post->slug, 'shares'),
             'views' => (int) $post->views,
         ]);
     }
