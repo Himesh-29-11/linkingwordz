@@ -174,41 +174,37 @@
     </section>
 
     <section class="lw-work lw-section" aria-labelledby="work-title">
-        <div class="lw-container lw-stack lw-stack--lg">
-            <div class="lw-section-heading-row">
-                <div class="lw-section-heading">
-                    <p class="lw-eyebrow lw-section-heading__eyebrow">Selected work</p>
-                    <h2 id="work-title" class="lw-section-heading__title">Real clients. Real results.</h2>
+        <div class="lw-container">
+            <div class="lw-spotlight__intro">
+                <p class="lw-eyebrow">Selected work</p>
+                <h2 id="work-title">Real clients. Real results.</h2>
+            </div>
+            @php $work = $selectedWork[0]; @endphp
+            <article class="lw-spotlight">
+                <figure class="lw-spotlight__photo">
+                    <img src="{{ asset($work['image']) }}" alt="Kiran Lasiyal">
+                    <figcaption>
+                        <strong>Kiran Lasiyal</strong>
+                        <span>Social Media Manager &amp; video editor</span>
+                    </figcaption>
+                </figure>
+                <div class="lw-spotlight__copy">
+                    <p class="lw-spotlight__tag">LinkedIn personal brand</p>
+                    <h3>{{ $work['title'] }}</h3>
+                    <p class="lw-spotlight__lede">A tale of exceptional growth — strategic editing that made Kiran’s voice land with the right audience.</p>
+                    <ul class="lw-spotlight__stats">
+                        <li><strong>26%</strong><span>Post impressions in a week</span></li>
+                        <li><strong>9.3%</strong><span>Follower growth</span></li>
+                        <li><strong>20 hrs</strong><span>Turnaround</span></li>
+                        <li><strong>0</strong><span>Revisions needed</span></li>
+                    </ul>
+                    <blockquote class="lw-spotlight__quote">
+                        <p>“Her keen eye for detail boosted my post impressions by 26% in a week. If you’re looking for an editor who elevates your content, she’s the one to trust.”</p>
+                        <cite>Kiran Lasiyal</cite>
+                    </blockquote>
+                    <a href="{{ route('work') }}" class="lw-btn lw-btn--primary">Read the case study <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
                 </div>
-                <a href="{{ route('work') }}" class="lw-section-heading__link">View all case studies <span aria-hidden="true">→</span></a>
-            </div>
-            <div class="lw-work__grid">
-                @foreach ($selectedWork as $work)
-                    <a href="{{ url($work['href']) }}" class="lw-work__card">
-                        <figure class="lw-work__card-image"><img src="{{ asset($work['image']) }}" alt="{{ $work['title'] }}"></figure>
-                        <div class="lw-work__card-body">
-                            <h3>{{ $work['title'] }}</h3>
-                            <p>{{ $work['text'] }}</p>
-                            <span class="lw-work__card-link">Read case study <span aria-hidden="true">→</span></span>
-                        </div>
-                    </a>
-                @endforeach
-                <a href="{{ route('services') }}" class="lw-fill-card">
-                    <span>@include('partials.publisher-icon', ['name' => 'spark'])</span>
-                    <strong>More stories in progress</strong>
-                    <p>Strategy, voice, and editorial work across authors and brands.</p>
-                </a>
-                <a href="{{ route('services.authors') }}" class="lw-fill-card">
-                    <span>@include('partials.publisher-icon', ['name' => 'book'])</span>
-                    <strong>For authors</strong>
-                    <p>Ghostwriting, editing, and book-discovery blogs.</p>
-                </a>
-                <a href="{{ route('contact') }}" class="lw-fill-card">
-                    <span>@include('partials.publisher-icon', ['name' => 'chat'])</span>
-                    <strong>Your project next</strong>
-                    <p>Book a free discovery call — no obligation.</p>
-                </a>
-            </div>
+            </article>
         </div>
     </section>
 

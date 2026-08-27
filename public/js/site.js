@@ -68,12 +68,26 @@
         return res.json();
     };
 
+    const escapeHtml = (value) => String(value || '').replace(/[&<>]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]));
+
     const renderComments = (list, comments) => {
         if (!list) return;
+        const rich = list.classList.contains('lw-talk__list');
         list.innerHTML = (comments || []).map((item) => {
-            const name = item.name || 'Guest';
-            const text = String(item.text || '').replace(/[&<>]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]));
-            return `<li><b>${name}</b>${text}</li>`;
+            const name = escapeHtml(item.name || 'Guest');
+            const text = escapeHtml(item.text || '');
+            const date = escapeHtml(item.date || '');
+            if (!rich) {
+                return `<li><b>${name}</b> ${text}</li>`;
+            }
+            const initial = escapeHtml((item.name || 'G').trim().charAt(0).toUpperCase() || 'G');
+            return `<li class="lw-talk__item">
+                <span class="lw-talk__avatar" aria-hidden="true">${initial}</span>
+                <article class="lw-talk__bubble">
+                    <header class="lw-talk__who"><strong>${name}</strong>${date ? `<time>${date}</time>` : ''}</header>
+                    <p>${text}</p>
+                </article>
+            </li>`;
         }).join('');
     };
 
@@ -144,7 +158,7 @@
             panel.hidden = false;
             panel.classList.add('is-open');
             commentBtn.setAttribute('aria-expanded', 'true');
-            panel.querySelector('input')?.focus();
+            panel.querySelector('textarea, input')?.focus();
         });
 
         shareBtn?.addEventListener('click', async () => {
@@ -171,7 +185,7 @@
 
         form?.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const input = form.querySelector('input');
+            const input = form.querySelector('textarea, input');
             const text = (input?.value || '').trim();
             if (!text) return;
             try {

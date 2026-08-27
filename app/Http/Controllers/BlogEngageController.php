@@ -48,6 +48,7 @@ class BlogEngageController extends Controller
             'comments' => $post->approvedComments()->get()->map(fn (Comment $c) => [
                 'name' => $c->author_name,
                 'text' => $c->body,
+                'date' => optional($c->created_at)->format('j M'),
             ]),
             'likes' => Post::publicCount($post->slug, 'likes') + ($liked ? 1 : 0),
             'comment_count' => Post::publicCount($post->slug, 'comments'),

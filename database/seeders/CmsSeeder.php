@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -11,12 +12,11 @@ class CmsSeeder extends Seeder
 {
     public function run(): void
     {
-        //connect@linkingwordz.com,LinkingWordz2026!
         User::query()->updateOrCreate(
-            ['email' => env('ADMIN_EMAIL', 'Admin@gmail.com')],
+            ['email' => env('ADMIN_EMAIL', 'admin@gmail.com')],
             [
-                'name' => 'Shruti Bhatt',
-                'password' => Hash::make(env('ADMIN_PASSWORD', 'Admin123')),
+                'name' => 'Admin',
+                'password' => Hash::make(env('ADMIN_PASSWORD', 'Admin@123')),
                 'is_admin' => true,
             ]
         );
@@ -39,6 +39,31 @@ class CmsSeeder extends Seeder
                     'published_at' => now(),
                 ]
             );
+        }
+
+        $commentFile = database_path('blog-comments.json');
+        $commentSets = is_file($commentFile)
+            ? (json_decode((string) file_get_contents($commentFile), true) ?: [])
+            : [];
+
+        foreach ($commentSets as $set) {
+            $post = Post::query()->where('slug', $set['slug'] ?? '')->first();
+            if (! $post) {
+                continue;
+            }
+
+            foreach ($set['comments'] ?? [] as $row) {
+                Comment::query()->updateOrCreate(
+                    [
+                        'post_id' => $post->id,
+                        'author_name' => $row['author_name'] ?? 'Guest',
+                        'body' => $row['body'] ?? '',
+                    ],
+                    [
+                        'status' => $row['status'] ?? 'approved',
+                    ]
+                );
+            }
         }
     }
 }

@@ -103,6 +103,14 @@ class SitePagesController extends Controller
         abort_unless($post, 404);
         $post->increment('views');
         $insight = $post->fresh()->toPublicArray();
+        $insight['comment_list'] = $post->approvedComments()
+            ->get()
+            ->map(fn ($c) => [
+                'name' => $c->author_name,
+                'text' => $c->body,
+                'date' => optional($c->created_at)->format('j M'),
+            ])
+            ->all();
 
         return view('pages.insight-show', compact('insight'));
     }
