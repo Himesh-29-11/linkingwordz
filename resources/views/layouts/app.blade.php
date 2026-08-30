@@ -22,7 +22,7 @@
         --font-label: "Cinzel", Georgia, serif;
       }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+    <link rel="stylesheet" href="/css/site.css">
     @stack('head')
 </head>
 <body>
@@ -34,7 +34,7 @@
         </main>
         @include('partials.footer')
     </div>
-    <script src="{{ asset('js/site.js') }}" defer></script>
+    <script src="/js/site.js" defer></script>
     @stack('scripts')
 </body>
 </html>

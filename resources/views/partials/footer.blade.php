@@ -9,7 +9,7 @@
         <div class="lw-footer__main">
             <div class="lw-footer__intro">
                 <a href="{{ route('home') }}" class="lw-footer__brand" aria-label="LinkingWordz home">
-                    <img src="{{ asset('images/live/live-logo-light.png') }}" alt="LinkingWordz">
+                    <img src="/images/live/live-logo-light.png" alt="LinkingWordz">
                 </a>
                 <p class="lw-footer__studio">Editorial Content Studio</p>
                 <span class="lw-footer__rule" aria-hidden="true"></span>

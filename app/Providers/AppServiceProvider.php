@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultSimpleView('vendor.pagination.simple');
 
         $appUrl = (string) config('app.url');
+        if ($appUrl !== '') {
+            URL::forceRootUrl($appUrl);
+        }
         if (str_starts_with($appUrl, 'https://')) {
             URL::forceScheme('https');
         }

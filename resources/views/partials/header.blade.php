@@ -26,7 +26,7 @@
 <header class="lw-header">
     <div class="lw-container lw-header__inner">
         <a href="{{ route('home') }}" class="lw-header__brand" aria-label="LinkingWordz home">
-            <img src="{{ asset('images/live/live-logo.png') }}" alt="LinkingWordz">
+            <img src="/images/live/live-logo.png" alt="LinkingWordz">
         </a>
         <div class="lw-header__desktop-actions">
             <nav class="lw-header__nav" aria-label="Primary">

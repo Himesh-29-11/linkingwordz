@@ -18,7 +18,7 @@ class UseRequestRootUrl
             URL::forceScheme('https');
         }
 
-        URL::forceRootUrl(($https ? 'https' : 'http').'://'.$request->getHost());
+        URL::forceRootUrl(($https ? 'https' : 'http').'://'.$request->getHttpHost());
 
         return $next($request);
     }
