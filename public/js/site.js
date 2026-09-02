@@ -294,3 +294,20 @@
         start();
     });
 })();
+
+(() => {
+    const topBtn = document.querySelector('[data-scroll-top]');
+    if (!topBtn) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const toggle = () => {
+        topBtn.classList.toggle('is-visible', window.scrollY > 320);
+    };
+
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+
+    topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+})();

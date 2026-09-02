@@ -2,44 +2,137 @@
 
 @section('title', 'Home — LinkingWordz')
 
+@push('head')
+    <link rel="stylesheet" href="{{ asset('css/hero-editorial.css') }}?v=1">
+@endpush
+
 @section('content')
-    <section class="lw-hero" aria-labelledby="hero-heading">
-        @include('partials.ornament')
-        <div class="lw-hero__inner">
-            <div class="lw-hero__copy">
-                <p class="lw-hero__eyebrow">
-                    <span>Content &amp; Editorial Services for Authors and Service Businesses</span>
-                    <span class="lw-hero__eyebrow-rule" aria-hidden="true"></span>
+    <section class="lw-hero lw-hero--editorial" aria-labelledby="hero-heading">
+        <div class="lw-dots lw-dots-left" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="lw-wave-decoration" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="lw-hero-container">
+            <div class="lw-hero-content">
+                <div class="lw-eyebrow">
+                    Content &amp; Editorial Services for
+                    <br>
+                    Authors and Service Businesses
+                </div>
+
+                <h1 id="hero-heading">
+                    The right
+                    <span>words</span>
+                    find the right
+                    <span>clients.</span>
+                    <strong>We make sure yours do.</strong>
+                </h1>
+
+                <div class="lw-title-line" aria-hidden="true"></div>
+
+                <p class="lw-hero-description">
+                    Linkingwordz is a content and editorial brand built for two kinds
+                    of people — authors who want their work discovered, and service
+                    businesses whose expertise deserves a stronger voice online.
                 </p>
-                <h1 id="hero-heading" class="lw-hero__title">The right <em>words find the right clients.</em> We make sure yours do.</h1>
-                <p class="lw-hero__description">Linkingwordz is a content and editorial brand built for two kinds of people — authors who want their work discovered, and service businesses whose expertise deserves a stronger voice online.</p>
-                <p class="lw-hero__promise">Human-written. Research-backed. Built around your brand.<br>Not a template.</p>
-                <div class="lw-hero__actions">
-                    <a href="{{ route('services.authors') }}" class="lw-btn lw-btn--primary">I'm an author or publisher <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
-                    <a href="{{ route('contact') }}" class="lw-btn lw-btn--ghost">I run a service business <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
+
+                <p class="lw-hero-highlight">
+                    Human-written. Research-backed.
+                    <br>
+                    Built around your brand. Not a template.
+                </p>
+
+                <div class="lw-hero-actions">
+                    <a href="{{ route('services.authors') }}" class="lw-btn lw-btn-primary">
+                        I'm an author or publisher
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <a href="{{ route('contact') }}" class="lw-btn lw-btn-link">
+                        I run a service business
+                        <span aria-hidden="true">→</span>
+                    </a>
                 </div>
-                <p class="lw-hero__note">Not sure which fits? <a href="{{ route('contact') }}">Book a free discovery call</a> — we'll figure it out together.</p>
+
+                <p class="lw-discovery">
+                    Not sure which fits?
+                    <a href="{{ route('contact') }}">Book a free discovery call</a>
+                    — we'll figure it out together.
+                </p>
             </div>
-            <div class="lw-hero__visual">
-                <div class="lw-hero__deco-word" aria-hidden="true">Words</div>
-                <div class="lw-hero__arc" aria-hidden="true"></div>
-                <figure class="lw-hero__portrait">
-                    <img src="{{ asset('images/shruti-hero.png') }}" alt="Shruti Bhatt, founder of LinkingWordz, at her desk with notebook and pen" class="lw-hero__photo">
-                </figure>
-                <aside class="lw-hero__founder-card">
-                    <p class="lw-hero__founder-name">Hello, I'm Shruti ;)</p>
-                    <p class="lw-hero__founder-role">Founder · Content Writer, Copyeditor &amp; Ghostwriter</p>
-                </aside>
-                <div class="lw-hero__roles" aria-label="Core services">
-                    <div class="lw-hero__role-card">
-                        <span class="lw-hero__role-icon">@include('partials.publisher-icon', ['name' => 'edit'])</span>
-                        <span><strong>Copywriter</strong><small>Words that connect and convert.</small></span>
+
+            <div class="lw-hero-visual">
+                <div class="lw-photo-frame">
+                    <div class="lw-photo-outline" aria-hidden="true"></div>
+                    <img
+                        src="{{ asset('images/shruti-hero.jpg') }}"
+                        alt="Shruti Bhatt, founder of Linkingwordz"
+                        class="lw-founder-image"
+                    >
+                </div>
+
+                <div class="lw-founder-card">
+                    <div class="lw-founder-icon" aria-hidden="true">
+                        <img src="{{ asset('images/pen-icon.png') }}" alt="" width="22" height="22">
                     </div>
-                    <div class="lw-hero__role-card">
-                        <span class="lw-hero__role-icon">@include('partials.publisher-icon', ['name' => 'book'])</span>
-                        <span><strong>Content Writer</strong><small>Stories that inform, engage and rank.</small></span>
+                    <div>
+                        <div class="lw-founder-title">Hi, I'm Shruti.</div>
+                        <div class="lw-founder-role">Content Writer, Copyeditor &amp; Ghostwriter</div>
                     </div>
                 </div>
+
+                <div class="lw-round-badge" aria-hidden="true">
+                    <div class="lw-badge-inner">
+                        <span>Stories that connect</span>
+                        <b><img src="{{ asset('images/pen-icon.png') }}" alt=""></b>
+                        <span>Results that last</span>
+                    </div>
+                </div>
+
+                <div class="lw-mini-cards" aria-label="Core services">
+                    <div class="lw-mini-card">
+                        <div class="lw-mini-icon teal" aria-hidden="true">
+                            @include('partials.publisher-icon', ['name' => 'edit'])
+                        </div>
+                        <div>
+                            <h3>Copywriter</h3>
+                            <p>Words that connect and convert.</p>
+                        </div>
+                    </div>
+                    <div class="lw-mini-card">
+                        <div class="lw-mini-icon mauve" aria-hidden="true">
+                            @include('partials.publisher-icon', ['name' => 'book'])
+                        </div>
+                        <div>
+                            <h3>Content Writer</h3>
+                            <p>Stories that inform, engage and rank.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lw-stats" aria-label="Experience highlights">
+            <div class="lw-stat">
+                <strong>9+</strong>
+                <span>Years experience</span>
+            </div>
+            <div class="lw-stat">
+                <strong>M.Phil</strong>
+                <span>In management</span>
+            </div>
+            <div class="lw-stat">
+                <strong>Finance · Technology · Education</strong>
+                <span>Core expertise</span>
+            </div>
+            <div class="lw-stat">
+                <strong>5–10 clients</strong>
+                <span>At a time · Personal attention</span>
             </div>
         </div>
     </section>

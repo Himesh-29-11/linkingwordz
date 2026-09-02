@@ -19,6 +19,11 @@
         <nav class="ad-nav">
             <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'is-on' : '' }}">Overview</a>
             <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'is-on' : '' }}">Journal</a>
+            <a href="{{ route('admin.testimonials.index') }}" class="{{ request()->routeIs('admin.testimonials.*') ? 'is-on' : '' }}">Testimonials</a>
+            <a href="{{ route('admin.services.index') }}" class="{{ request()->routeIs('admin.services.*') ? 'is-on' : '' }}">Services</a>
+            <a href="{{ route('admin.work.index') }}" class="{{ request()->routeIs('admin.work.*') ? 'is-on' : '' }}">Case studies</a>
+            <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'is-on' : '' }}">Pages</a>
+            <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'is-on' : '' }}">Settings</a>
             <a href="{{ route('admin.comments.index') }}" class="{{ request()->routeIs('admin.comments.*') ? 'is-on' : '' }}">Comments</a>
             <a href="{{ route('admin.inquiries.index') }}" class="{{ request()->routeIs('admin.inquiries.*') ? 'is-on' : '' }}">Inquiries</a>
             <a href="{{ route('blog') }}" target="_blank" rel="noreferrer">View site ↗</a>

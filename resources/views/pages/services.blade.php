@@ -240,23 +240,41 @@
             </div>
         </section>
 
-        <section class="lw-svc-quotes">
-            <div class="lw-container">
-                <p class="lw-eyebrow">Client love</p>
-                <h2>What our clients say</h2>
-                <div class="lw-svc-trio">
-                    <blockquote>
-                        <p>“I just finished going over chapter one! Thank you so much for your input, I used quite a few of your suggestions — probably about 85% of them. Thank you for reviewing this for me.”</p>
-                        <cite>Eve Miller, Author</cite>
-                    </blockquote>
-                    <blockquote>
-                        <p>“Shruti worked with us on proofreading our product notes and a few blogs. She is a thorough professional, punctual with deadlines, and most importantly an expert in her field. We wish you all the best for all your future endeavors.”</p>
-                        <cite>Paintphotographs</cite>
-                    </blockquote>
-                    <blockquote>
-                        <p>“Shruti has been working as a reviewer in my team for more than 2.5 years. She is a team player and has a very good command over the language. On-time delivery, accuracy, high standard work ethics are some of her bright qualities. She is an asset to any team she works for.”</p>
-                        <cite>Rushabh Shah</cite>
-                    </blockquote>
+        <section class="lw-testimonials lw-testimonials--light lw-testimonials--duo lw-section" aria-labelledby="services-testimonials-title">
+            <div class="lw-container lw-stack lw-stack--lg">
+                <div class="lw-section-heading lw-section-heading--center">
+                    <p class="lw-eyebrow lw-section-heading__eyebrow">Client Love</p>
+                    <h2 id="services-testimonials-title" class="lw-visually-hidden">Client Love</h2>
+                </div>
+                <div class="lw-testimonials__grid">
+                    @foreach ($testimonials as $testimonial)
+                        <blockquote class="lw-testimonials__item">
+                            <span class="lw-testimonials__mark" aria-hidden="true">“</span>
+                            @if (!empty($testimonial['bullets']))
+                                <p>{{ $testimonial['intro'] }}</p>
+                                <ul class="lw-testimonials__bullets">
+                                    @foreach ($testimonial['bullets'] as $bullet)
+                                        <li>{{ $bullet }}</li>
+                                    @endforeach
+                                </ul>
+                                <p>{{ $testimonial['outro'] }}</p>
+                            @else
+                                <p>{{ $testimonial['quote'] }}</p>
+                            @endif
+                            <footer class="lw-testimonials__person">
+                                <span class="lw-testimonials__avatar" aria-hidden="true">
+                                    @include('partials.publisher-icon', ['name' => 'people'])
+                                </span>
+                                <span>
+                                    <cite class="lw-testimonials__name">{{ $testimonial['name'] }}</cite>
+                                    @if (!empty($testimonial['meta']))
+                                        <span class="lw-testimonials__meta">{{ $testimonial['meta'] }}</span>
+                                    @endif
+                                    <span class="lw-testimonials__role">{{ $testimonial['role'] }}</span>
+                                </span>
+                            </footer>
+                        </blockquote>
+                    @endforeach
                 </div>
             </div>
         </section>

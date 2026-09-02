@@ -15,8 +15,8 @@
         <img src="{{ asset('images/live/live-logo.png') }}" alt="LinkingWordz">
         <p class="ad-kicker">Private studio</p>
         <h1>Welcome back</h1>
-        <p class="ad-login__lead">Sign in to manage the journal, comments, and inquiries.</p>
-        <form method="post" action="">
+        <p class="ad-login__lead">Sign in to manage journal posts, testimonials, pages, and site settings.</p>
+        <form method="post" action="{{ route('admin.login.submit') }}">
             @csrf
             <label>Email
                 <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username">

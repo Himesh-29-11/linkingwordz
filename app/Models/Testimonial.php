@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model
 {
-    protected $fillable = ['quote', 'name', 'role', 'sort_order'];
+    protected $fillable = ['quote', 'name', 'role', 'avatar', 'context', 'payload', 'sort_order'];
 
     protected function casts(): array
     {
-        return ['sort_order' => 'integer'];
+        return [
+            'payload' => 'array',
+            'sort_order' => 'integer',
+        ];
     }
 }

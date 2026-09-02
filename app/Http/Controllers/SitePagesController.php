@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
 use App\Models\Post;
+use App\Support\Cms;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -53,32 +54,18 @@ class SitePagesController extends Controller
     public function services(): View
     {
         return view('pages.services', [
-            'authorsServices' => [
-                'Copyediting & Proofreading',
-                'Book Translation',
-                'Book Writing',
-                'Book Promotional Blogs',
-                'Author Website Content & Design',
-                'LinkedIn Strategic Content',
-            ],
-            'brandServices' => [
-                'Website Content + Development',
-                'SEO + AEO Blogs',
-                'LinkedIn Ghostwriting',
-                'Thought Leadership & Ghostwriting',
-                'Copyediting & Editorial Support',
-            ],
+            'testimonials' => Cms::servicesTestimonials(),
         ]);
     }
 
     public function work(): View
     {
-        return view('pages.work', ['workItems' => $this->workItems()]);
+        return view('pages.work', ['workItems' => Cms::workItems()]);
     }
 
     public function workShow(string $slug): View
     {
-        $work = collect($this->workItems())->firstWhere('slug', $slug);
+        $work = collect(Cms::workItems())->firstWhere('slug', $slug);
         abort_unless($work, 404);
 
         return view('pages.work-show', compact('work'));
@@ -99,18 +86,30 @@ class SitePagesController extends Controller
 
     public function insightShow(string $slug): View
     {
-        $post = Post::query()->published()->where('slug', $slug)->first();
-        abort_unless($post, 404);
-        $post->increment('views');
-        $insight = $post->fresh()->toPublicArray();
-        $insight['comment_list'] = $post->approvedComments()
-            ->get()
-            ->map(fn ($c) => [
-                'name' => $c->author_name,
-                'text' => $c->body,
-                'date' => optional($c->created_at)->format('j M'),
-            ])
-            ->all();
+        try {
+            $post = Post::query()->published()->where('slug', $slug)->first();
+        } catch (\Throwable) {
+            $post = null;
+        }
+
+        if ($post) {
+            $post->increment('views');
+            $insight = $post->fresh()->toPublicArray();
+            $insight['comment_list'] = $post->approvedComments()
+                ->get()
+                ->map(fn ($c) => [
+                    'name' => $c->author_name,
+                    'text' => $c->body,
+                    'date' => optional($c->created_at)->format('j M'),
+                ])
+                ->all();
+
+            return view('pages.insight-show', compact('insight'));
+        }
+
+        $insight = collect($this->insightItems())->firstWhere('slug', $slug);
+        abort_unless($insight, 404);
+        $insight['comment_list'] = $insight['comment_list'] ?? [];
 
         return view('pages.insight-show', compact('insight'));
     }
@@ -141,30 +140,20 @@ class SitePagesController extends Controller
 
         return view('pages.legal', [
             'title' => $page === 'privacy-policy' ? 'Privacy Policy' : 'Terms & Conditions',
+            'page' => $page,
+            'body' => Cms::pageBody($page),
         ]);
-    }
-
-    private function workItems(): array
-    {
-        return [
-            [
-                'slug' => 'kiran-lasiyal',
-                'title' => "How Strategic Social Media Editing Transformed Kiran's LinkedIn Journey",
-                'category' => 'Case study',
-                'client' => 'Kiran Lasiyal',
-                'role' => 'Social Media Manager & video editor',
-                'text' => 'A tale of exceptional growth',
-                'image' => 'images/work/kiran.jpg',
-                'result' => 'Post impressions up 26% in a week. Followers up 9.3%. Final copy delivered in 20 hours with no revisions.',
-            ],
-        ];
     }
 
     private function insightItems(): array
     {
-        $fromDb = Post::query()->published()->latest('published_at')->latest()->get();
-        if ($fromDb->isNotEmpty()) {
-            return $fromDb->map->toPublicArray()->all();
+        try {
+            $fromDb = Post::query()->published()->latest('published_at')->latest()->get();
+            if ($fromDb->isNotEmpty()) {
+                return $fromDb->map->toPublicArray()->all();
+            }
+        } catch (\Throwable) {
+            // Fall back to JSON when DB tables are missing or unreachable.
         }
 
         $path = database_path('blog-posts.json');

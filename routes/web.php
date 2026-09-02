@@ -5,6 +5,11 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SitePageController;
+use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\WorkItemController;
 use App\Http\Controllers\BlogEngageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SitePagesController;
@@ -41,6 +46,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::resource('posts', PostController::class)->except(['show']);
+        Route::resource('testimonials', TestimonialController::class)->except(['show']);
+        Route::resource('services', ServiceController::class)->except(['show']);
+        Route::resource('work', WorkItemController::class)->except(['show']);
+        Route::get('pages', [SitePageController::class, 'index'])->name('pages.index');
+        Route::get('pages/{page}/edit', [SitePageController::class, 'edit'])->name('pages.edit');
+        Route::put('pages/{page}', [SitePageController::class, 'update'])->name('pages.update');
+        Route::get('settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
+        Route::put('settings', [SiteSettingController::class, 'update'])->name('settings.update');
         Route::get('comments', [CommentController::class, 'index'])->name('comments.index');
         Route::patch('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
         Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');

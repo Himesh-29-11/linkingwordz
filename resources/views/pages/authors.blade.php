@@ -211,20 +211,22 @@
         </section>
 
         <section class="lw-publisher-expertise lw-section" aria-labelledby="subject-matter-title">
-            <div class="lw-container lw-publisher-expertise__grid">
-                <div>
-                    <p class="lw-publisher-eyebrow">Subject Matter Expertise</p>
-                    <h2 id="subject-matter-title">Most editors understand language. Fewer understand the field they're editing in. We bring both.</h2>
-                    <div class="lw-publisher-subject-grid">
-                        <div><span>@include('partials.publisher-icon', ['name' => 'finance'])</span><strong>Finance &amp; Management</strong></div>
-                        <div><span>@include('partials.publisher-icon', ['name' => 'health'])</span><strong>Physical Health &amp; Nutrition</strong></div>
-                        <div><span>@include('partials.publisher-icon', ['name' => 'travel'])</span><strong>Travel &amp; Culture</strong></div>
-                        <div><span>@include('partials.publisher-icon', ['name' => 'mind'])</span><strong>Psychology &amp; Mental Health</strong></div>
-                        <div><span>@include('partials.publisher-icon', ['name' => 'lifestyle'])</span><strong>Lifestyle &amp; Self-Care</strong></div>
-                        <div><span>@include('partials.publisher-icon', ['name' => 'social'])</span><strong>Social Impact &amp; NGOs</strong></div>
+            <div class="lw-container">
+                <div class="lw-publisher-expertise__grid">
+                    <div>
+                        <p class="lw-publisher-eyebrow">Subject Matter Expertise</p>
+                        <h2 id="subject-matter-title">Most editors understand language. Fewer understand the field they're editing in. We bring both.</h2>
                     </div>
+                    <div><h3>Why It Matters</h3><p>Our background spans finance, psychology, and mental health — meaning editorial work that goes beyond grammar to genuine subject-matter understanding.</p><p>An M.Phil in Management and 9+ years of professional experience means every brief is approached with genuine intellectual rigor.</p></div>
                 </div>
-                <div><h3>Why It Matters</h3><p>Our background spans finance, psychology, and mental health — meaning editorial work that goes beyond grammar to genuine subject-matter understanding.</p><p>An M.Phil in Management and 9+ years of professional experience means every brief is approached with genuine intellectual rigor.</p></div>
+                <div class="lw-publisher-subject-grid">
+                    <div><span>@include('partials.publisher-icon', ['name' => 'finance'])</span><strong>Finance &amp; Management</strong></div>
+                    <div><span>@include('partials.publisher-icon', ['name' => 'health'])</span><strong>Physical Health &amp; Nutrition</strong></div>
+                    <div><span>@include('partials.publisher-icon', ['name' => 'travel'])</span><strong>Travel &amp; Culture</strong></div>
+                    <div><span>@include('partials.publisher-icon', ['name' => 'mind'])</span><strong>Psychology &amp; Mental Health</strong></div>
+                    <div><span>@include('partials.publisher-icon', ['name' => 'lifestyle'])</span><strong>Lifestyle &amp; Self-Care</strong></div>
+                    <div><span>@include('partials.publisher-icon', ['name' => 'social'])</span><strong>Social Impact &amp; NGOs</strong></div>
+                </div>
             </div>
         </section>
 
@@ -265,21 +267,6 @@
                 <div class="lw-publisher-section-heading">
                     <p class="lw-publisher-eyebrow">Get in touch</p>
                     <h2 id="connect-title">Let's Connect</h2>
-                </div>
-
-                <div class="lw-publisher-connect__visuals">
-                    <a class="lw-publisher-qr-card" href="{{ route('home') }}" aria-label="Visit the Linkingwordz website">
-                        <img src="{{ asset('images/publisher-website-qr.png') }}" alt="QR code to visit the Linkingwordz website">
-                        <span>Visit Website</span>
-                    </a>
-                    <div class="lw-publisher-logo-card">
-                        <img src="{{ asset('images/publisher-logo.jpeg') }}" alt="Linkingwordz logo">
-                        <span>Linkingwordz</span>
-                    </div>
-                    <a class="lw-publisher-qr-card" href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="Connect with Linkingwordz on LinkedIn">
-                        <img src="{{ asset('images/publisher-linkedin-qr.png') }}" alt="QR code to connect with Linkingwordz on LinkedIn">
-                        <span>Connect on LinkedIn</span>
-                    </a>
                 </div>
 
                 <div class="lw-publisher-connect__grid">
