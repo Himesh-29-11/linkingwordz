@@ -251,15 +251,15 @@
                         <blockquote class="lw-testimonials__item">
                             <span class="lw-testimonials__mark" aria-hidden="true">“</span>
                             @if (!empty($testimonial['bullets']))
-                                <p>{{ $testimonial['intro'] }}</p>
+                                <div>{!! $testimonial['intro'] !!}</div>
                                 <ul class="lw-testimonials__bullets">
                                     @foreach ($testimonial['bullets'] as $bullet)
                                         <li>{{ $bullet }}</li>
                                     @endforeach
                                 </ul>
-                                <p>{{ $testimonial['outro'] }}</p>
+                                <div>{!! $testimonial['outro'] !!}</div>
                             @else
-                                <p>{{ $testimonial['quote'] }}</p>
+                                <div>{!! $testimonial['quote'] !!}</div>
                             @endif
                             <footer class="lw-testimonials__person">
                                 <span class="lw-testimonials__avatar" aria-hidden="true">

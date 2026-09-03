@@ -143,6 +143,11 @@ class CmsDefaults
         };
     }
 
+    public static function portfolioItems(): array
+    {
+        return [];
+    }
+
     public static function contact(string $key): ?string
     {
         return match ($key) {

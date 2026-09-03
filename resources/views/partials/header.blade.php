@@ -9,6 +9,7 @@
             ],
         ],
         ['href' => route('about'), 'label' => 'About'],
+        ['href' => route('portfolio'), 'label' => 'Portfolio'],
         [
             'href' => route('services'),
             'label' => 'Services',

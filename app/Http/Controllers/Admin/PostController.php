@@ -112,6 +112,10 @@ class PostController extends Controller
             return [];
         }
 
+        if (str_contains($raw, '<')) {
+            return [['type' => 'html', 'text' => $raw]];
+        }
+
         return collect(preg_split("/\n\s*\n/", $raw) ?: [])
             ->map(fn ($chunk) => trim($chunk))
             ->filter()

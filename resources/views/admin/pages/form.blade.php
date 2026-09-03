@@ -14,8 +14,8 @@
                 <label>Title
                     <input type="text" name="title" value="{{ old('title', $page->title) }}" required>
                 </label>
-                <label>Body <small>HTML allowed</small>
-                    <textarea name="body" rows="24">{{ old('body', $page->body) }}</textarea>
+                <label>Body
+                    <textarea name="body" class="ad-rich-text" rows="24">{{ old('body', $page->body) }}</textarea>
                 </label>
             </div>
             <aside class="ad-form__side">

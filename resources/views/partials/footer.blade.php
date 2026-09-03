@@ -42,6 +42,7 @@
                     <li><a href="{{ route('services') }}">Services</a></li>
                     <li><a href="{{ route('services.work') }}">Work With Me</a></li>
                     <li><a href="{{ route('work') }}">Case Studies</a></li>
+                    <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
                     <li><a href="{{ route('insights') }}">Blog</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>

@@ -73,7 +73,34 @@ class Post extends Model
         return collect($this->bodyParagraphs())
             ->map(fn ($block) => is_array($block) ? ($block['text'] ?? '') : (string) $block)
             ->filter()
+            ->map(fn ($text) => strip_tags($text))
             ->implode("\n\n");
+    }
+
+    public function bodyAsHtml(): string
+    {
+        $body = $this->bodyParagraphs();
+
+        if ($body === []) {
+            return '';
+        }
+
+        if (count($body) === 1 && ($body[0]['type'] ?? '') === 'html') {
+            return (string) ($body[0]['text'] ?? '');
+        }
+
+        return collect($body)
+            ->map(function (array $block) {
+                $type = $block['type'] ?? 'p';
+                $text = $block['text'] ?? '';
+
+                return match ($type) {
+                    'h' => '<h2>'.e($text).'</h2>',
+                    'quote' => '<blockquote>'.e($text).'</blockquote>',
+                    default => str_contains($text, '<') ? $text : '<p>'.e($text).'</p>',
+                };
+            })
+            ->implode('');
     }
 
     public static function makeSlug(string $title, ?int $ignoreId = null): string

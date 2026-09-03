@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SitePageController;
@@ -22,6 +23,8 @@ Route::get('/services', [SitePagesController::class, 'services'])->name('service
 Route::view('/services/authors', 'pages.authors')->name('services.authors');
 Route::view('/services/brands', 'pages.brands')->name('services.brands');
 Route::view('/services/work-with-me', 'pages.work-with-me')->name('services.work');
+
+Route::get('/portfolio', [SitePagesController::class, 'portfolio'])->name('portfolio');
 
 Route::get('/work', [SitePagesController::class, 'work'])->name('work');
 Route::get('/work/{slug}', [SitePagesController::class, 'workShow'])->name('work.show');
@@ -49,6 +52,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('testimonials', TestimonialController::class)->except(['show']);
         Route::resource('services', ServiceController::class)->except(['show']);
         Route::resource('work', WorkItemController::class)->except(['show']);
+        Route::resource('portfolio', PortfolioItemController::class)->except(['show'])->parameters(['portfolio' => 'portfolioItem']);
         Route::get('pages', [SitePageController::class, 'index'])->name('pages.index');
         Route::get('pages/{page}/edit', [SitePageController::class, 'edit'])->name('pages.edit');
         Route::put('pages/{page}', [SitePageController::class, 'update'])->name('pages.update');

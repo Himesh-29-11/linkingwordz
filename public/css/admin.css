@@ -263,6 +263,28 @@ body.ad {
 }
 .ad-form textarea { min-height: 17rem; line-height: 1.6; }
 
+.ad-form .ck-editor__editable {
+  min-height: 16rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ad-ink);
+}
+
+.ad-form .ck.ck-editor {
+  width: 100%;
+}
+
+.ad-form .ck.ck-toolbar {
+  border-color: color-mix(in srgb, var(--ad-ink) 14%, var(--ad-cream));
+  background: color-mix(in srgb, var(--ad-cream) 92%, var(--ad-white));
+}
+
+.ad-form .ck.ck-editor__main > .ck-editor__editable {
+  border-color: color-mix(in srgb, var(--ad-ink) 14%, var(--ad-cream));
+  background: var(--ad-white);
+}
+
 .ad-btn, .ad-toolbar button, .ad-login button, .ad-inline button {
   display: inline-flex;
   align-items: center;
@@ -475,6 +497,37 @@ body.ad-login {
   height: 1.05rem !important;
   min-height: 0 !important;
   accent-color: var(--ad-teal);
+}
+
+.ad-doc-list {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ad-line);
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--ad-paper) 92%, white);
+}
+
+.ad-doc-list ul {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-doc-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0;
+}
+
+.ad-doc-list a {
+  color: var(--ad-teal);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.ad-doc-list a:hover {
+  text-decoration: underline;
 }
 
 .ad-simple-pager { display: flex; gap: 1rem; margin-top: 1.1rem; }

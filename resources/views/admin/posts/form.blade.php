@@ -17,11 +17,11 @@
                 @error('title')<p class="ad-error">{{ $message }}</p>@enderror
 
                 <label>Excerpt
-                    <textarea name="excerpt" rows="3">{{ old('excerpt', $post->excerpt) }}</textarea>
+                    <textarea name="excerpt" class="ad-rich-text" rows="3">{{ old('excerpt', $post->excerpt) }}</textarea>
                 </label>
 
-                <label>Body <small>Separate paragraphs with a blank line. Start a line with “# ” for a heading.</small>
-                    <textarea name="body" rows="16">{{ old('body', $post->exists ? $post->bodyAsText() : '') }}</textarea>
+                <label>Body
+                    <textarea name="body" class="ad-rich-text" rows="16">{{ old('body', $post->exists ? $post->bodyAsHtml() : '') }}</textarea>
                 </label>
 
                 <p class="ad-kicker" style="margin:1.2rem 0 0.6rem">SEO</p>

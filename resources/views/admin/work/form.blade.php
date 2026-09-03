@@ -23,8 +23,8 @@
                 <label>Result line
                     <input type="text" name="result" value="{{ old('result', $item->result) }}">
                 </label>
-                <label>Full story <small>HTML allowed</small>
-                    <textarea name="body" rows="12">{{ old('body', $item->body) }}</textarea>
+                <label>Full story
+                    <textarea name="body" class="ad-rich-text" rows="12">{{ old('body', $item->body) }}</textarea>
                 </label>
             </div>
             <aside class="ad-form__side">

@@ -9,6 +9,10 @@
         <meta name="keywords" content="@yield('meta_keywords')">
     @endif
     <title>@yield('title', 'LinkingWordz')</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta property="og:title" content="@yield('title', 'LinkingWordz')">
     <meta property="og:description" content="@yield('meta_description', 'Content and editorial services for authors and service businesses.')">
     <meta property="og:type" content="website">
@@ -22,7 +26,7 @@
         --font-label: "Cinzel", Georgia, serif;
       }
     </style>
-    <link rel="stylesheet" href="/css/site.css?v=hero16">
+    <link rel="stylesheet" href="/css/site.css?v=portfolio1">
     @stack('head')
 </head>
 <body>

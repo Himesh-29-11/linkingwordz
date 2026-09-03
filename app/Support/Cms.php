@@ -2,7 +2,7 @@
 
 namespace App\Support;
 
-use App\Models\Post;
+use App\Models\PortfolioItem;
 use App\Models\Service;
 use App\Models\SitePage;
 use App\Models\SiteSetting;
@@ -130,6 +130,23 @@ class Cms
         }
 
         return CmsDefaults::homeInsights();
+    }
+
+    public static function portfolioItems(): array
+    {
+        try {
+            $rows = PortfolioItem::query()
+                ->where('is_published', true)
+                ->orderBy('sort_order')
+                ->get();
+            if ($rows->isNotEmpty()) {
+                return $rows->map->toPublicArray()->all();
+            }
+        } catch (\Throwable) {
+            // Fall through to defaults.
+        }
+
+        return CmsDefaults::portfolioItems();
     }
 
     public static function workItems(): array

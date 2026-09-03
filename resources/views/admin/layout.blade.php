@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    @stack('head')
 </head>
 <body class="ad">
     <aside class="ad-side">
@@ -22,6 +23,7 @@
             <a href="{{ route('admin.testimonials.index') }}" class="{{ request()->routeIs('admin.testimonials.*') ? 'is-on' : '' }}">Testimonials</a>
             <a href="{{ route('admin.services.index') }}" class="{{ request()->routeIs('admin.services.*') ? 'is-on' : '' }}">Services</a>
             <a href="{{ route('admin.work.index') }}" class="{{ request()->routeIs('admin.work.*') ? 'is-on' : '' }}">Case studies</a>
+            <a href="{{ route('admin.portfolio.index') }}" class="{{ request()->routeIs('admin.portfolio.*') ? 'is-on' : '' }}">Portfolio</a>
             <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'is-on' : '' }}">Pages</a>
             <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'is-on' : '' }}">Settings</a>
             <a href="{{ route('admin.comments.index') }}" class="{{ request()->routeIs('admin.comments.*') ? 'is-on' : '' }}">Comments</a>
@@ -49,5 +51,8 @@
         @endif
         @yield('content')
     </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    <script src="{{ asset('js/admin-editor.js') }}?v=1"></script>
+    @stack('scripts')
 </body>
 </html>

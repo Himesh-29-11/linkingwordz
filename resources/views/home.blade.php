@@ -3,7 +3,7 @@
 @section('title', 'Home — LinkingWordz')
 
 @push('head')
-    <link rel="stylesheet" href="{{ asset('css/hero-editorial.css') }}?v=1">
+    <link rel="stylesheet" href="{{ asset('css/hero-editorial.css') }}?v=2">
 @endpush
 
 @section('content')
@@ -311,7 +311,7 @@
                 @foreach ($testimonials as $testimonial)
                     <blockquote class="lw-testimonials__item">
                         <span class="lw-testimonials__mark" aria-hidden="true">“</span>
-                        <p>{{ $testimonial['quote'] }}</p>
+                        <div class="lw-testimonials__quote">{!! $testimonial['quote'] !!}</div>
                         <footer class="lw-testimonials__person">
                             <img src="{{ asset($testimonial['avatar']) }}" alt="">
                             <span><cite class="lw-testimonials__name">{{ $testimonial['name'] }}</cite><span class="lw-testimonials__role">{{ $testimonial['role'] }}</span></span>

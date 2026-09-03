@@ -6,12 +6,10 @@
     <div class="lw-page lw-about-page">
         <section class="lw-abx-hero" aria-labelledby="about-title">
             <div class="lw-abx-hero__media">
-                <img src="{{ asset('images/about/about-portrait-hd.jpg') }}" alt="Shruti Bhatt at a cafe">
+                <img class="lw-abx-hero__bg" src="{{ asset('images/shruti-hero.jpg') }}" alt="" aria-hidden="true">
             </div>
-            <div class="lw-abx-hero__ornament" aria-hidden="true">
-                <span class="lw-abx-hero__ring"></span>
-                <span class="lw-abx-hero__dots"></span>
-                <span class="lw-abx-hero__wave"></span>
+            <div class="lw-abx-hero__portrait-wrap">
+                <img class="lw-abx-hero__portrait" src="{{ asset('images/shruti-hero.jpg') }}" alt="Shruti Bhatt">
             </div>
             <div class="lw-container">
                 <div class="lw-abx-hero__card">
@@ -23,19 +21,19 @@
                 </div>
                 <ul class="lw-abx-hero__chips">
                     <li>
-                        <span>@include('partials.publisher-icon', ['name' => 'book'])</span>
+                        <span class="lw-abx-hero__chip-icon">@include('partials.publisher-icon', ['name' => 'book'])</span>
                         <b>Book editor</b>
                     </li>
                     <li>
-                        <span>@include('partials.publisher-icon', ['name' => 'edit'])</span>
+                        <span class="lw-abx-hero__chip-icon">@include('partials.publisher-icon', ['name' => 'edit'])</span>
                         <b>Copy &amp; proof</b>
                     </li>
                     <li>
-                        <span>@include('partials.publisher-icon', ['name' => 'spark'])</span>
+                        <span class="lw-abx-hero__chip-icon">@include('partials.publisher-icon', ['name' => 'spark'])</span>
                         <b>9+ years</b>
                     </li>
                     <li>
-                        <span>@include('partials.publisher-icon', ['name' => 'chat'])</span>
+                        <span class="lw-abx-hero__chip-icon">@include('partials.publisher-icon', ['name' => 'chat'])</span>
                         <b>Let's talk words</b>
                     </li>
                 </ul>

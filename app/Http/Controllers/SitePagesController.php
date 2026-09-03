@@ -58,6 +58,13 @@ class SitePagesController extends Controller
         ]);
     }
 
+    public function portfolio(): View
+    {
+        return view('pages.portfolio', [
+            'portfolioItems' => Cms::portfolioItems(),
+        ]);
+    }
+
     public function work(): View
     {
         return view('pages.work', ['workItems' => Cms::workItems()]);

@@ -100,6 +100,7 @@ function svgRing(size) {
       background: { r: 245, g: 243, b: 240, alpha: 255 },
     },
   })
+    .composite([{ input: svgCircle(size), blend: 'dest-in' }])
     .png()
     .toBuffer();
 
@@ -110,7 +111,6 @@ function svgRing(size) {
 
   const roundedPath = path.join(outDir, 'apple-touch-icon.png');
   await sharp(composed)
-    .composite([{ input: svgCircle(size), blend: 'dest-in' }])
     .composite([{ input: svgRing(size), gravity: 'centre' }])
     .png()
     .toFile(roundedPath);

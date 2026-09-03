@@ -19,7 +19,7 @@
                 </label>
 
                 <label>Quote
-                    <textarea name="quote" rows="5">{{ old('quote', $testimonial->quote) }}</textarea>
+                    <textarea name="quote" class="ad-rich-text" rows="5">{{ old('quote', $testimonial->quote) }}</textarea>
                 </label>
 
                 <label>Name
@@ -32,13 +32,13 @@
 
                 <p class="ad-kicker" style="margin:1.2rem 0 0.6rem">Services page extras</p>
                 <label>Intro <small>For bullet-style testimonials</small>
-                    <textarea name="intro" rows="2">{{ old('intro', $testimonial->payload['intro'] ?? '') }}</textarea>
+                    <textarea name="intro" class="ad-rich-text" rows="2">{{ old('intro', $testimonial->payload['intro'] ?? '') }}</textarea>
                 </label>
                 <label>Bullets <small>One per line</small>
                     <textarea name="bullets" rows="4">{{ old('bullets', isset($testimonial->payload['bullets']) ? implode("\n", $testimonial->payload['bullets']) : '') }}</textarea>
                 </label>
                 <label>Outro
-                    <textarea name="outro" rows="2">{{ old('outro', $testimonial->payload['outro'] ?? '') }}</textarea>
+                    <textarea name="outro" class="ad-rich-text" rows="2">{{ old('outro', $testimonial->payload['outro'] ?? '') }}</textarea>
                 </label>
                 <label>Meta line <small>e.g. date · Client</small>
                     <input type="text" name="meta" value="{{ old('meta', $testimonial->payload['meta'] ?? '') }}">

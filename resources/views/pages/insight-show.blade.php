@@ -35,8 +35,12 @@
                     <figure class="lw-post__inline">
                         <img src="{{ $src }}" alt="{{ $block['alt'] ?? $insight['title'] }}">
                     </figure>
+                @elseif ($type === 'html')
+                    <div class="lw-post__html">{!! $text !!}</div>
                 @elseif ($type === 'quote')
-                    <blockquote class="lw-post__pull">{{ $text }}</blockquote>
+                    <blockquote class="lw-post__pull">{!! $text !!}</blockquote>
+                @elseif (str_contains($text, '<'))
+                    <div class="lw-post__html">{!! $text !!}</div>
                 @else
                     <p>{{ $text }}</p>
                 @endif
