@@ -8,6 +8,7 @@ use App\Models\SitePage;
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
 use App\Models\WorkItem;
+use App\Support\PageSectionDefaults;
 
 class Cms
 {
@@ -37,6 +38,20 @@ class Cms
             ['key' => $key],
             ['value' => $stored, 'type' => $type]
         );
+    }
+
+    public static function pageSections(string $slug): array
+    {
+        try {
+            $page = SitePage::query()->where('slug', $slug)->first();
+            if ($page?->sections) {
+                return PageSectionDefaults::merge($slug, $page->sections);
+            }
+        } catch (\Throwable) {
+            // Fall through to defaults.
+        }
+
+        return PageSectionDefaults::defaults($slug);
     }
 
     public static function pageBody(string $slug, ?string $default = null): ?string

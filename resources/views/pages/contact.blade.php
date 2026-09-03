@@ -3,18 +3,23 @@
 @section('title', 'Contact Us — LinkingWordz')
 
 @section('content')
+    @php
+        $hero = $sections['hero'] ?? [];
+        $formHeader = $sections['form'] ?? [];
+        $booking = $sections['booking'] ?? [];
+    @endphp
     <div class="lw-page lw-ct">
         <header class="lw-ct-hero">
             @include('partials.ornament')
             <div class="lw-container lw-ct-hero__grid">
                 <div>
-                    <p class="lw-eyebrow">Contact</p>
-                    <h1>Get in touch</h1>
-                    <p>Whether you need compelling copywriting, expert ghostwriting, or precise editing &amp; proofreading for your fiction or non-fiction book work, I'm here to help elevate your writing to the next level!</p>
-                    <p>Feel free to contact us using the form. Alternatively, you can email me at <a href="mailto:connect@linkingwordz.com">connect@linkingwordz.com</a></p>
+                    <p class="lw-eyebrow">{{ $hero['eyebrow'] ?? '' }}</p>
+                    <h1>{{ $hero['title'] ?? '' }}</h1>
+                    <p>{{ $hero['text_1'] ?? '' }}</p>
+                    <p>Feel free to contact us using the form. Alternatively, you can email me at <a href="mailto:{{ $hero['email'] ?? 'connect@linkingwordz.com' }}">{{ $hero['email'] ?? 'connect@linkingwordz.com' }}</a></p>
                 </div>
                 <figure class="lw-ct-hero__photo">
-                    <img src="{{ asset('images/contact/shruti-contact.jpg') }}" alt="Shruti Bhatt">
+                    <img src="{{ asset($hero['image'] ?? 'images/contact/shruti-contact.jpg') }}" alt="Shruti Bhatt">
                 </figure>
             </div>
         </header>
@@ -23,8 +28,8 @@
             <div class="lw-container lw-ct-main__grid">
                 <form class="lw-ct-form" method="POST" action="{{ route('contact.submit') }}">
                     @csrf
-                    <p class="lw-eyebrow">Write to us</p>
-                    <h2>Send a message</h2>
+                    <p class="lw-eyebrow">{{ $formHeader['eyebrow'] ?? '' }}</p>
+                    <h2>{{ $formHeader['title'] ?? '' }}</h2>
                     @if (session('contact_success'))
                         <div class="lw-contact-form__success">{{ session('contact_success') }}</div>
                     @endif
@@ -59,9 +64,9 @@
                 </form>
 
                 <div class="lw-ct-book" id="book">
-                    <p class="lw-eyebrow">Book a call</p>
-                    <h2>Pick a time that works</h2>
-                    <p class="lw-ct-book__lede">A free 30-minute discovery call. No obligation — not even after two calls. Choose a day and a slot, then confirm on Calendly.</p>
+                    <p class="lw-eyebrow">{{ $booking['eyebrow'] ?? '' }}</p>
+                    <h2>{{ $booking['title'] ?? '' }}</h2>
+                    <p class="lw-ct-book__lede">{{ $booking['lede'] ?? '' }}</p>
                     <div class="lw-ct-cal">
                         <div class="lw-ct-cal__head">
                             <button type="button" id="cal-prev" aria-label="Previous week">‹</button>
@@ -73,8 +78,8 @@
                             <p>Available times <span>(IST)</span></p>
                             <div id="cal-slot-list"></div>
                         </div>
-                        <a class="lw-btn lw-btn--primary" id="cal-confirm" href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer">Confirm on Calendly</a>
-                        <p class="lw-ct-book__note" id="cal-note">Or open Calendly and choose any open slot.</p>
+                        <a class="lw-btn lw-btn--primary" id="cal-confirm" href="{{ $booking['calendly_url'] ?? 'https://calendly.com/linkingwordz/30min' }}" target="_blank" rel="noreferrer">Confirm on Calendly</a>
+                        <p class="lw-ct-book__note" id="cal-note">{{ $booking['note'] ?? '' }}</p>
                     </div>
                 </div>
             </div>
@@ -152,7 +157,7 @@
         selectedTime = t;
         const dateStr = selectedDate.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
         note.textContent = 'Selected: ' + dateStr + ' at ' + t + ' IST. Confirm to finish booking on Calendly.';
-        confirm.href = 'https://calendly.com/linkingwordz/30min';
+        confirm.href = '{{ $booking['calendly_url'] ?? 'https://calendly.com/linkingwordz/30min' }}';
         renderSlots();
       });
       slotList.appendChild(b);

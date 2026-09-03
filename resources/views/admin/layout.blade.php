@@ -42,12 +42,22 @@
                 <h1>@yield('heading', 'Overview')</h1>
             </div>
             <div class="ad-user">
-                <span>{{ auth()->user()->name }}</span>
-                <small>{{ auth()->user()->email }}</small>
+                <span>{{ auth()->user()?->name ?? 'Admin' }}</span>
+                <small>{{ auth()->user()?->email }}</small>
             </div>
         </header>
         @if (session('status'))
             <p class="ad-flash">{{ session('status') }}</p>
+        @endif
+        @if (isset($errors) && $errors->any())
+            <div class="ad-flash ad-flash--error">
+                <p><strong>Please fix the following:</strong></p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
         @yield('content')
     </div>

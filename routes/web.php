@@ -20,9 +20,9 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/about', [SitePagesController::class, 'about'])->name('about');
 Route::get('/services', [SitePagesController::class, 'services'])->name('services');
-Route::view('/services/authors', 'pages.authors')->name('services.authors');
-Route::view('/services/brands', 'pages.brands')->name('services.brands');
-Route::view('/services/work-with-me', 'pages.work-with-me')->name('services.work');
+Route::get('/services/authors', [SitePagesController::class, 'servicesAuthors'])->name('services.authors');
+Route::get('/services/brands', [SitePagesController::class, 'servicesBrands'])->name('services.brands');
+Route::get('/services/work-with-me', [SitePagesController::class, 'servicesWork'])->name('services.work');
 
 Route::get('/portfolio', [SitePagesController::class, 'portfolio'])->name('portfolio');
 

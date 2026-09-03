@@ -46,6 +46,12 @@
                 @endif
             @endforeach
 
+            @include('partials.blog-engage', [
+                'slug' => $insight['slug'],
+                'insight' => $insight,
+                'variant' => 'article',
+            ])
+
             <div class="lw-post__cta">
                 <a href="{{ route('contact') }}" class="lw-btn lw-btn--primary">Start a conversation <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
             </div>

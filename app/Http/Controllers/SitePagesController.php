@@ -14,6 +14,7 @@ class SitePagesController extends Controller
     public function about(): View
     {
         return view('pages.about', [
+            'sections' => Cms::pageSections('about'),
             'instagramPosts' => [
                 [
                     'type' => 'image',
@@ -54,7 +55,29 @@ class SitePagesController extends Controller
     public function services(): View
     {
         return view('pages.services', [
+            'sections' => Cms::pageSections('services'),
             'testimonials' => Cms::servicesTestimonials(),
+        ]);
+    }
+
+    public function servicesBrands(): View
+    {
+        return view('pages.brands', [
+            'sections' => Cms::pageSections('services-brands'),
+        ]);
+    }
+
+    public function servicesAuthors(): View
+    {
+        return view('pages.authors', [
+            'sections' => Cms::pageSections('services-authors'),
+        ]);
+    }
+
+    public function servicesWork(): View
+    {
+        return view('pages.work-with-me', [
+            'sections' => Cms::pageSections('services-work-with-me'),
         ]);
     }
 
@@ -123,7 +146,9 @@ class SitePagesController extends Controller
 
     public function contact(): View
     {
-        return view('pages.contact');
+        return view('pages.contact', [
+            'sections' => Cms::pageSections('contact'),
+        ]);
     }
 
     public function contactSubmit(Request $request): RedirectResponse

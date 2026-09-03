@@ -3,26 +3,30 @@
 @section('title', 'Work With Me — LinkingWordz')
 
 @section('content')
+    @php
+        $hero = $sections['hero'] ?? [];
+        $pills = array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $hero['pills'] ?? ''))));
+    @endphp
     <div class="lw-page lw-wwm">
         <header class="lw-wwm-hero">
             @include('partials.ornament')
             <div class="lw-container lw-wwm-hero__grid">
                 <div>
-                    <p class="lw-eyebrow">For new freelancers</p>
-                    <h1>Started freelancing but feeling stuck?</h1>
-                    <p class="lw-wwm-hero__lede">In 45 minutes, we'll go from confusion to a clear 30-day action plan — built around your skills, your strengths, and where you actually are right now.</p>
+                    <p class="lw-eyebrow">{{ $hero['eyebrow'] ?? '' }}</p>
+                    <h1>{{ $hero['title'] ?? '' }}</h1>
+                    <p class="lw-wwm-hero__lede">{{ $hero['lede'] ?? '' }}</p>
                     <ul class="lw-wwm-pills">
-                        <li>45-minute session</li>
-                        <li>1:1 with Shruti</li>
-                        <li>Via Topmate</li>
+                        @foreach ($pills as $pill)
+                            <li>{{ $pill }}</li>
+                        @endforeach
                     </ul>
                     <div class="lw-wwm-hero__actions">
-                        <a class="lw-btn lw-btn--primary" href="https://topmate.io/shrutibhatt/1835899" target="_blank" rel="noreferrer">Book on Topmate</a>
-                        <span>No obligation. Not even after 2 calls.</span>
+                        <a class="lw-btn lw-btn--primary" href="{{ $hero['cta_url'] ?? 'https://topmate.io/shrutibhatt/1835899' }}" target="_blank" rel="noreferrer">{{ $hero['cta_label'] ?? 'Book on Topmate' }}</a>
+                        <span>{{ $hero['cta_note'] ?? '' }}</span>
                     </div>
                 </div>
                 <figure class="lw-wwm-hero__photo">
-                    <img src="{{ asset('images/shruti-founder.jpg') }}" alt="Shruti Bhatt">
+                    <img src="{{ asset($hero['image'] ?? 'images/shruti-founder.jpg') }}" alt="Shruti Bhatt">
                     <figcaption>
                         <strong>Shruti Bhatt</strong>
                         Mentor · Writer · Founder

@@ -149,6 +149,16 @@ body.ad {
   border-bottom: 1px solid var(--ad-mauve);
   color: var(--ad-ink);
 }
+.ad-flash--error {
+  padding: 0.85rem 1rem;
+  border: 1px solid #d9a0a0;
+  border-radius: 0.65rem;
+  background: #fff4f4;
+  color: #7a2323;
+}
+.ad-flash--error ul {
+  margin: 0.45rem 0 0 1.1rem;
+}
 
 .ad-stats {
   display: grid;
@@ -531,6 +541,46 @@ body.ad-login {
 }
 
 .ad-simple-pager { display: flex; gap: 1rem; margin-top: 1.1rem; }
+
+.ad-page-sections {
+  display: grid;
+  gap: 1rem;
+}
+
+.ad-page-section {
+  border: 1px solid var(--ad-line);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--ad-paper) 96%, white);
+  overflow: hidden;
+}
+
+.ad-page-section > summary {
+  padding: 0.95rem 1.1rem;
+  cursor: pointer;
+  font-family: var(--font-label, serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+.ad-page-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ad-page-section__body {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0 1.1rem 1.1rem;
+}
+
+.ad-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.25rem;
+}
 .ad-simple-pager a, .ad-simple-pager span {
   color: var(--ad-ink);
   text-decoration: none;

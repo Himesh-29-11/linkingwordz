@@ -26,7 +26,18 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  h1,h2,h3,.serif{
+  .lw-brands-framework{
+    background:var(--paper);
+    color:var(--slate);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+
+  .lw-brands-framework h1,
+  .lw-brands-framework h2,
+  .lw-brands-framework h3,
+  .lw-brands-framework .serif{
     font-family:'Fraunces',serif;
     color:var(--ink);
     margin:0;
@@ -412,11 +423,14 @@
     font-size:21px;
     line-height:1.4;
     margin:0 0 12px;
+    color:var(--paper);
+    font-weight:500;
   }
   .roi-box .roi-detail{
     font-size:13.5px;
     color:#CBD3D2;
     margin:0;
+    font-weight:400;
   }
 
   /* ---------- BEYOND FRAMEWORK STRIP ---------- */
@@ -508,16 +522,6 @@
     text-decoration:underline;
     font-weight:600;
   }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    background:var(--ink);
-    color:#8FA5A4;
-    padding:36px 0;
-    text-align:center;
-    font-size:13px;
-  }
-  footer .wordmark{font-size:15px; margin-bottom:6px; display:block;}
 
   /* ---------- REVEAL ---------- */
   .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}

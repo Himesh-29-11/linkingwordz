@@ -14,15 +14,20 @@
                 <label>Client name
                     <input type="text" name="client_name" value="{{ old('client_name', $item->client_name) }}" required>
                 </label>
+                @error('client_name')<p class="ad-error">{{ $message }}</p>@enderror
                 <label>Short summary <small>(optional)</small>
                     <textarea name="summary" rows="3" placeholder="One line about the project">{{ old('summary', $item->summary) }}</textarea>
                 </label>
-                <label>Website link <small>(optional)</small>
-                    <input type="url" name="website_url" value="{{ old('website_url', $item->website_url) }}" placeholder="https://client-website.com">
+                @error('summary')<p class="ad-error">{{ $message }}</p>@enderror
+                <label>Website link <small>(optional — example: client.com)</small>
+                    <input type="text" name="website_url" value="{{ old('website_url', $item->website_url) }}" placeholder="https://client-website.com">
                 </label>
-                <label>Upload documents <small>(PDF, Word, Excel, PowerPoint, text)</small>
+                @error('website_url')<p class="ad-error">{{ $message }}</p>@enderror
+                <label>Upload documents <small>(PDF, Word, Excel, PowerPoint, text — up to 20 MB each)</small>
                     <input type="file" name="document_files[]" accept=".pdf,.doc,.docx,.txt,.rtf,.xls,.xlsx,.ppt,.pptx" multiple>
                 </label>
+                @error('document_files')<p class="ad-error">{{ $message }}</p>@enderror
+                @error('document_files.*')<p class="ad-error">{{ $message }}</p>@enderror
                 @if (!empty($item->documents))
                     <div class="ad-doc-list">
                         <p><strong>Current documents</strong></p>
@@ -53,6 +58,7 @@
                 <label>Client photo
                     <input type="file" name="photo" accept="image/*">
                 </label>
+                @error('photo')<p class="ad-error">{{ $message }}</p>@enderror
                 @if ($item->photo)
                     <img class="ad-cover" src="{{ asset($item->photo) }}" alt="">
                 @endif

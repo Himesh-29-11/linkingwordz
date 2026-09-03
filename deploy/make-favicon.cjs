@@ -2,97 +2,59 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const src = process.argv[2];
-const outDir = process.argv[3];
+const src = process.argv[2] || path.join(__dirname, '../public/images/pen-icon.png');
+const outDir = process.argv[3] || path.join(__dirname, '../public');
+const CORNER_RADIUS_AT_32 = 15;
 
-function svgCircle(size, fill = 'white') {
-  const c = size / 2;
+function cornerRadius(size) {
+  return Math.min(CORNER_RADIUS_AT_32 * (size / 32), size / 2);
+}
+
+function svgRoundedMask(size) {
+  const r = cornerRadius(size);
   return Buffer.from(
-    `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><circle cx="${c}" cy="${c}" r="${c}" fill="${fill}"/></svg>`
+    `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><rect width="${size}" height="${size}" rx="${r}" ry="${r}" fill="#fff"/></svg>`
   );
 }
 
-function svgRing(size) {
-  const c = size / 2;
-  const r = c - 8;
+function svgRoundedRing(size) {
+  const inset = Math.max(4, Math.round(size * 0.02));
+  const r = Math.max(1, cornerRadius(size) - inset);
+  const dim = size - inset * 2;
   return Buffer.from(
-    `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="#104547" stroke-width="18"/></svg>`
+    `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><rect x="${inset}" y="${inset}" width="${dim}" height="${dim}" rx="${r}" ry="${r}" fill="none" stroke="#104547" stroke-width="${Math.max(4, Math.round(size * 0.031))}"/></svg>`
   );
 }
 
-(async () => {
-  const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-  const w = info.width;
-  const h = info.height;
-  let minX = w;
-  let minY = h;
-  let maxX = 0;
-  let maxY = 0;
-  let found = 0;
-  const yMax = Math.floor(h * 0.58);
+async function makePenFromIcon(imagePath) {
+  const { data, info } = await sharp(imagePath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const px = Buffer.from(data);
 
-  for (let y = 0; y < yMax; y++) {
-    for (let x = 0; x < w; x++) {
-      const i = (y * w + x) * 4;
-      const r = data[i];
-      const g = data[i + 1];
-      const b = data[i + 2];
-      if (r < 25 && g < 25 && b < 25) continue;
-      const isMauve = r > 120 && g > 90 && b > 100 && r > g;
-      if (isMauve) continue;
-      const isTeal = (g > r + 10 && b > r && g + b > 80) || (r < 80 && g > 40 && b > 40);
-      if (!isTeal) continue;
-      found++;
-      if (x < minX) minX = x;
-      if (y < minY) minY = y;
-      if (x > maxX) maxX = x;
-      if (y > maxY) maxY = y;
+  for (let i = 0; i < px.length; i += 4) {
+    if (px[i] < 30 && px[i + 1] < 30 && px[i + 2] < 30) {
+      px[i + 3] = 0;
     }
   }
 
-  console.log({ found, minX, minY, maxX, maxY, w, h });
-  if (found < 50) throw new Error('pen not found');
-
-  const pad = 32;
-  let left = Math.max(0, minX - pad);
-  let top = Math.max(0, minY - pad);
-  let right = Math.min(w - 1, maxX + pad);
-  let bottom = Math.min(h - 1, maxY + pad);
-  let cw = right - left + 1;
-  let ch = bottom - top + 1;
-  const side = Math.max(cw, ch);
-  left = Math.max(0, Math.min(w - side, left - Math.floor((side - cw) / 2)));
-  top = Math.max(0, Math.min(h - side, top - Math.floor((side - ch) / 2)));
-  cw = Math.min(side, w - left);
-  ch = Math.min(side, h - top);
-
-  const cropped = await sharp(src)
-    .extract({ left, top, width: cw, height: ch })
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-
-  const px = cropped.data;
-  for (let i = 0; i < px.length; i += 4) {
-    if (px[i] < 28 && px[i + 1] < 28 && px[i + 2] < 28) px[i + 3] = 0;
-  }
-
-  const transparentPen = await sharp(px, {
-    raw: { width: cropped.info.width, height: cropped.info.height, channels: 4 },
+  return sharp(px, {
+    raw: { width: info.width, height: info.height, channels: 4 },
   })
     .png()
     .toBuffer();
+}
 
+async function buildFavicon(pen) {
   const size = 512;
-  const resizedPen = await sharp(transparentPen)
-    .resize(Math.floor(size * 0.7), Math.floor(size * 0.7), {
+  const penSize = Math.floor(size * 0.52);
+  const resizedPen = await sharp(pen)
+    .resize(penSize, penSize, {
       fit: 'contain',
       background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
     .png()
     .toBuffer();
 
-  const bg = await sharp({
+  const creamTile = await sharp({
     create: {
       width: size,
       height: size,
@@ -100,31 +62,38 @@ function svgRing(size) {
       background: { r: 245, g: 243, b: 240, alpha: 255 },
     },
   })
-    .composite([{ input: svgCircle(size), blend: 'dest-in' }])
+    .composite([{ input: svgRoundedMask(size), blend: 'dest-in' }])
     .png()
     .toBuffer();
 
-  const composed = await sharp(bg)
+  const withPen = await sharp(creamTile)
     .composite([{ input: resizedPen, gravity: 'centre' }])
     .png()
     .toBuffer();
 
-  const roundedPath = path.join(outDir, 'apple-touch-icon.png');
-  await sharp(composed)
-    .composite([{ input: svgRing(size), gravity: 'centre' }])
+  const withRing = await sharp(withPen)
+    .composite([{ input: svgRoundedRing(size), gravity: 'centre' }])
     .png()
-    .toFile(roundedPath);
+    .toBuffer();
 
-  await sharp(roundedPath).resize(32, 32).png().toFile(path.join(outDir, 'favicon-32x32.png'));
-  await sharp(roundedPath).resize(16, 16).png().toFile(path.join(outDir, 'favicon-16x16.png'));
-  await sharp(roundedPath).resize(48, 48).png().toFile(path.join(outDir, 'favicon.png'));
-  await sharp(roundedPath).resize(32, 32).png().toFile(path.join(outDir, 'favicon.ico'));
+  return sharp(withRing)
+    .composite([{ input: svgRoundedMask(size), blend: 'dest-in' }])
+    .png()
+    .toBuffer();
+}
 
-  fs.mkdirSync(path.join(outDir, 'images'), { recursive: true });
-  await sharp(transparentPen).png().toFile(path.join(outDir, 'images', 'pen-icon.png'));
+(async () => {
+  const pen = await makePenFromIcon(src);
+  const composed = await buildFavicon(pen);
 
-  console.log('favicon files ready');
-})().catch((e) => {
-  console.error(e);
+  await sharp(composed).png().toFile(path.join(outDir, 'apple-touch-icon.png'));
+  await sharp(composed).resize(32, 32).png().toFile(path.join(outDir, 'favicon-32x32.png'));
+  await sharp(composed).resize(16, 16).png().toFile(path.join(outDir, 'favicon-16x16.png'));
+  await sharp(composed).resize(48, 48).png().toFile(path.join(outDir, 'favicon.png'));
+  await sharp(composed).resize(32, 32).png().toFile(path.join(outDir, 'favicon.ico'));
+
+  console.log('Rounded favicon files ready');
+})().catch((error) => {
+  console.error(error);
   process.exit(1);
 });

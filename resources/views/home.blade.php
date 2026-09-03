@@ -7,6 +7,19 @@
 @endpush
 
 @section('content')
+    @php
+        $hero = $sections['hero'] ?? [];
+        $stats = $sections['stats'] ?? [];
+        $publications = $sections['publications'] ?? [];
+        $audienceHeader = $sections['audience'] ?? [];
+        $problemHeader = $sections['problem'] ?? [];
+        $servicesHeader = $sections['services'] ?? [];
+        $whyHeader = $sections['why'] ?? [];
+        $founderSection = $sections['founder'] ?? [];
+        $processHeader = $sections['process'] ?? [];
+        $workSection = $sections['work'] ?? [];
+        $finalCta = $sections['final_cta'] ?? [];
+    @endphp
     <section class="lw-hero lw-hero--editorial" aria-labelledby="hero-heading">
         <div class="lw-dots lw-dots-left" aria-hidden="true">
             <span></span><span></span><span></span>
@@ -21,31 +34,25 @@
         <div class="lw-hero-container">
             <div class="lw-hero-content">
                 <div class="lw-eyebrow">
-                    Content &amp; Editorial Services for
-                    <br>
-                    Authors and Service Businesses
+                    {!! nl2br(e($hero['eyebrow'] ?? '')) !!}
                 </div>
 
                 <h1 id="hero-heading">
                     The right
-                    <span>words</span>
+                    <span>{{ $hero['title_accent_1'] ?? 'words' }}</span>
                     find the right
-                    <span>clients.</span>
-                    <strong>We make sure yours do.</strong>
+                    <span>{{ $hero['title_accent_2'] ?? 'clients.' }}</span>
+                    <strong>{{ $hero['title_strong'] ?? 'We make sure yours do.' }}</strong>
                 </h1>
 
                 <div class="lw-title-line" aria-hidden="true"></div>
 
                 <p class="lw-hero-description">
-                    Linkingwordz is a content and editorial brand built for two kinds
-                    of people — authors who want their work discovered, and service
-                    businesses whose expertise deserves a stronger voice online.
+                    {{ $hero['description'] ?? '' }}
                 </p>
 
                 <p class="lw-hero-highlight">
-                    Human-written. Research-backed.
-                    <br>
-                    Built around your brand. Not a template.
+                    {!! nl2br(e($hero['highlight'] ?? '')) !!}
                 </p>
 
                 <div class="lw-hero-actions">
@@ -60,9 +67,7 @@
                 </div>
 
                 <p class="lw-discovery">
-                    Not sure which fits?
-                    <a href="{{ route('contact') }}">Book a free discovery call</a>
-                    — we'll figure it out together.
+                    {{ $hero['discovery'] ?? '' }}
                 </p>
             </div>
 
@@ -70,7 +75,7 @@
                 <div class="lw-photo-frame">
                     <div class="lw-photo-outline" aria-hidden="true"></div>
                     <img
-                        src="{{ asset('images/shruti-hero.jpg') }}"
+                        src="{{ asset($hero['image'] ?? 'images/shruti-hero.jpg') }}"
                         alt="Shruti Bhatt, founder of Linkingwordz"
                         class="lw-founder-image"
                     >
@@ -81,16 +86,16 @@
                         <img src="{{ asset('images/pen-icon.png') }}" alt="" width="22" height="22">
                     </div>
                     <div>
-                        <div class="lw-founder-title">Hi, I'm Shruti.</div>
-                        <div class="lw-founder-role">Content Writer, Copyeditor &amp; Ghostwriter</div>
+                        <div class="lw-founder-title">{{ $hero['founder_title'] ?? '' }}</div>
+                        <div class="lw-founder-role">{{ $hero['founder_role'] ?? '' }}</div>
                     </div>
                 </div>
 
                 <div class="lw-round-badge" aria-hidden="true">
                     <div class="lw-badge-inner">
-                        <span>Stories that connect</span>
+                        <span>{{ $hero['badge_top'] ?? '' }}</span>
                         <b><img src="{{ asset('images/pen-icon.png') }}" alt=""></b>
-                        <span>Results that last</span>
+                        <span>{{ $hero['badge_bottom'] ?? '' }}</span>
                     </div>
                 </div>
 
@@ -100,8 +105,8 @@
                             @include('partials.publisher-icon', ['name' => 'edit'])
                         </div>
                         <div>
-                            <h3>Copywriter</h3>
-                            <p>Words that connect and convert.</p>
+                            <h3>{{ $hero['mini_1_title'] ?? 'Copywriter' }}</h3>
+                            <p>{{ $hero['mini_1_text'] ?? '' }}</p>
                         </div>
                     </div>
                     <div class="lw-mini-card">
@@ -109,8 +114,8 @@
                             @include('partials.publisher-icon', ['name' => 'book'])
                         </div>
                         <div>
-                            <h3>Content Writer</h3>
-                            <p>Stories that inform, engage and rank.</p>
+                            <h3>{{ $hero['mini_2_title'] ?? 'Content Writer' }}</h3>
+                            <p>{{ $hero['mini_2_text'] ?? '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -119,32 +124,33 @@
 
         <div class="lw-stats" aria-label="Experience highlights">
             <div class="lw-stat">
-                <strong>9+</strong>
-                <span>Years experience</span>
+                <strong>{{ $stats['stat_1_value'] ?? '' }}</strong>
+                <span>{{ $stats['stat_1_label'] ?? '' }}</span>
             </div>
             <div class="lw-stat">
-                <strong>M.Phil</strong>
-                <span>In management</span>
+                <strong>{{ $stats['stat_2_value'] ?? '' }}</strong>
+                <span>{{ $stats['stat_2_label'] ?? '' }}</span>
             </div>
             <div class="lw-stat">
-                <strong>Finance · Technology · Education</strong>
-                <span>Core expertise</span>
+                <strong>{{ $stats['stat_3_value'] ?? '' }}</strong>
+                <span>{{ $stats['stat_3_label'] ?? '' }}</span>
             </div>
             <div class="lw-stat">
-                <strong>5–10 clients</strong>
-                <span>At a time · Personal attention</span>
+                <strong>{{ $stats['stat_4_value'] ?? '' }}</strong>
+                <span>{{ $stats['stat_4_label'] ?? '' }}</span>
             </div>
         </div>
     </section>
 
     <section class="lw-trust lw-publication-strip" aria-label="As read and published in">
         <div class="lw-trust__inner">
-            <p class="lw-publication-strip__label">As read &amp; published in</p>
+            <p class="lw-publication-strip__label">{{ $publications['label'] ?? '' }}</p>
             <div class="lw-publication-strip__names">
-                <span>The Ledger Review</span>
-                <span>Norwood Press</span>
-                <span>Formé Studio</span>
-                <span>Inkwell Digest</span>
+                @foreach (preg_split('/\r\n|\r|\n/', $publications['names'] ?? '') as $name)
+                    @if (trim($name) !== '')
+                        <span>{{ trim($name) }}</span>
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>
@@ -155,9 +161,9 @@
         <span class="lw-audience__waves" aria-hidden="true"></span>
         <div class="lw-container">
             <div class="lw-audience__header">
-                <p class="lw-audience__label"><span class="lw-audience__label-line" aria-hidden="true"></span><span>Two audiences. One standard of work.</span><span class="lw-audience__label-line" aria-hidden="true"></span></p>
-                <h2 id="audience-title" class="lw-audience__headline">Which path is yours?</h2>
-                <p class="lw-audience__intro">Linkingwordz is built for two kinds of people — with one goal: meaningful content that connects and converts.</p>
+                <p class="lw-audience__label"><span class="lw-audience__label-line" aria-hidden="true"></span><span>{{ $audienceHeader['label'] ?? '' }}</span><span class="lw-audience__label-line" aria-hidden="true"></span></p>
+                <h2 id="audience-title" class="lw-audience__headline">{{ $audienceHeader['title'] ?? '' }}</h2>
+                <p class="lw-audience__intro">{{ $audienceHeader['intro'] ?? '' }}</p>
             </div>
             <div class="lw-audience__cards-wrap">
                 <div class="lw-audience__cards">
@@ -185,7 +191,7 @@
                 </div>
             </div>
             <aside class="lw-audience__banner">
-                <div class="lw-audience__banner-copy"><span class="lw-audience__banner-icon" aria-hidden="true">?</span><p>Not sure which fits? <a href="{{ route('contact') }}">Book a free discovery call</a> — we'll figure it out together.</p></div>
+                <div class="lw-audience__banner-copy"><span class="lw-audience__banner-icon" aria-hidden="true">?</span><p>{{ $audienceHeader['banner'] ?? '' }}</p></div>
                 <a href="{{ route('contact') }}" class="lw-audience__banner-cta">Book a free discovery call <span aria-hidden="true">→</span></a>
             </aside>
         </div>
@@ -194,22 +200,22 @@
     <section class="lw-problem lw-section" aria-labelledby="problem-title">
         <div class="lw-container">
             <div class="lw-problem__layout">
-                <div class="lw-problem__intro"><p class="lw-eyebrow">Why clients come to us</p><h2 id="problem-title" class="lw-problem__headline">You're not struggling because your work isn't good enough. You're struggling because it isn't visible enough.</h2><p class="lw-problem__subhead">We've heard this before. Many times.</p></div>
+                <div class="lw-problem__intro"><p class="lw-eyebrow">{{ $problemHeader['eyebrow'] ?? '' }}</p><h2 id="problem-title" class="lw-problem__headline">{{ $problemHeader['title'] ?? '' }}</h2><p class="lw-problem__subhead">{{ $problemHeader['subhead'] ?? '' }}</p></div>
                 <ul class="lw-problem__grid">
                     @foreach ($problems as $problem)
                         <li class="lw-problem__item"><span class="lw-problem__index" aria-hidden="true">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><p>“{{ $problem }}”</p></li>
                     @endforeach
                 </ul>
             </div>
-            <p class="lw-problem__closing">These are the 5 problems Linkingwordz was built to solve. Not with a production line — but with research, care, and a team that works with 5 to 10 clients at a time. Deliberately.</p>
+            <p class="lw-problem__closing">{{ $problemHeader['closing'] ?? '' }}</p>
         </div>
     </section>
 
     <section class="lw-services lw-section" aria-labelledby="services-title">
         <div class="lw-container lw-stack lw-stack--lg">
             <div class="lw-section-heading lw-section-heading--center">
-                <p class="lw-eyebrow lw-section-heading__eyebrow">What we do</p>
-                <h2 id="services-title" class="lw-section-heading__title">Strategic content. Editorial excellence. Real impact.</h2>
+                <p class="lw-eyebrow lw-section-heading__eyebrow">{{ $servicesHeader['eyebrow'] ?? '' }}</p>
+                <h2 id="services-title" class="lw-section-heading__title">{{ $servicesHeader['title'] ?? '' }}</h2>
             </div>
             <div class="lw-services__cards">
                 @foreach ($featuredServices as $service)
@@ -227,9 +233,9 @@
     <section class="lw-why lw-section" aria-labelledby="why-title">
         <div class="lw-container lw-stack lw-stack--lg">
             <div class="lw-section-heading lw-section-heading--center">
-                <p class="lw-eyebrow lw-section-heading__eyebrow">What makes this different</p>
-                <h2 id="why-title" class="lw-section-heading__title">5 problems. 1 solution. Built around your brand.</h2>
-                <p class="lw-section-heading__description">Most content agencies give you a template. Most developers wait for your copy. Most editors don't understand your subject matter. At Linkingwordz, we bring all of it together; with the research depth, subject expertise, and personal attention that only comes from working with a small, intentional client list.</p>
+                <p class="lw-eyebrow lw-section-heading__eyebrow">{{ $whyHeader['eyebrow'] ?? '' }}</p>
+                <h2 id="why-title" class="lw-section-heading__title">{{ $whyHeader['title'] ?? '' }}</h2>
+                <p class="lw-section-heading__description">{{ $whyHeader['description'] ?? '' }}</p>
             </div>
             <div class="lw-why__grid">
                 @foreach ($whyBlocks as $block)
@@ -244,14 +250,14 @@
     </section>
 
     <section class="lw-founder lw-section lw-has-rings" aria-labelledby="founder-title">
-        <div class="lw-container"><div class="lw-founder__layout"><figure class="lw-founder__figure"><img src="{{ asset('images/shruti-founder.jpg') }}" alt="Shruti Bhatt writing at her desk" class="lw-founder__photo"></figure><div class="lw-founder__copy"><p class="lw-eyebrow">The person behind the work</p><h2 id="founder-title" class="lw-founder__title">Hi, I'm Shruti.</h2><p class="lw-founder__text">I'm a content writer, copyeditor, and ghostwriter with 9+ years of professional experience across linguistics, content, and writing — working with clients across finance, technology, and education.</p><p class="lw-founder__text">Before Linkingwordz, I was a college lecturer in Accounting, Finance, and Management — a role that gave me something most writers don't have: genuine depth in the subjects I write and edit in. I hold an M.Phil in Management, and I bring that research foundation into every brief I take on.</p><p class="lw-founder__text">Linkingwordz is built on a simple belief — that human-written, research-backed content is still the most powerful way to build trust with the people you want to reach. I work with a maximum of 5 to 10 clients at a time, because your brand deserves full attention. Not a queue.</p><p class="lw-founder__credentials">M.Phil in Management · 9+ Years Industry Experience · Finance · Technology · Education</p><a href="{{ route('about') }}" class="lw-btn lw-btn--primary">Learn more about me <span class="lw-btn__arrow" aria-hidden="true">→</span></a></div></div></div>
+        <div class="lw-container"><div class="lw-founder__layout"><figure class="lw-founder__figure"><img src="{{ asset($founderSection['image'] ?? 'images/shruti-founder.jpg') }}" alt="Shruti Bhatt writing at her desk" class="lw-founder__photo"></figure><div class="lw-founder__copy"><p class="lw-eyebrow">{{ $founderSection['eyebrow'] ?? '' }}</p><h2 id="founder-title" class="lw-founder__title">{{ $founderSection['title'] ?? '' }}</h2><p class="lw-founder__text">{{ $founderSection['text_1'] ?? '' }}</p><p class="lw-founder__text">{{ $founderSection['text_2'] ?? '' }}</p><p class="lw-founder__text">{{ $founderSection['text_3'] ?? '' }}</p><p class="lw-founder__credentials">{{ $founderSection['credentials'] ?? '' }}</p><a href="{{ route('about') }}" class="lw-btn lw-btn--primary">Learn more about me <span class="lw-btn__arrow" aria-hidden="true">→</span></a></div></div></div>
     </section>
 
     <section class="lw-process lw-section" aria-labelledby="process-title">
         <div class="lw-container lw-stack lw-stack--lg">
             <div class="lw-section-heading lw-section-heading--center">
-                <p class="lw-eyebrow lw-section-heading__eyebrow">Our process</p>
-                <h2 id="process-title" class="lw-section-heading__title">A clear process. Thoughtful execution.</h2>
+                <p class="lw-eyebrow lw-section-heading__eyebrow">{{ $processHeader['eyebrow'] ?? '' }}</p>
+                <h2 id="process-title" class="lw-section-heading__title">{{ $processHeader['title'] ?? '' }}</h2>
             </div>
             <div class="lw-process__grid">
                 @foreach ($processSteps as $step)
@@ -269,8 +275,8 @@
     <section class="lw-work lw-section" aria-labelledby="work-title">
         <div class="lw-container">
             <div class="lw-spotlight__intro">
-                <p class="lw-eyebrow">Selected work</p>
-                <h2 id="work-title">Real clients. Real results.</h2>
+                <p class="lw-eyebrow">{{ $workSection['eyebrow'] ?? '' }}</p>
+                <h2 id="work-title">{{ $workSection['title'] ?? '' }}</h2>
             </div>
             @php $work = $selectedWork[0]; @endphp
             <article class="lw-spotlight">
@@ -282,9 +288,9 @@
                     </figcaption>
                 </figure>
                 <div class="lw-spotlight__copy">
-                    <p class="lw-spotlight__tag">LinkedIn personal brand</p>
+                    <p class="lw-spotlight__tag">{{ $workSection['tag'] ?? '' }}</p>
                     <h3>{{ $work['title'] }}</h3>
-                    <p class="lw-spotlight__lede">A tale of exceptional growth — strategic editing that made Kiran’s voice land with the right audience.</p>
+                    <p class="lw-spotlight__lede">{{ $workSection['lede'] ?? '' }}</p>
                     <ul class="lw-spotlight__stats">
                         <li><strong>26%</strong><span>Post impressions in a week</span></li>
                         <li><strong>9.3%</strong><span>Follower growth</span></li>
@@ -292,8 +298,8 @@
                         <li><strong>0</strong><span>Revisions needed</span></li>
                     </ul>
                     <blockquote class="lw-spotlight__quote">
-                        <p>“Her keen eye for detail boosted my post impressions by 26% in a week. If you’re looking for an editor who elevates your content, she’s the one to trust.”</p>
-                        <cite>Kiran Lasiyal</cite>
+                        <p>{{ $workSection['quote'] ?? '' }}</p>
+                        <cite>{{ $workSection['quote_cite'] ?? '' }}</cite>
                     </blockquote>
                     <a href="{{ route('work') }}" class="lw-btn lw-btn--primary">Read the case study <span class="lw-btn__arrow" aria-hidden="true">→</span></a>
                 </div>

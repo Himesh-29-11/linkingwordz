@@ -7,6 +7,7 @@ use App\Models\Testimonial;
 use App\Models\WorkItem;
 use App\Support\Cms;
 use App\Support\CmsDefaults;
+use App\Support\PageSectionDefaults;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
@@ -102,6 +103,20 @@ class ContentSeeder extends Seeder
                 'body' => '<p>Content will be added here before launch.</p>',
             ]
         );
+
+        foreach (PageSectionDefaults::slugs() as $slug) {
+            if (in_array($slug, ['privacy-policy', 'terms-and-conditions'], true)) {
+                continue;
+            }
+
+            SitePage::query()->firstOrCreate(
+                ['slug' => $slug],
+                [
+                    'title' => PageSectionDefaults::titles()[$slug],
+                    'sections' => PageSectionDefaults::defaults($slug),
+                ]
+            );
+        }
     }
 
     private function seedSettings(): void

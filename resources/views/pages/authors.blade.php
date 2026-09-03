@@ -4,6 +4,7 @@
 
 @section('content')
     @php
+        $hero = $sections['hero'] ?? [];
         $offerings = [
             ['number' => '01', 'icon' => 'edit', 'title' => 'Copyediting & Proofreading', 'text' => 'Line-by-line refinement and final professional eye before publication — zero errors at print.'],
             ['number' => '02', 'icon' => 'translate', 'title' => 'Book Translation', 'text' => "English/Hindi to 10 main Indian languages — expanding your author's reach across India's diverse reading markets."],
@@ -75,9 +76,9 @@
     <div class="lw-publisher-page">
         <header class="lw-publisher-hero">
             <div class="lw-container">
-                <p class="lw-publisher-eyebrow">Content &amp; Editorial Services for Publishers</p>
-                <h1>From manuscript to <em>market.</em></h1>
-                <p class="lw-publisher-hero__lede">Linkingwordz helps publishers, literary agents, and their authors build editorial quality and online visibility. Human-written. Research-backed. Delivered on time.</p>
+                <p class="lw-publisher-eyebrow">{{ $hero['eyebrow'] ?? '' }}</p>
+                <h1>{!! $hero['title'] ?? '' !!}</h1>
+                <p class="lw-publisher-hero__lede">{{ $hero['lede'] ?? '' }}</p>
                 <div class="lw-publisher-hero__rule" aria-hidden="true"></div>
             </div>
         </header>

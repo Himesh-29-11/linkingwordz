@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PortfolioItem;
+use App\Support\ImageOptimizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class PortfolioItemController extends Controller
@@ -30,7 +32,9 @@ class PortfolioItemController extends Controller
         $item = new PortfolioItem;
         $this->persist($request, $item);
 
-        return redirect()->route('admin.portfolio.edit', $item)->with('status', 'Portfolio item created.');
+        return redirect()
+            ->route('admin.portfolio.index')
+            ->with('status', 'Portfolio item created for '.$item->client_name.'.');
     }
 
     public function edit(PortfolioItem $portfolioItem): View
@@ -42,7 +46,9 @@ class PortfolioItemController extends Controller
     {
         $this->persist($request, $portfolioItem);
 
-        return redirect()->route('admin.portfolio.edit', $portfolioItem)->with('status', 'Portfolio item saved.');
+        return redirect()
+            ->route('admin.portfolio.index')
+            ->with('status', 'Portfolio item saved for '.$portfolioItem->client_name.'.');
     }
 
     public function destroy(PortfolioItem $portfolioItem): RedirectResponse
@@ -55,41 +61,78 @@ class PortfolioItemController extends Controller
 
     private function persist(Request $request, PortfolioItem $item): void
     {
+        $request->merge([
+            'website_url' => $this->normalizeUrl($request->input('website_url')),
+        ]);
+
         $data = $request->validate([
             'client_name' => ['required', 'string', 'max:160'],
             'website_url' => ['nullable', 'url', 'max:500'],
             'summary' => ['nullable', 'string', 'max:500'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
-            'photo' => ['nullable', 'image', 'max:4096'],
+            'photo' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,avif', 'max:8192'],
             'document_files' => ['nullable', 'array'],
-            'document_files.*' => ['file', 'mimes:pdf,doc,docx,txt,rtf,xls,xlsx,ppt,pptx', 'max:15360'],
+            'document_files.*' => ['nullable', 'file', 'max:20480'],
             'remove_documents' => ['nullable', 'array'],
             'remove_documents.*' => ['integer', 'min:0'],
+        ], [
+            'client_name.required' => 'Please enter the client name.',
+            'website_url.url' => 'Website link must be a valid URL (example: https://client.com).',
+            'photo.mimes' => 'Photo must be a JPG, PNG, GIF, or WebP image.',
+            'photo.max' => 'Photo is too large. Maximum size is 8 MB.',
+            'document_files.*.max' => 'Each document must be 20 MB or smaller.',
         ]);
 
         $slug = Str::slug($data['client_name']) ?: 'client';
-        $documents = $this->syncDocuments($item, $request, $slug);
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $name = $slug.'-'.time().'.'.$file->getClientOriginalExtension();
-            $dir = public_path('images/portfolio');
-            if (! is_dir($dir)) {
-                mkdir($dir, 0755, true);
+        try {
+            $documents = $this->syncDocuments($item, $request, $slug);
+
+            if ($request->hasFile('photo')) {
+                if ($item->photo) {
+                    $old = public_path($item->photo);
+                    if (is_file($old)) {
+                        @unlink($old);
+                    }
+                }
+
+                $item->photo = ImageOptimizer::storePortfolioPhoto(
+                    $request->file('photo')->getPathname(),
+                    public_path('images/portfolio'),
+                    $slug.'-'.time()
+                );
             }
-            $file->move($dir, $name);
-            $item->photo = 'images/portfolio/'.$name;
+
+            $item->fill([
+                'client_name' => $data['client_name'],
+                'website_url' => $data['website_url'] ?? null,
+                'summary' => $data['summary'] ?? null,
+                'documents' => $documents,
+                'sort_order' => (int) ($data['sort_order'] ?? 0),
+                'is_published' => $request->boolean('is_published'),
+            ])->save();
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            throw ValidationException::withMessages([
+                'client_name' => 'Could not save this portfolio item. Check file uploads and try again.',
+            ]);
+        }
+    }
+
+    private function normalizeUrl(mixed $url): ?string
+    {
+        $url = trim((string) $url);
+        if ($url === '') {
+            return null;
         }
 
-        $item->fill([
-            'client_name' => $data['client_name'],
-            'website_url' => $data['website_url'] ?? null,
-            'summary' => $data['summary'] ?? null,
-            'documents' => $documents,
-            'sort_order' => (int) ($data['sort_order'] ?? 0),
-            'is_published' => $request->boolean('is_published'),
-        ])->save();
+        if (! preg_match('/^https?:\/\//i', $url)) {
+            $url = 'https://'.ltrim($url, '/');
+        }
+
+        return $url;
     }
 
     private function syncDocuments(PortfolioItem $item, Request $request, string $slug): array
@@ -113,12 +156,18 @@ class PortfolioItemController extends Controller
 
         if ($request->hasFile('document_files')) {
             $dir = public_path('documents/portfolio');
-            if (! is_dir($dir)) {
-                mkdir($dir, 0755, true);
+            if (! is_dir($dir) && ! mkdir($dir, 0755, true) && ! is_dir($dir)) {
+                throw ValidationException::withMessages([
+                    'document_files' => 'Could not create the portfolio documents folder on the server.',
+                ]);
             }
 
             foreach ($request->file('document_files') as $file) {
-                $ext = $file->getClientOriginalExtension();
+                if (! $file || ! $file->isValid()) {
+                    continue;
+                }
+
+                $ext = $file->getClientOriginalExtension() ?: $file->extension() ?: 'bin';
                 $name = $slug.'-'.Str::random(8).'-'.time().'.'.$ext;
                 $file->move($dir, $name);
 

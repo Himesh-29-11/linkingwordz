@@ -18,6 +18,7 @@ class HomeController extends Controller
         unset($card);
 
         return view('home', [
+            'sections' => Cms::pageSections('home'),
             'featuredServices' => Cms::homeSection('featured_services'),
             'services' => Cms::servicesList(),
             'testimonials' => Cms::homeTestimonials(),

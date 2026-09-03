@@ -3,18 +3,23 @@
 @section('title', 'Services — LinkingWordz')
 
 @section('content')
+    @php
+        $hero = $sections['hero'] ?? [];
+        $journey = $sections['journey'] ?? [];
+        $problems = array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $journey['problems'] ?? ''))));
+    @endphp
     <div class="lw-page lw-svc">
         <header class="lw-svc-hero">
             @include('partials.ornament')
             <div class="lw-container lw-svc-hero__inner">
                 <div class="lw-svc-hero__copy">
-                    <p class="lw-eyebrow">Services</p>
-                    <h1>5 content problems. 1 solution. Built for your brand.</h1>
-                    <p>Most brands don't have a content problem. They have a clarity problem — about what to say, where to say it, and how to make it work together.</p>
-                    <p>At Linkingwordz, we handle your website, your blogs, your LinkedIn presence, your book, and your editorial work — all under one roof. Human-written. Research-backed. Built for the audience you actually want to reach.</p>
+                    <p class="lw-eyebrow">{{ $hero['eyebrow'] ?? 'Services' }}</p>
+                    <h1>{{ $hero['title'] ?? '' }}</h1>
+                    <p>{{ $hero['intro_1'] ?? '' }}</p>
+                    <p>{{ $hero['intro_2'] ?? '' }}</p>
                     <div class="lw-svc-hero__actions">
-                        <a class="lw-btn lw-btn--primary" href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer">Book a free discovery call</a>
-                        <span>No obligation. Not even after 2 calls.</span>
+                        <a class="lw-btn lw-btn--primary" href="{{ $hero['cta_url'] ?? 'https://calendly.com/linkingwordz/30min' }}" target="_blank" rel="noreferrer">{{ $hero['cta_label'] ?? 'Book a free discovery call' }}</a>
+                        <span>{{ $hero['cta_note'] ?? '' }}</span>
                     </div>
                 </div>
                 <ul class="lw-fill-tiles">
@@ -30,14 +35,12 @@
 
         <section class="lw-svc-journey">
             <div class="lw-container">
-                <p class="lw-eyebrow">Does any of this sound familiar?</p>
-                <h2>These are the 5 problems we solve. Every single day.</h2>
+                <p class="lw-eyebrow">{{ $journey['eyebrow'] ?? '' }}</p>
+                <h2>{{ $journey['title'] ?? '' }}</h2>
                 <ol class="lw-svc-problems">
-                    <li>“My website doesn't represent what I actually do.”</li>
-                    <li>“I'm not showing up on Google — or anywhere.”</li>
-                    <li>“My LinkedIn is either inconsistent or completely silent.”</li>
-                    <li>“I have a book in my head but no idea how to get it out.”</li>
-                    <li>“My content is written — it just needs someone to sharpen it.”</li>
+                    @foreach ($problems as $problem)
+                        <li>{{ $problem }}</li>
+                    @endforeach
                 </ol>
             </div>
         </section>

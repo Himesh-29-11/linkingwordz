@@ -1,31 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Linkingwordz Growth Framework</title>
-<link rel="stylesheet" href="{{ asset('css/site.css') }}">
-<link rel="stylesheet" href="{{ asset('css/brand-framework.css') }}">
-</head>
-<body>
-@include('partials.header')
+@extends('layouts.app')
+
+@section('title', 'Businesses & Brands — LinkingWordz Growth Framework')
+@section('meta_description', 'A three-phase growth framework for coaches, consultants, and brands — from first credible presence to industry authority.')
+
+@push('head')
+<link rel="stylesheet" href="{{ asset('css/brand-framework.css') }}?v=3">
+@endpush
+
+@section('content')
+@php
+    $masthead = $sections['masthead'] ?? [];
+    $cta = $sections['cta'] ?? [];
+    $chips = array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $masthead['chips'] ?? ''))));
+@endphp
+<div class="lw-brands-framework">
 
 <!-- MASTHEAD -->
 <header class="masthead">
   <div class="wrap">
-    <div class="eyebrow">A Linkingwordz Growth Framework</div>
-    <h1 class="hero-head">Every recognised authority<br>started <em>exactly</em> where you are.</h1>
-    <p class="hero-sub">A three-phase path that takes you from "no one's heard of me yet" to being the name your industry already trusts — before they've even spoken to you.</p>
+    <div class="eyebrow">{{ $masthead['eyebrow'] ?? '' }}</div>
+    <h1 class="hero-head">{!! $masthead['title'] ?? '' !!}</h1>
+    <p class="hero-sub">{{ $masthead['subtitle'] ?? '' }}</p>
     <div class="byline-row">
-      <span class="byline-chip">Coaches</span>
-      <span class="byline-chip">Consultants</span>
-      <span class="byline-chip">Financial Advisors</span>
-      <span class="byline-chip">Health, Wellness &amp; Nutrition Professionals</span>
-      <span class="byline-chip">Mental Health Professionals</span>
-      <span class="byline-chip">Travel &amp; Culture Brands</span>
-      <span class="byline-chip">Lifestyle &amp; Self-Care Experts</span>
-      <span class="byline-chip">NGOs &amp; Social Impact Organizations</span>
-      <span class="byline-chip">Growing Brands</span>
+      @foreach ($chips as $chip)
+        <span class="byline-chip">{{ $chip }}</span>
+      @endforeach
     </div>
   </div>
 </header>
@@ -465,25 +464,21 @@
 <!-- CTA -->
 <section class="cta">
   <div class="wrap reveal">
-    <h2>Which phase matches where you are today?</h2>
-    <p>Book a strategy call and we'll tell you exactly where you fit — no guesswork, no generic package.</p>
-    <a href="{{ route('contact') }}" class="cta-btn">Book Your Strategy Call</a>
-    <p class="cta-alt">Need a custom plan? <a href="{{ route('contact') }}">Fill out this contact form</a> and we'll reach out to you, or email us directly at <a href="mailto:connect@linkingwordz.com">connect@linkingwordz.com</a>.</p>
+    <h2>{{ $cta['title'] ?? '' }}</h2>
+    <p>{{ $cta['text'] ?? '' }}</p>
+    <a href="{{ route('contact') }}" class="cta-btn">{{ $cta['button_label'] ?? 'Book Your Strategy Call' }}</a>
+    <p class="cta-alt">{!! $cta['alt_text'] ?? '' !!}</p>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <span class="wordmark" style="color:#F5F3F0;">LINKINGWORDZ</span>
-    Content &amp; authority partners for coaches, consultants, financial advisors, health &amp; wellness professionals, mental health practitioners, travel &amp; culture brands, lifestyle experts, and social impact organizations.
-  </div>
-</footer>
+</div>
+@endsection
 
+@push('scripts')
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.lw-brands-framework .reveal').forEach(el => observer.observe(el));
 </script>
-</body>
-</html>
+@endpush

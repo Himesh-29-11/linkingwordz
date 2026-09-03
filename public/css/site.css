@@ -8656,6 +8656,10 @@ body {
   padding-inline: 0;
 }
 
+.lw-article-engage .lw-ig-comments.is-open {
+  display: block;
+}
+
 @media (max-width: 1024px) {
   .lw-ig-feed__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -10874,6 +10878,12 @@ img, video, iframe, svg, table {
   object-position: center top;
 }
 
+.lw-post__head.lw-container,
+.lw-post__content.lw-container {
+  width: min(100% - (var(--lw-gutter) * 2), 44rem);
+  margin-inline: auto;
+}
+
 .lw-post__head {
   padding-block: clamp(1.5rem, 4vw, 2.6rem) 0.5rem;
 }
@@ -10890,7 +10900,7 @@ img, video, iframe, svg, table {
 }
 
 .lw-post__head h1 {
-  max-width: 22ch;
+  max-width: none;
   margin-top: 0.45rem;
   color: #104547;
   font-size: clamp(1.7rem, 4.4vw, 3.1rem);
@@ -10909,7 +10919,6 @@ img, video, iframe, svg, table {
 }
 
 .lw-post__content {
-  max-width: 46rem;
   padding-block: 1.2rem 3.5rem;
 }
 
@@ -11154,12 +11163,8 @@ img, video, iframe, svg, table {
   object-position: center center;
 }
 
-.lw-post__head h1 {
-  max-width: 22ch;
-}
-
 .lw-post__content {
-  max-width: 44rem;
+  padding-block: 1.2rem 3.5rem;
 }
 
 .lw-post__content > p:first-of-type::first-letter {
