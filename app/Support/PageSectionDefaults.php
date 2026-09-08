@@ -247,6 +247,79 @@ class PageSectionDefaults
                     'title' => 'These are the 5 problems we solve. Every single day.',
                     'problems' => "“My website doesn't represent what I actually do.”\n“I'm not showing up on Google — or anywhere.”\n“My LinkedIn is either inconsistent or completely silent.”\n“I have a book in my head but no idea how to get it out.”\n“My content is written — it just needs someone to sharpen it.”",
                 ],
+                'block_website' => self::serviceBlockDefaults(
+                    '01 — Your Website',
+                    "Your brand's first impression happens before you say a word.",
+                    'Where credibility lands — or disappears.',
+                    "Whether you are a coach, a consultant, a therapist, or an entrepreneurial company — your website is where credibility either lands or disappears. We don't just write your website copy. We handle content strategy, the actual writing, design direction, and development coordination altogether. So you don't have to manage five different people to launch one website.",
+                    ['Content strategy + full website copy', 'Website design and development', 'Domain selection guidance and technical onboarding', 'Platform recommendation (Wix, WordPress, Squarespace, etc.)', 'Technical support post-launch'],
+                    'This is a 3-month engagement. We onboard you, build with you, and hand over with full support.'
+                ),
+                'block_blogs' => self::serviceBlockDefaults(
+                    '02 — Your Blogs',
+                    "The content that keeps working long after you've stopped posting.",
+                    'SEO + AEO-optimised. Built to be found.',
+                    "Blogs are how your ideal clients find you — not just today, but six months from now. We write SEO and AEO-optimised blogs that answer the exact questions your audience is already searching for. For coaches and service brands, that means blogs that position you as the go-to expert in your niche. For authors, we write book promotional blogs that turn your work into something commercially discoverable — reaching your ideal readers through search, before they've even heard your name.\n\nIdeally, 12 blogs give your brand a strong organic foundation and a meaningful SEO boost.",
+                    ['Research-led topic selection (based on your niche + SEO gaps)', 'SEO + AEO optimised long-form blog writing', 'Book promotional blogs (for authors)', 'Internal linking strategy', 'Ready-to-publish formatting']
+                ),
+                'block_linkedin' => self::serviceBlockDefaults(
+                    '03 — Your LinkedIn Presence',
+                    'Your most powerful professional platform. Most people treat it like a notice board.',
+                    'A sales conversation happening without you in the room.',
+                    "LinkedIn is where buying decisions are made quietly. A potential client reads three of your posts before they ever reach out. Which means your LinkedIn content isn't just visibility — it's a sales conversation happening without you in the room.\n\nWe offer a dedicated 3-month LinkedIn Content Package — standalone, not bundled with any other service. We learn your voice, your story, and your professional positioning. Then we write it. You post it. Your audience grows.",
+                    ['Voice discovery session (we write in your voice, not ours)', 'Content calendar — topics, hooks, post structure', 'Written posts — stories, insights, thought leadership, authority content', 'Strategic use of POV framing, storytelling, and engagement hooks', "3-month minimum engagement (that's how long it takes to see real traction)"]
+                ),
+                'block_book' => self::serviceBlockDefaults(
+                    '04 — Your Book',
+                    'The most credible thing a thought leader can have. Most never finish it.',
+                    'Your ideas. Your voice. On the page.',
+                    "Whether you want to document your journey, build authority in your industry, or publish something your clients will find on their shelves — we help you write it. As ghostwriters, we bring your ideas, your voice, and your experience to the page. You own it entirely.\n\nWe also have deep experience in the publishing process — from manuscript to market — and we work with indie and traditionally published authors alike. Many established coaches, consultants, and corporate brands now keep a book on the boardroom table. It is not a vanity project. It is a business asset.",
+                    ['Ghostwriting — business books, memoirs, brand stories, thought leadership', 'Copyediting and proofreading', 'Book Translation', 'Publishing process knowledge (traditional + self-publishing)'],
+                    'For Authors &amp; Publishers — full editorial support details →'
+                ),
+                'block_editorial' => self::serviceBlockDefaults(
+                    '05 — Your Editorial Support',
+                    'Good ideas deserve clean, publication-ready execution.',
+                    'A professional eye, quietly in the background.',
+                    "If your content is already written but needs a professional eye before it goes out — this is where we work quietly in the background. We copyedit, proofread, and refine manuscripts, white papers, academic journals, business documents, and marketing materials.\n\nOur editorial work goes deeper because of the research foundation behind it. With an M.Phil in Management and 9+ years of hands-on experience in finance, psychology, and mental health content — we don't just fix grammar. We understand the subject matter we're editing.",
+                    ['Independent authors before submission or self-publishing', 'Publishers and literary agents', 'Corporate brands and businesses', 'Academic institutions and journals'],
+                    'For Authors &amp; Publishers — full editorial support details →'
+                ),
+                'different' => [
+                    'eyebrow' => 'What makes working with us different',
+                    'title' => "This is what you're actually getting.",
+                    'items' => "Research Is Our Foundation|An M.Phil in Management isn't a qualification we mention in passing. It means every brief is approached with genuine intellectual rigour — not surface-level assumptions. You get content that's thought through, not just written fast.\n5–10 Clients At A Time. That's It.|We deliberately limit how many clients we take on. Not because we can't handle more — but because your brand deserves full attention, not a slot in a production queue. When you're with us, you have our focus.\nWe Deliver On Timelines. With Proof.|We've written 10 blogs per client for 3 different clients — in a single month. Without compromising research quality or voice consistency. Deadlines aren't a pressure point for us. They're part of how we work.\nHuman-Generated. Always.|In a world full of AI-generated content that sounds like everyone else, we write every word by hand. Research-based copy. Real voice. Real thinking. That's not a differentiator we offer — it's a standard we hold.\nContent + Development. Together.|Most agencies hand you copy and say goodbye. Most developers ask you for copy and wait. We sit in both rooms. Content strategy, writing, design direction, and development coordination happen under one engagement.",
+                ],
+                'clarity' => [
+                    'eyebrow' => 'Clarity',
+                    'title' => "This is content marketing. It's not the same as PR.",
+                    'marketing_title' => 'Content Marketing',
+                    'marketing_text' => "Content marketing is the long game. It builds your brand's credibility, searchability, and trust — over time, through content you own. A well-written blog lives on your website for years, answering the same question your ideal client is searching for at 11pm on a Tuesday. A LinkedIn post in your voice builds familiarity before anyone books a call. Content marketing doesn't interrupt your audience — it earns their attention, answers their questions, and positions you as the obvious choice. It influences real buying decisions. Quietly. Consistently.",
+                    'pr_title' => 'PR',
+                    'pr_text' => "PR is about earned media — getting your name into publications, press, and platforms you don't own. It's valuable for visibility and reputation, especially at scale. But PR without a content foundation is like sending someone to a party with no business card. They hear your name and then can't find you. PR tells people you exist. Content marketing shows them why you matter — and keeps showing them, long after the press mention fades.",
+                    'pull_quote' => 'PR puts your name in the room. Content marketing makes them remember why they came to find you.',
+                ],
+                'framework' => [
+                    'eyebrow' => 'A framework before we begin',
+                    'title' => 'Before any content strategy — know your one purpose right now',
+                    'lede' => "At Linkingwordz, we believe every brand needs a primary focus at every stage of its journey. You can't grow your followers, collect testimonials, and drive engagement all at once — not effectively. So before we write a single word for your brand, we ask you this: What does your brand most need right now?",
+                    'cards' => "Grow Your Followers|You have something valuable to say. But not enough people are listening yet. This phase is about expanding your reach — getting in front of new audiences who don't know you exist. Content here is built to attract, introduce, and invite. The goal is growth in numbers, but the strategy is built on relevance and consistency.\nBuild Social Proof|You have happy clients. But you're not leveraging what they've said about you. This phase is about turning your results into trust signals — testimonials, case studies, reviews, and client stories that speak to the next person sitting on the fence. This content doesn't sell. It convinces.\nIncrease Engagement|You have an audience. But they scroll past without responding. This phase is about deepening the relationship — sparking conversations, driving comments and shares, and making your content feel worth engaging with. Engagement signals credibility to algorithms AND to humans.",
+                    'aside' => "Not sure which purpose is right for you right now? That's exactly what the discovery call is for — we figure it out together. It's free. No agenda. No pressure to buy.",
+                ],
+                'paths' => [
+                    'eyebrow' => 'Two paths. Same standard of work.',
+                    'authors_title' => 'For Authors & Publishers',
+                    'authors_text' => 'Independent authors, publishing houses, literary agents, academic journals, and corporate brands producing long-form work.',
+                    'authors_items' => "Ghostwriting\nCopyediting\nProofreading\nBook Promotional Blogs\nPublishing Guidance\nTranslation",
+                    'authors_btn' => 'See full details',
+                    'brands_title' => 'For Coaches, Brands & Businesses',
+                    'brands_text' => 'Coaches, therapists, consultants, financial advisors, psychologists, wellness professionals, entrepreneurs, and SMEs.',
+                    'brands_items' => "Website Content + Development\nSEO Blogs\nLinkedIn Writing\nThought Leadership\nEditorial Support",
+                    'brands_btn' => 'See full details',
+                ],
+                'testimonials' => [
+                    'eyebrow' => 'Client Love',
+                ],
             ],
             'services-authors' => [
                 'hero' => [
@@ -459,7 +532,105 @@ class PageSectionDefaults
                 ['title', 'Title', 'text'],
                 ['problems', 'Problem quotes (one per line)', 'textarea'],
             ])],
+            self::serviceBlockSection('block_website', '01 — Website'),
+            self::serviceBlockSection('block_blogs', '02 — Blogs'),
+            self::serviceBlockSection('block_linkedin', '03 — LinkedIn'),
+            self::serviceBlockSection('block_book', '04 — Book'),
+            self::serviceBlockSection('block_editorial', '05 — Editorial'),
+            ['id' => 'different', 'label' => 'What makes us different', 'fields' => self::fields([
+                ['eyebrow', 'Eyebrow', 'text'],
+                ['title', 'Title', 'text'],
+                ['items', 'Cards (title|text per line, blank line between cards)', 'textarea'],
+            ])],
+            ['id' => 'clarity', 'label' => 'Content marketing vs PR', 'fields' => self::fields([
+                ['eyebrow', 'Eyebrow', 'text'],
+                ['title', 'Title', 'text'],
+                ['marketing_title', 'Content marketing title', 'text'],
+                ['marketing_text', 'Content marketing text', 'textarea'],
+                ['pr_title', 'PR title', 'text'],
+                ['pr_text', 'PR text', 'textarea'],
+                ['pull_quote', 'Closing line', 'text'],
+            ])],
+            ['id' => 'framework', 'label' => 'Purpose framework', 'fields' => self::fields([
+                ['eyebrow', 'Eyebrow', 'text'],
+                ['title', 'Title', 'text'],
+                ['lede', 'Intro', 'textarea'],
+                ['cards', 'Cards (title|text per line, blank line between cards)', 'textarea'],
+                ['aside', 'Footer note', 'textarea'],
+            ])],
+            ['id' => 'paths', 'label' => 'Two paths', 'fields' => self::fields([
+                ['eyebrow', 'Eyebrow', 'text'],
+                ['authors_title', 'Authors card title', 'text'],
+                ['authors_text', 'Authors card text', 'textarea'],
+                ['authors_items', 'Authors list (one per line)', 'textarea'],
+                ['authors_btn', 'Authors button label', 'text'],
+                ['brands_title', 'Brands card title', 'text'],
+                ['brands_text', 'Brands card text', 'textarea'],
+                ['brands_items', 'Brands list (one per line)', 'textarea'],
+                ['brands_btn', 'Brands button label', 'text'],
+            ])],
+            ['id' => 'testimonials', 'label' => 'Testimonials header', 'fields' => self::fields([
+                ['eyebrow', 'Eyebrow', 'text'],
+            ])],
         ];
+    }
+
+    private static function serviceBlockSection(string $id, string $label): array
+    {
+        return ['id' => $id, 'label' => $label, 'fields' => self::fields([
+            ['num', 'Section label', 'text'],
+            ['title', 'Title', 'text'],
+            ['subhead', 'Subhead', 'text'],
+            ['prose', 'Body paragraphs (separate with a blank line)', 'textarea'],
+            ['checklist', 'Checklist items (one per line)', 'textarea'],
+            ['aside', 'Footer note (optional, HTML allowed)', 'html'],
+        ])];
+    }
+
+    private static function serviceBlockDefaults(
+        string $num,
+        string $title,
+        string $subhead,
+        string $prose,
+        array $checklist,
+        string $aside = ''
+    ): array {
+        return [
+            'num' => $num,
+            'title' => $title,
+            'subhead' => $subhead,
+            'prose' => $prose,
+            'checklist' => implode("\n", $checklist),
+            'aside' => $aside,
+        ];
+    }
+
+    /** @return array<int, array{title: string, text: string}> */
+    public static function parsePipeCards(string $raw): array
+    {
+        $cards = [];
+        foreach (preg_split('/\r\n\r\n|\n\n/', trim($raw)) as $chunk) {
+            $chunk = trim($chunk);
+            if ($chunk === '') {
+                continue;
+            }
+            [$title, $text] = array_pad(explode('|', $chunk, 2), 2, '');
+            $cards[] = ['title' => trim($title), 'text' => trim($text)];
+        }
+
+        return $cards;
+    }
+
+    /** @return array<int, string> */
+    public static function parseLines(string $raw): array
+    {
+        return array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $raw))));
+    }
+
+    /** @return array<int, string> */
+    public static function parseParagraphs(string $raw): array
+    {
+        return array_values(array_filter(array_map('trim', preg_split('/\r\n\r\n|\n\n/', $raw))));
     }
 
     private static function servicesAuthorsSchema(): array

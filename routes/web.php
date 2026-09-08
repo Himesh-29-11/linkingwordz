@@ -4,15 +4,16 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\NewsletterSubscriberController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SitePageController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\WorkItemController;
 use App\Http\Controllers\BlogEngageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SitePagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,7 @@ Route::get('/blog/{slug}', [SitePagesController::class, 'insightShow'])->name('b
 
 Route::get('/contact', [SitePagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [SitePagesController::class, 'contactSubmit'])->name('contact.submit');
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 Route::post('/blog/{slug}/like', [BlogEngageController::class, 'like'])->name('blog.like');
 Route::get('/blog/{slug}/comments', [BlogEngageController::class, 'comments'])->name('blog.comments');
@@ -50,7 +52,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::resource('posts', PostController::class)->except(['show']);
         Route::resource('testimonials', TestimonialController::class)->except(['show']);
-        Route::resource('services', ServiceController::class)->except(['show']);
         Route::resource('work', WorkItemController::class)->except(['show']);
         Route::resource('portfolio', PortfolioItemController::class)->except(['show'])->parameters(['portfolio' => 'portfolioItem']);
         Route::get('pages', [SitePageController::class, 'index'])->name('pages.index');
@@ -65,6 +66,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('inquiries/{inquiry}', [InquiryController::class, 'show'])->name('inquiries.show');
         Route::patch('inquiries/{inquiry}', [InquiryController::class, 'update'])->name('inquiries.update');
         Route::delete('inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
+        Route::get('newsletter', [NewsletterSubscriberController::class, 'index'])->name('newsletter.index');
+        Route::get('newsletter/export', [NewsletterSubscriberController::class, 'export'])->name('newsletter.export');
+        Route::delete('newsletter/{subscriber}', [NewsletterSubscriberController::class, 'destroy'])->name('newsletter.destroy');
     });
 });
 

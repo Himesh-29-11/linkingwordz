@@ -275,7 +275,7 @@
                     <a href="mailto:connect@linkingwordz.com"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'mail'])</span><span>Email Directly</span><strong>connect@linkingwordz.com</strong></a>
                     <a href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'calendar'])</span><span>Book a Call</span><strong>calendly.com/linkingwordz/30min</strong></a>
                     <div><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'folder'])</span><span>Portfolio</span><strong>Google Drive portfolio</strong></div>
-                    <a href="https://www.linkingwordz.com/blog" target="_blank" rel="noreferrer"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'article'])</span><span>Sample Blogs</span><strong>www.linkingwordz.com/blog</strong></a>
+                    <a href="{{ route('blog') }}"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'article'])</span><span>Sample Blogs</span><strong>{{ parse_url(config('app.url'), PHP_URL_HOST) }}/blog</strong></a>
                 </div>
 
                 <blockquote class="lw-publisher-quote">“Just book a call if you are open to give your all in.” <cite>— Shruti, Linkingwordz</cite></blockquote>

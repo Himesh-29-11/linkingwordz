@@ -26,7 +26,7 @@
         --font-label: "Cinzel", Georgia, serif;
       }
     </style>
-    <link rel="stylesheet" href="/css/site.css?v=blog2">
+    <link rel="stylesheet" href="/css/site.css?v=footer1">
     @stack('head')
 </head>
 <body>
@@ -39,7 +39,7 @@
         @include('partials.footer')
     </div>
     @include('partials.floating-actions')
-    <script src="/js/site.js?v=float1" defer></script>
+    <script src="/js/site.js?v=footer1" defer></script>
     @stack('scripts')
 </body>
 </html>

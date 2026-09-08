@@ -15,10 +15,6 @@ class ContentSeeder extends Seeder
 {
     public function run(): void
     {
-        if (Schema::hasTable('services')) {
-            $this->call(ServiceSeeder::class);
-        }
-
         if (Schema::hasTable('trust_stats')) {
             $this->call(TrustStatSeeder::class);
         }

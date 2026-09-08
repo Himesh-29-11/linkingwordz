@@ -311,3 +311,64 @@
         window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
 })();
+
+(() => {
+    const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+    document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
+        const msg = form.querySelector('[data-newsletter-msg]');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const emailInput = form.querySelector('input[name="email"]');
+            const email = emailInput?.value?.trim() || '';
+
+            if (!email) {
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+            }
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await res.json().catch(() => ({}));
+
+                if (!res.ok) {
+                    throw new Error(data.message || 'Could not subscribe right now.');
+                }
+
+                if (msg) {
+                    msg.hidden = false;
+                    msg.classList.remove('is-error');
+                    msg.textContent = data.message || 'Thanks for subscribing!';
+                }
+
+                form.reset();
+            } catch (error) {
+                if (msg) {
+                    msg.hidden = false;
+                    msg.classList.add('is-error');
+                    msg.textContent = error.message || 'Could not subscribe right now.';
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                }
+            }
+        });
+    });
+})();

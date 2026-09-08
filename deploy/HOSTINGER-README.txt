@@ -14,7 +14,7 @@ Upload / install
 4. Point the domain document root to the /public folder.
 5. Copy .env.example to .env and set:
 
-   APP_URL=https://YOUR-DOMAIN
+   APP_URL=https://linkingwordz.com
    APP_ENV=production
    APP_DEBUG=false
 
@@ -36,7 +36,7 @@ Upload / install
 
 Admin login (from seeder)
 -------------------------
-URL:   https://YOUR-DOMAIN/admin/login
+URL:   https://linkingwordz.com/admin/login
 Email: admin@gmail.com
 Pass:  Admin@123
 Change this immediately after go-live.

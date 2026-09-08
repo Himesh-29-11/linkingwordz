@@ -48,14 +48,18 @@
                 </ul>
             </nav>
 
-            <nav class="lw-footer__nav" aria-label="Services">
-                <p class="lw-footer__label">Services</p>
-                <ul>
-                    <li><a href="{{ route('services') }}#editorial-content-strategy">Editorial &amp; Content Strategy</a></li>
-                    <li><a href="{{ route('services.brands') }}#seo-content-copywriting">SEO Content &amp; Copywriting</a></li>
-                    <li><a href="{{ route('services.brands') }}#digital-pr">Digital PR &amp; Outreach</a></li>
-                    <li><a href="{{ route('services.authors') }}#book-marketing">Author &amp; Book Marketing</a></li>
-                </ul>
+            <nav class="lw-footer__nav lw-footer__newsletter" aria-label="Newsletter">
+                <p class="lw-footer__label">Newsletter</p>
+                <p class="lw-footer__newsletter-lede">Writing tips, editorial insights, and brand stories — delivered to your inbox.</p>
+                <form class="lw-footer__newsletter-form" action="{{ route('newsletter.subscribe') }}" method="post" data-newsletter-form novalidate>
+                    @csrf
+                    <label class="lw-footer__newsletter-field">
+                        <span class="lw-visually-hidden">Email address</span>
+                        <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
+                    </label>
+                    <button type="submit" class="lw-footer__newsletter-btn">Subscribe</button>
+                    <p class="lw-footer__newsletter-msg" data-newsletter-msg hidden></p>
+                </form>
             </nav>
 
             <nav class="lw-footer__nav" aria-label="Audiences">
@@ -82,7 +86,7 @@
             </div>
             <div class="lw-footer__contact-item">
                 <span class="lw-footer__contact-icon" aria-hidden="true">◎</span>
-                <div><p class="lw-footer__label">Website</p><a href="{{ route('home') }}">www.linkingwordz.com</a></div>
+                <div><p class="lw-footer__label">Website</p><a href="{{ config('app.url') }}">{{ parse_url(config('app.url'), PHP_URL_HOST) }}</a></div>
             </div>
         </div>
 
