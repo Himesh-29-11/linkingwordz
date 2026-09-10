@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EditorUploadController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\NewsletterSubscriberController;
 use App\Http\Controllers\Admin\PortfolioItemController;
@@ -50,6 +51,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
+        Route::post('editor/upload', [EditorUploadController::class, 'store'])->name('editor.upload');
         Route::resource('posts', PostController::class)->except(['show']);
         Route::resource('testimonials', TestimonialController::class)->except(['show']);
         Route::resource('work', WorkItemController::class)->except(['show']);

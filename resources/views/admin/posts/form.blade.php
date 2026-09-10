@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', $post->exists ? 'Edit post' : 'New post')
-@section('kicker', 'Journal')
+@section('kicker', 'Blogs')
 @section('heading', $post->exists ? 'Edit post' : 'Write a post')
 
 @section('content')
@@ -16,13 +16,14 @@
                 </label>
                 @error('title')<p class="ad-error">{{ $message }}</p>@enderror
 
-                <label>Excerpt
-                    <textarea name="excerpt" class="ad-rich-text" rows="3">{{ old('excerpt', $post->excerpt) }}</textarea>
+                <label for="post-excerpt">Excerpt
+                    <textarea id="post-excerpt" name="excerpt" rows="3">{{ old('excerpt', $post->excerpt) }}</textarea>
                 </label>
 
-                <label>Body
-                    <textarea name="body" class="ad-rich-text" rows="16">{{ old('body', $post->exists ? $post->bodyAsHtml() : '') }}</textarea>
-                </label>
+                <div class="ad-field ad-field--editor">
+                    <label for="post-body">Body</label>
+                    <textarea id="post-body" name="body" class="ad-rich-text" rows="16">{{ old('body', $post->exists ? $post->bodyAsHtml() : '') }}</textarea>
+                </div>
 
                 <p class="ad-kicker" style="margin:1.2rem 0 0.6rem">SEO</p>
                 <label>SEO title <small>Google tab title. Aim for under 60 characters. Leave blank to use the post title.</small>
@@ -58,7 +59,7 @@
                     <img class="ad-cover" src="{{ asset($post->image) }}" alt="">
                 @endif
                 <button type="submit" class="ad-btn">{{ $post->exists ? 'Save changes' : 'Create post' }}</button>
-                <a class="ad-link" href="{{ route('admin.posts.index') }}">Back to journal</a>
+                <a class="ad-link" href="{{ route('admin.posts.index') }}">Back to blogs</a>
             </aside>
         </div>
     </form>

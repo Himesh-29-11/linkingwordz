@@ -271,7 +271,48 @@ body.ad {
   outline: none;
   border-color: var(--ad-mauve);
 }
-.ad-form textarea { min-height: 17rem; line-height: 1.6; }
+.ad-form textarea { min-height: 6rem; line-height: 1.6; }
+
+.ad-field {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1.05rem;
+}
+
+.ad-field > label,
+.ad-form label,
+.ad-login label {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1.05rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ad-ink);
+}
+
+.ad-field > label {
+  margin-bottom: 0;
+}
+
+.ad-field--editor .cke_chrome,
+.ad-field--editor textarea.ad-rich-text {
+  width: 100%;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.95rem;
+  min-height: 0;
+}
+
+.ad-field--editor .cke_contents {
+  min-height: 24rem !important;
+  height: 24rem !important;
+}
+
+.ad-field--editor .cke_inner,
+.ad-field--editor .cke_reset {
+  width: 100% !important;
+}
 
 .ad-form .ck-editor__editable {
   min-height: 16rem;
@@ -293,6 +334,26 @@ body.ad {
 .ad-form .ck.ck-editor__main > .ck-editor__editable {
   border-color: color-mix(in srgb, var(--ad-ink) 14%, var(--ad-cream));
   background: var(--ad-white);
+}
+
+.ad-form .cke_chrome {
+  width: 100% !important;
+  border-color: color-mix(in srgb, var(--ad-ink) 14%, var(--ad-cream)) !important;
+  border-radius: 0.35rem;
+  overflow: hidden;
+}
+
+.ad-form .cke_top,
+.ad-form .cke_bottom {
+  background: color-mix(in srgb, var(--ad-cream) 92%, var(--ad-white)) !important;
+  border-color: color-mix(in srgb, var(--ad-ink) 14%, var(--ad-cream)) !important;
+}
+
+.ad-form .cke_contents {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ad-ink);
 }
 
 .ad-btn, .ad-toolbar button, .ad-login button, .ad-inline button {
@@ -387,15 +448,6 @@ body.ad {
 .ad-pill--spam, .ad-pill--archived { color: #666; }
 
 .ad-form__grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(15rem, 0.75fr); gap: 1.6rem; }
-.ad-form label, .ad-login label {
-  display: grid;
-  gap: 0.4rem;
-  margin-bottom: 1.05rem;
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ad-ink);
-}
 .ad-form small { color: color-mix(in srgb, var(--ad-ink) 55%, var(--ad-cream)); font-size: 0.75rem; letter-spacing: 0; text-transform: none; }
 .ad-form__side {
   padding: 0 0 0 1.3rem;

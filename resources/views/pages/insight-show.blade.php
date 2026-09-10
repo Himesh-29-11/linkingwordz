@@ -11,7 +11,7 @@
         </figure>
 
         <div class="lw-container lw-post__head">
-            <a class="lw-post__back" href="{{ route('blog') }}">← Journal</a>
+            <a class="lw-post__back" href="{{ route('blog') }}">← Blog</a>
             <p class="lw-eyebrow">{{ $insight['category'] ?? 'Blog' }}</p>
             <h1>{{ $insight['title'] }}</h1>
             <p class="lw-post__byline">By Shruti Bhatt · {{ $insight['date'] ?: 'LinkingWordz' }}</p>

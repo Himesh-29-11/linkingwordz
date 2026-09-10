@@ -99,17 +99,22 @@
     text-transform:uppercase;
     color:#D9C4CC;
   }
-  .hero-head{
+  .masthead .hero-head{
     font-size:clamp(36px,5.4vw,64px);
     line-height:1.08;
     max-width:820px;
     font-weight:600;
     color:var(--paper);
   }
-  .hero-head em{
+  .masthead .hero-head em{
     font-style:italic;
     color:var(--accent);
     font-weight:500;
+  }
+  .masthead .hero-head mark,
+  .masthead .hero-head span{
+    color:inherit;
+    background:transparent;
   }
   .hero-sub{
     max-width:600px;

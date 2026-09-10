@@ -1,8 +1,8 @@
 @extends('admin.layout')
 
-@section('title', 'Journal')
+@section('title', 'Blogs')
 @section('kicker', 'Content')
-@section('heading', 'Journal posts')
+@section('heading', 'Blog posts')
 
 @section('content')
     <div class="ad-toolbar">

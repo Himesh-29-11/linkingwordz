@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="admin-editor-upload" content="{{ route('admin.editor.upload') }}">
     <title>@yield('title', 'Studio') — LinkingWordz Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v=5">
     @stack('head')
 </head>
 <body class="ad">
@@ -19,7 +20,7 @@
         </a>
         <nav class="ad-nav">
             <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'is-on' : '' }}">Overview</a>
-            <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'is-on' : '' }}">Journal</a>
+            <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'is-on' : '' }}">Blogs</a>
             <a href="{{ route('admin.testimonials.index') }}" class="{{ request()->routeIs('admin.testimonials.*') ? 'is-on' : '' }}">Testimonials</a>
             <a href="{{ route('admin.work.index') }}" class="{{ request()->routeIs('admin.work.*') ? 'is-on' : '' }}">Case studies</a>
             <a href="{{ route('admin.portfolio.index') }}" class="{{ request()->routeIs('admin.portfolio.*') ? 'is-on' : '' }}">Portfolio</a>
@@ -61,8 +62,9 @@
         @endif
         @yield('content')
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
-    <script src="{{ asset('js/admin-editor.js') }}?v=1"></script>
+    <script>window.CKEDITOR_BASEPATH = @json(rtrim(asset('vendor/ckeditor'), '/') . '/');</script>
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}?v=6"></script>
+    <script src="{{ asset('js/admin-editor.js') }}?v=8"></script>
     @stack('scripts')
 </body>
 </html>

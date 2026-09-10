@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Canonical host: send www traffic to the primary domain.
+    RewriteCond %{HTTP_HOST} ^www\.linkingwordz\.com$ [NC]
+    RewriteRule ^ https://linkingwordz.com%{REQUEST_URI} [L,R=301]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

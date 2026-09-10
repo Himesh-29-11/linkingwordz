@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', [
             'stats' => [
-                ['label' => 'Published posts', 'value' => Post::query()->published()->count(), 'hint' => 'Live on the journal'],
+                ['label' => 'Published posts', 'value' => Post::query()->published()->count(), 'hint' => 'Live on the blog'],
                 ['label' => 'Drafts', 'value' => Post::query()->where('status', 'draft')->count(), 'hint' => 'Waiting to go live'],
                 ['label' => 'Pending comments', 'value' => Comment::query()->where('status', 'pending')->count(), 'hint' => 'Need a review'],
                 ['label' => 'Newsletter subscribers', 'value' => $subscriberCount, 'hint' => 'Footer sign-ups'],

@@ -12,7 +12,7 @@
                 </figure>
                 <div class="lw-blog-intro__copy">
                     <p class="lw-eyebrow">Insights and Tips</p>
-                    <h1 id="insights-page-title">The LinkingWordz journal</h1>
+                    <h1 id="insights-page-title">Blog</h1>
                     <p>Here, you’ll find editing tips, writing resources, how-tos, book reviews, recommendations for tools and systems, and must-know self-publishing strategies.</p>
                     <form class="lw-blog-search" role="search" action="{{ route('insights') }}" method="get">
                         <label class="lw-visually-hidden" for="blog-search">Search</label>

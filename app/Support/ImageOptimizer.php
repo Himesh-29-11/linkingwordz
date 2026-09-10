@@ -68,6 +68,70 @@ class ImageOptimizer
         return 'images/portfolio/'.$filename;
     }
 
+    public static function storeEditorImage(string $sourcePath, string $targetDir, string $basename): string
+    {
+        if (! extension_loaded('gd')) {
+            throw new RuntimeException('Image processing is not available on this server.');
+        }
+
+        $info = @getimagesize($sourcePath);
+        if ($info === false) {
+            throw new RuntimeException('The uploaded file is not a valid image.');
+        }
+
+        [$width, $height, $type] = $info;
+        $source = self::createImage($sourcePath, $type);
+        if ($source === false) {
+            throw new RuntimeException('Could not read the uploaded image.');
+        }
+
+        $max = 1600;
+        $scale = min($max / max($width, 1), $max / max($height, 1), 1);
+        $targetWidth = max(1, (int) round($width * $scale));
+        $targetHeight = max(1, (int) round($height * $scale));
+
+        $canvas = imagecreatetruecolor($targetWidth, $targetHeight);
+        if ($canvas === false) {
+            imagedestroy($source);
+            throw new RuntimeException('Could not prepare the optimized image.');
+        }
+
+        imagealphablending($canvas, false);
+        imagesavealpha($canvas, true);
+        $transparent = imagecolorallocatealpha($canvas, 0, 0, 0, 127);
+        imagefilledrectangle($canvas, 0, 0, $targetWidth, $targetHeight, $transparent);
+        imagealphablending($canvas, true);
+
+        imagecopyresampled(
+            $canvas,
+            $source,
+            0,
+            0,
+            0,
+            0,
+            $targetWidth,
+            $targetHeight,
+            $width,
+            $height
+        );
+
+        imagedestroy($source);
+
+        File::ensureDirectoryExists($targetDir);
+
+        $filename = $basename.'.jpg';
+        $absolutePath = rtrim($targetDir, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$filename;
+
+        if (! imagejpeg($canvas, $absolutePath, 85)) {
+            imagedestroy($canvas);
+            throw new RuntimeException('Could not save the optimized image.');
+        }
+
+        imagedestroy($canvas);
+
+        return $filename;
+    }
+
     private static function createImage(string $path, int $type)
     {
         return match ($type) {
