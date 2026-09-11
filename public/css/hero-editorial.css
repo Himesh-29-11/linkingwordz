@@ -469,14 +469,74 @@
 
   .lw-hero--editorial .lw-hero-actions {
     justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .lw-hero--editorial .lw-btn {
+    justify-content: center;
+    text-align: center;
   }
 
   .lw-hero--editorial .lw-discovery {
     text-align: center;
   }
 
+  .lw-hero--editorial .lw-hero-container {
+    min-height: auto;
+  }
+
   .lw-hero--editorial .lw-hero-visual {
-    min-height: 650px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .lw-hero--editorial .lw-photo-frame {
+    order: 1;
+    width: min(100%, 22rem);
+    height: auto;
+    aspect-ratio: 5 / 6;
+    max-height: min(520px, 75vh);
+    margin-inline: auto;
+  }
+
+  .lw-hero--editorial .lw-founder-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    order: 2;
+    margin-top: 0;
+  }
+
+  .lw-hero--editorial .lw-round-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: center;
+    order: 3;
+    margin: 0.25rem auto 0;
+    transform: none;
+  }
+
+  .lw-hero--editorial .lw-mini-cards {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    order: 4;
+    margin-top: 0.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .lw-hero--editorial .lw-dots-left,
+  .lw-hero--editorial .lw-wave-decoration {
+    display: none;
   }
 
   .lw-hero--editorial .lw-stats {
@@ -518,9 +578,9 @@
   }
 
   .lw-hero--editorial h1 {
-    font-size: 48px;
-    line-height: 1;
-    letter-spacing: -2px;
+    font-size: clamp(2.15rem, 11vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
   }
 
   .lw-hero--editorial .lw-hero-description {
@@ -537,20 +597,12 @@
     text-align: center;
   }
 
-  .lw-hero--editorial .lw-hero-visual {
-    min-height: 570px;
-  }
-
   .lw-hero--editorial .lw-photo-frame {
     width: 100%;
-    height: 500px;
     padding: 14px;
   }
 
   .lw-hero--editorial .lw-founder-card {
-    top: 20px;
-    left: 0;
-    width: min(100%, 17.5rem);
     padding: 15px;
   }
 
@@ -568,21 +620,11 @@
   .lw-hero--editorial .lw-round-badge {
     width: 105px;
     height: 105px;
-    right: -5px;
-    top: 300px;
   }
 
   .lw-hero--editorial .lw-badge-inner {
     width: 85px;
     height: 85px;
-  }
-
-  .lw-hero--editorial .lw-mini-cards {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: 15px;
-    grid-template-columns: 1fr;
   }
 
   .lw-hero--editorial .lw-mini-card {
@@ -591,15 +633,22 @@
 
   .lw-hero--editorial .lw-stats {
     padding: 25px 20px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 
   .lw-hero--editorial .lw-stat {
-    padding: 15px;
+    padding: 15px 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .lw-hero--editorial .lw-stat:last-child {
+    border-bottom: 0;
   }
 
   .lw-hero--editorial .lw-stat:first-child {
-    padding-left: 15px;
+    padding-left: 0;
   }
 
   .lw-hero--editorial .lw-stat strong {
@@ -608,10 +657,5 @@
 
   .lw-hero--editorial .lw-stat span {
     font-size: 8px;
-  }
-
-  .lw-hero--editorial .lw-dots-left,
-  .lw-hero--editorial .lw-wave-decoration {
-    display: none;
   }
 }

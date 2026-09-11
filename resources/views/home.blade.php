@@ -3,7 +3,7 @@
 @section('title', 'Home — LinkingWordz')
 
 @push('head')
-    <link rel="stylesheet" href="{{ asset('css/hero-editorial.css') }}?v=2">
+    <link rel="stylesheet" href="{{ asset('css/hero-editorial.css') }}?v=4">
 @endpush
 
 @section('content')

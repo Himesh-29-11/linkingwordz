@@ -547,6 +547,21 @@
   @media (max-width:600px){
     .wrap{padding:0 20px;}
     .byline-row{gap:8px;}
+    .dash-widget{
+      display:flex;
+      flex-direction:column;
+      gap:0.75rem;
+      max-width:none;
+    }
+    .dash-badge{
+      position:relative;
+      top:auto !important;
+      right:auto !important;
+      bottom:auto !important;
+      left:auto !important;
+      max-width:none;
+      width:100%;
+    }
   }
 
 /* Primary navigation added to the reference masthead. */

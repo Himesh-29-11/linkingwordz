@@ -4,7 +4,7 @@
 @section('meta_description', 'A three-phase growth framework for coaches, consultants, and brands — from first credible presence to industry authority.')
 
 @push('head')
-<link rel="stylesheet" href="{{ asset('css/brand-framework.css') }}?v=4">
+<link rel="stylesheet" href="{{ asset('css/brand-framework.css') }}?v=5">
 @endpush
 
 @section('content')

@@ -26,7 +26,7 @@
         --font-label: "Cinzel", Georgia, serif;
       }
     </style>
-    <link rel="stylesheet" href="/css/site.css?v=footer1">
+    <link rel="stylesheet" href="/css/site.css?v=footer5">
     @stack('head')
 </head>
 <body>

@@ -608,8 +608,34 @@ class PageSectionDefaults
     /** @return array<int, array{title: string, text: string}> */
     public static function parsePipeCards(string $raw): array
     {
+        $raw = trim($raw);
+        if ($raw === '') {
+            return [];
+        }
+
+        $lines = array_values(array_filter(
+            array_map('trim', preg_split('/\r\n|\r|\n/', $raw)),
+            fn (string $line) => $line !== ''
+        ));
+        $pipeLineCount = count(array_filter($lines, fn (string $line) => str_contains($line, '|')));
+
+        // One card per line when multiple Title|Text rows are stored with single line breaks.
+        if ($pipeLineCount > 1) {
+            $cards = [];
+            foreach ($lines as $line) {
+                if (! str_contains($line, '|')) {
+                    continue;
+                }
+
+                [$title, $text] = array_pad(explode('|', $line, 2), 2, '');
+                $cards[] = ['title' => trim($title), 'text' => trim($text)];
+            }
+
+            return $cards;
+        }
+
         $cards = [];
-        foreach (preg_split('/\r\n\r\n|\n\n/', trim($raw)) as $chunk) {
+        foreach (preg_split('/\r\n\r\n|\n\n/', $raw) as $chunk) {
             $chunk = trim($chunk);
             if ($chunk === '') {
                 continue;

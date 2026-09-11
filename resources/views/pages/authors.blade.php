@@ -274,7 +274,7 @@
                     <a href="https://wa.me/919901230875" target="_blank" rel="noreferrer"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'whatsapp'])</span><span>WhatsApp</span><strong>+91 9901230875</strong></a>
                     <a href="mailto:connect@linkingwordz.com"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'mail'])</span><span>Email Directly</span><strong>connect@linkingwordz.com</strong></a>
                     <a href="https://calendly.com/linkingwordz/30min" target="_blank" rel="noreferrer"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'calendar'])</span><span>Book a Call</span><strong>calendly.com/linkingwordz/30min</strong></a>
-                    <a href="{{ route('portfolio') }}"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'folder'])</span><span>Portfolio</span><strong>view portfolio</strong></a>
+                    <a href="{{ route('portfolio') }}"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'folder'])</span><span>Portfolio</span><strong>View Portfolio</strong></a>
                     <a href="{{ route('blog') }}"><span class="lw-publisher-connect__icon">@include('partials.publisher-icon', ['name' => 'article'])</span><span>Sample Blogs</span><strong>{{ parse_url(config('app.url'), PHP_URL_HOST) }}/blog</strong></a>
                 </div>
 
